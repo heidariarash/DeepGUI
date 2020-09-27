@@ -4,7 +4,7 @@
   "description": "A Graphical User Interface to produce deep learning related python codes (such as tensorflow or pytorch)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "electron": "electron ."
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/heidariarash/DeepGUI/issues"
   },
-  "homepage": "https://github.com/heidariarash/DeepGUI#readme"
+  "homepage": "https://github.com/heidariarash/DeepGUI#readme",
+  "dependencies": {
+    "electron": "^10.1.2"
+  }
 }
