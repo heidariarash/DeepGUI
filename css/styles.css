@@ -1,0 +1,60 @@
+/***********************************************
+              Defining New Fonts
+***********************************************/
+@font-face {
+    font-family: bigFunnyFont;
+    src: url("../fonts/Bangers-Regular.ttf");
+}
+
+/***********************************************
+            Panels Configurations
+***********************************************/
+.main-panel{
+    min-height: 95%;
+}
+.right-panel {
+    min-height: 100%;
+}
+
+.middle-panel{
+    min-height: 100%;
+}
+
+.left-panel {
+    min-height: 100%;
+}
+
+/***********************************************
+              Add New Layer Button
+***********************************************/
+.new-layer-button-parent{
+    margin-top: 20px;
+}
+
+#new-layer-button {
+    border: 1px solid black;
+    font-family: bigFunnyFont;
+    border-radius: 20px;
+    color: black;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 30;
+    transition: all 0.5s ease-in-out;
+}
+
+#new-layer-button:hover,
+#new-layer-button:focus{
+    font-size: 32px;
+}
+
+
+/***********************************************
+                     Credit
+***********************************************/
+.credit{
+    font-family: bigFunnyFont;
+}
