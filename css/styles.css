@@ -3,13 +3,24 @@
 ***********************************************/
 @font-face {
     font-family: bigFunnyFont;
-    src: url("../fonts/Bangers-Regular.ttf");
+    src: url("../fonts/SansitaSwashed-Medium.ttf");
+}
+
+@font-face {
+    font-family: bigFunnyFontBold;
+    src: url("../fonts/SansitaSwashed-Bold.ttf");
+}
+
+@font-face {
+    font-family: normalFont;
+    src: url("../fonts/IndieFlower-Regular.ttf");
 }
 
 /***********************************************
             Panels Configurations
 ***********************************************/
 .main-panel{
+    font: normalFont;
     min-height: 95%;
 }
 .right-panel {
@@ -57,4 +68,43 @@
 ***********************************************/
 .credit{
     font-family: bigFunnyFont;
+}
+
+/***********************************************
+               Framework Selector
+***********************************************/
+#framework-selector {
+    width: 80%;
+    text-align: center;
+    border-radius: 15px;
+    font-family: normalFont;
+}
+
+/***********************************************
+            Optimizer Configurations
+***********************************************/
+#optimizer-selector {
+    width: 80%;
+    text-align: center;
+    border-radius: 15px;
+    font-family: normalFont;
+}
+
+/***********************************************
+                   Headings
+***********************************************/
+.main-heading-3 {
+    font-family: bigFunnyFont;
+}
+
+.main-heading-2 {
+    font-family: bigFunnyFontBold;
+}
+
+.heading-2-parent {
+    margin-top: 20%;
+}
+
+.heading-3-parent {
+    margin-top: 3%;
 }
