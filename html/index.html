@@ -20,6 +20,7 @@
                 </div>
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Choose the framework</label>
+                    <br>
                     <input type="text" name="framework-selector" list="framework-selector-list" id="framework-selector">
                     <datalist id="framework-selector-list">
                         <option value="TensorFlow">TensorFlow</option>
@@ -53,11 +54,15 @@
 
 
             <div class="col-sm-3 right-panel text-center"> <!-- Right Panel -->
+
+                <!-- Optimizer Configurations -->
                 <div class="col-sm-12 heading-2-parent">
                     <label class="main-heading-2">Optimzer Configurations</label>
                 </div>
+
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Choose Optimizer</label>
+                    <br>
                     <input type="text" name="optimizer-selector" list="optimizer-selector-list" id="optimizer-selector">
                     <datalist id="optimizer-selector-list">
                         <option value="SGD">SGD</option>
@@ -65,6 +70,46 @@
                         <option value="Adam">Adam</option>
                     </datalist>
                 </div>
+
+                <div class="col-sm-12 heading-3-parent">
+                    <label class="main-heading-3">Learning Rate</label>
+                    <br>
+                    <input type="number" name="optimizer-lr" id="optimizer-lr" step="0.0001" min="0" value="0">
+                </div>
+
+
+                <!-- Loss Funtion Configurations -->
+                <div class="col-sm-12 heading-2-parent">
+                    <label class="main-heading-2">Loss Functions Configurations</label>
+                </div>
+                <div class="col-sm-12 heading-3-parent">
+                    <label class="main-heading-3">Choose Loss Function</label>
+                    <br>
+                    <input type="text" name="loss-function-selector" list="loss-function-selector-list" id="loss-function-selector">
+                    <datalist id="loss-function-selector-list">
+                        <option value="MSE">Mean Squared Error</option>
+                        <option value="BCE">Binary Cross Entropy</option>
+                        <option value="CCE">Categorical Cross Entropy</option>
+                        <option value="SBCE">Sparse Binary Cross Entropy</option>
+                        <option value="SCCE">Sparse Categorical Cross Entropy</option>
+                    </datalist>
+                </div>
+
+                <!-- Train Configurations -->
+                <div class="col-sm-12 heading-2-parent">
+                    <label class="main-heading-2">Train Configurations</label>
+                </div>
+                <div class="col-sm-12 heading-3-parent">
+                    <label class="main-heading-3">Number of Epochs</label>
+                    <br>
+                    <input type="number" name="epoch" id="epoch" min="1" value="1">
+                </div>
+                <div class="col-sm-12 heading-3-parent">
+                    <label class="main-heading-3">Batch Size</label>
+                    <br>
+                    <input type="number" name="batch" id="batch" min="1" value="1">
+                </div>
+
             </div> <!-- Right Panel End -->
 
 
