@@ -13,7 +13,7 @@
 
 @font-face {
     font-family: normalFont;
-    src: url("../fonts/IndieFlower-Regular.ttf");
+    src: url("../fonts/Kalam-Regular.ttf");
 }
 
 /***********************************************
@@ -22,6 +22,7 @@
 .main-panel{
     font: normalFont;
     min-height: 95%;
+    background-color: #161a1d;
 }
 .right-panel {
     min-height: 100%;
@@ -43,14 +44,14 @@
 }
 
 #new-layer-button {
-    border: 1px solid black;
+    border: 1px solid #db3a34;
     font-family: bigFunnyFont;
     border-radius: 20px;
-    color: black;
+    color: #db3a34;
     padding-right: 50px;
     padding-left: 50px;
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 8px;
     text-decoration: none;
     text-align: center;
     font-size: 30;
@@ -66,8 +67,11 @@
 /***********************************************
                      Credit
 ***********************************************/
-.credit{
+.credit-parent{
     font-family: bigFunnyFont;
+    background-color: #161a1d;
+    min-height: 5%;
+    color: #eeef20;
 }
 
 /***********************************************
@@ -132,15 +136,44 @@
 }
 
 /***********************************************
+                   Generate
+***********************************************/
+.generate-parent {
+    margin-top: 20%;
+}
+
+#generate-button {
+    border: 1px solid #db3a34;
+    font-family: bigFunnyFont;
+    border-radius: 20px;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.5s ease-in-out;
+    color: #db3a34;
+}
+
+#generate-button:hover,
+#generate-button:focus{
+    font-size: 18px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+/***********************************************
                    Headings
 ***********************************************/
 .main-heading-3 {
     font-family: bigFunnyFont;
+    color: #eeef20;
 }
 
 .main-heading-2 {
     font-family: bigFunnyFontBold;
     font-size: 20px;
+    color: #db3a34;
 }
 
 .heading-2-parent {
@@ -163,4 +196,9 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+input {
+    background-color: #ffd000;
+    border-color: black;
 }

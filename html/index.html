@@ -87,11 +87,11 @@
                     <br>
                     <input type="text" name="loss-function-selector" list="loss-function-selector-list" id="loss-function-selector">
                     <datalist id="loss-function-selector-list">
-                        <option value="MSE">Mean Squared Error</option>
-                        <option value="BCE">Binary Cross Entropy</option>
-                        <option value="CCE">Categorical Cross Entropy</option>
-                        <option value="SBCE">Sparse Binary Cross Entropy</option>
-                        <option value="SCCE">Sparse Categorical Cross Entropy</option>
+                        <option value="Mean Squared Error">Mean Squared Error</option>
+                        <option value="Binary Cross Entropy">Binary Cross Entropy</option>
+                        <option value="Categorical Cross Entropy">Categorical Cross Entropy</option>
+                        <option value="Sparse Binary Cross Entropy">Sparse Binary Cross Entropy</option>
+                        <option value="Sparse Categorical Cross Entropy">Sparse Categorical Cross Entropy</option>
                     </datalist>
                 </div>
 
@@ -110,6 +110,13 @@
                     <input type="number" name="batch" id="batch" min="1" value="1">
                 </div>
 
+                 <!-- Submit Button -->
+                 <div class="col-sm-12 generate-parent">
+                    <a id="generate-button">
+                        Generate Code
+                    </a>
+                </div>
+
             </div> <!-- Right Panel End -->
 
 
@@ -123,7 +130,7 @@
 
 
 
-        <div class="row text-center"> <!-- Credit Row -->
+        <div class="row text-center credit-parent"> <!-- Credit Row -->
             <div class="col-sm-12">
                 <h6 class="credit">
                     Created by Arash Heidari (contact me: arashheidari94@outlook.com)
