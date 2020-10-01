@@ -1,6 +1,6 @@
 const electron = require('electron');
 
-const { app, BrowserWindow, Menu } = electron;
+const { app, BrowserWindow, Menu, ipcMain } = electron;
 
 let mainWindow;
 
@@ -9,7 +9,10 @@ app.on('ready', ()=> {
     mainWindow = new BrowserWindow({
         minHeight: 950,
         minWidth: 1370,
-        frame: false
+        frame: false,
+        webPreferences: {
+            nodeIntegration: true
+        }
     });
 
     mainWindow.setBounds({
@@ -18,8 +21,12 @@ app.on('ready', ()=> {
     });
 
     //Loading the corresponding HTML File
-    mainWindow.loadURL(`file://${__dirname}/index.html`);
+    mainWindow.loadURL(`file://${__dirname}/html/index.html`);
 });
+
+ipcMain.on('exit-app', (evt, arg) => {
+    app.quit();
+})
 
 const menuMainWindow = [
     // {
