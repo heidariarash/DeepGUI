@@ -21,7 +21,7 @@
 ***********************************************/
 .main-panel{
     font: normalFont;
-    min-height: 95%;
+    min-height: 91%;
     background-color: #161a1d;
 }
 .right-panel {
@@ -40,7 +40,7 @@
               Add New Layer Button
 ***********************************************/
 .new-layer-button-parent{
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 #new-layer-button {
@@ -172,7 +172,7 @@
 
 .main-heading-2 {
     font-family: bigFunnyFontBold;
-    font-size: 20px;
+    font-size: 25px;
     color: #db3a34;
 }
 
@@ -201,4 +201,49 @@ input::-webkit-inner-spin-button {
 input {
     background-color: #ffd000;
     border-color: black;
+}
+
+
+/***********************************************
+                    Title Bar
+***********************************************/
+#title-bar {
+	-webkit-app-region: drag;
+	height: 4%;	
+	padding: 0px;
+    margin: 0px;  
+	background-color: #0c0e0f;
+    font-family: sans-serif;
+    color: #db3a34;
+    font-family: bigFunnyFontBold;
+}
+
+#title {
+	position: fixed;
+	top: 0px;
+	left: 12px;	
+	line-height: 32px;
+    font-size: 25px;
+}
+
+#title-bar-btns {
+	-webkit-app-region: no-drag;
+	position: fixed;
+	top: 1px;
+	right: 0px;	
+}
+
+#title-bar-btns a {
+	height: 32px;
+    width: 32px;
+    margin-right: 15px;
+	background-color: transparent;
+	border: none;
+    font-size: 25px;
+    color: #db3a34;
+    font-family: normalFont;
+}
+
+#title-bar-btns a:hover {
+    cursor: pointer;
 }
