@@ -21,7 +21,13 @@
 ***********************************************/
 .main-panel{
     font: normalFont;
-    min-height: 91%;
+    position:fixed;
+    padding:0;
+    margin:0;
+    top:35px;
+    left:0;
+    width: 100%;
+    height: 100%;
     background-color: #161a1d;
 }
 .right-panel {
@@ -61,6 +67,7 @@
 #new-layer-button:hover,
 #new-layer-button:focus{
     font-size: 32px;
+    cursor: pointer;
 }
 
 
@@ -69,6 +76,9 @@
 ***********************************************/
 .credit-parent{
     font-family: bigFunnyFont;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     background-color: #161a1d;
     min-height: 5%;
     color: #eeef20;
@@ -182,6 +192,18 @@
     color: #db3a34;
 }
 
+.main-heading-1 {
+    font-family: bigFunnyFont;
+    font-size: 25px;
+    color: #db3a34;
+}
+
+
+.heading-1-parent {
+    margin-top: 10%;
+    margin-bottom: 0%;
+}
+
 .heading-2-parent {
     margin-top: 20%;
 }
@@ -219,11 +241,14 @@ input {
 ***********************************************/
 #title-bar {
 	-webkit-app-region: drag;
-	height: 4%;	
+    height: 35px;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
 	padding: 0px;
     margin: 0px;  
 	background-color: #0c0e0f;
-    font-family: sans-serif;
     color: #db3a34;
     font-family: bigFunnyFontBold;
 }
@@ -234,6 +259,14 @@ input {
 	left: 12px;	
 	line-height: 32px;
     font-size: 25px;
+}
+
+#title-sm {
+	position: fixed;
+	top: 0px;
+	left: 12px;	
+	line-height: 32px;
+    font-size: 18px;
 }
 
 #title-bar-btns {
@@ -273,5 +306,47 @@ input {
 
 .cog:hover {
     fill: #eeef20;
+    cursor: pointer;
+}
+
+/***********************************************
+                Layer Selector
+***********************************************/
+#layer-selector {
+    width: 80%;
+    text-align: center;
+    border-radius: 15px;
+    font-family: normalFont;
+    font-size: 20;
+    margin-top: -15%;
+}
+
+/***********************************************
+                Done and Cancel
+***********************************************/
+#done {
+    margin-right: 10%;
+    padding: 4px 20px;
+    color: #db3a34;
+    border-radius: 15px;
+    font-family: bigFunnyFont;
+    border: 1px solid #db3a34;
+    transition: all 0.3s ease-in-out;
+}
+
+#cancle {
+    margin-left: 10%;
+    padding: 4px 20px;
+    color: #db3a34;
+    border-radius: 15px;
+    font-family: bigFunnyFont;
+    border: 1px solid #db3a34;
+    transition: all 0.3s ease-in-out;
+}
+
+#cancle:hover,
+#done:hover {
+    color: #eeef20;
+    border-color: #eeef20;
     cursor: pointer;
 }

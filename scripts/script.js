@@ -12,3 +12,7 @@ document.getElementById('min-btn').addEventListener('click', () => {
 document.getElementById('max-btn').addEventListener('click', () => {
     ipcRenderer.send('max-app');
 });
+
+document.getElementById('new-layer-button').addEventListener('click', () => {
+    ipcRenderer.send('new-layer-request');
+})

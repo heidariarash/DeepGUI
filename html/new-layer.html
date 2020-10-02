@@ -1,0 +1,40 @@
+<html>
+<head>
+    <!-- CSS links -->
+    <link rel="stylesheet" href="../css/bootstrap.css"> <!-- Bootstrap -->
+    <link rel="stylesheet" href="../css/styles.css">    <!-- Customized CSS -->
+</head>
+<body>
+    <!-- Title Bar -->
+    <div id="title-bar">
+        <div id="title-sm">Add New Layer</div>
+    </div>
+    <div class="container-fluid">
+        <div class="row main-panel"> <!-- Main Window Row -->
+            <div class="col-sm-12 text-center heading-1-parent">
+                <label class="main-heading-1"> Choose type of the layer</label>
+                <br>
+            </div>
+            <div class="col-sm-12 text-center">
+                <input type="text" name="layer-selector" list="layer-selector-list" id="layer-selector">
+                <datalist id="layer-selector-list">
+                    <option value="Linear">Linear</option>
+                    <option value="Convolution 1D">Convolution 1D</option>
+                    <option value="Convolution 2D">Convolution 2D</option>
+                    <option value="Convolution 3D">Convolution 3D</option>
+                    <option value="Max Pool 1D">Max Pool 1D</option>
+                    <option value="Max Pool 2D">Max Pool 2D</option>
+                    <option value="Max Pool 3D">Max Pool 3D</option>
+                    <option value="Activation">Activation</option>
+                    <option value="Softmax">Softmax</option>
+                </datalist>
+            </div>
+            <div class="col-sm-12 text-center small-window-buttons">
+                <a id="done">Add</a>
+                <a id="cancle">Cancle</a>
+            </div>
+        </div>
+    </div>
+    <script src="../scripts/new-layer-script.js"></script>
+</body>
+</html>
