@@ -17,11 +17,12 @@ app.on('ready', ()=> {
 
     //Loading the corresponding HTML File
     mainWindow.loadURL(`file://${__dirname}/html/index.html`);
+    mainWindow.maximize();
 });
 
 
 //exiting app on close app button
-ipcMain.on('exit-app', (evt, arg) => {
+ipcMain.on('exit-app', () => {
     app.quit();
 })
 

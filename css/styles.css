@@ -165,6 +165,12 @@
 /***********************************************
                    Headings
 ***********************************************/
+.main-heading-4 {
+    font-family: bigFunnyFont;
+    color: #db3a34;
+    font-size: 20px;
+}
+
 .main-heading-3 {
     font-family: bigFunnyFont;
     color: #eeef20;
@@ -184,6 +190,10 @@
     margin-top: 3%;
 }
 
+.heading-4-parent {
+    margin-top: 5%;
+}
+
 
 /***********************************************
                 Input Fields
@@ -201,8 +211,8 @@ input::-webkit-inner-spin-button {
 input {
     background-color: #ffd000;
     border-color: black;
+    border-radius: 15px;
 }
-
 
 /***********************************************
                     Title Bar
@@ -248,4 +258,20 @@ input {
 #title-bar-btns a:hover {
     cursor: pointer;
     color: #eeef20;
+}
+
+/***********************************************
+                     Cog
+***********************************************/
+.cog {
+    width: 16px;
+    height: 16px;
+    fill: #db3a34;
+    transition: all 0.3s ease-in-out;
+    margin-right: 15px;
+}
+
+.cog:hover {
+    fill: #eeef20;
+    cursor: pointer;
 }
