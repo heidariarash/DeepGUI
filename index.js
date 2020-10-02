@@ -1,39 +1,41 @@
 const electron = require('electron');
 
-const { app, BrowserWindow, Menu, ipcMain } = electron;
+const { app, BrowserWindow, ipcMain } = electron;
 
 let mainWindow;
 
 app.on('ready', ()=> {
     // Customizing Main Window
     mainWindow = new BrowserWindow({
-        minHeight: 950,
-        minWidth: 1370,
+        minHeight: 1000,
+        minWidth: 1700,
         frame: false,
         webPreferences: {
             nodeIntegration: true
-        }
-    });
-
-    mainWindow.setBounds({
-        x: 300,
-        y: 100
+        },
     });
 
     //Loading the corresponding HTML File
     mainWindow.loadURL(`file://${__dirname}/html/index.html`);
 });
 
+
+//exiting app on close app button
 ipcMain.on('exit-app', (evt, arg) => {
     app.quit();
 })
 
-const menuMainWindow = [
-    // {
-    //     label: 'Deep GUI'
-    // }
-]
+//maximizing app on max app button
+ipcMain.on('max-app', () => {
+    if (mainWindow.isMaximized()) {
+        mainWindow.unmaximize();
+    }
+    else {
+        mainWindow.maximize();
+    }
+})
 
-if(process.platform === 'darwin') {
-    menuMainWindow.unshift({})
-}
+//minimizing app on max app button
+ipcMain.on('min-app', () => {
+    mainWindow.minimize();
+})

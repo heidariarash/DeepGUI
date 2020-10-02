@@ -242,8 +242,10 @@ input {
     font-size: 25px;
     color: #db3a34;
     font-family: normalFont;
+    transition: all 0.3s ease-in-out;
 }
 
 #title-bar-btns a:hover {
     cursor: pointer;
+    color: #eeef20;
 }
