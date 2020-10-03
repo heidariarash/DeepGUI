@@ -9,13 +9,11 @@
     <div id="title-bar">
         <div id="title-sm">Add New Layer</div>
     </div>
-    <div class="container-fluid">
-        <div class="row main-panel"> <!-- Main Window Row -->
-            <div class="col-sm-12 text-center heading-1-parent">
-                <label class="main-heading-1"> Choose type of the layer</label>
+    <div class="container-fluid sub-window">
+        <div class="row main-panel text-center"> <!-- Main Window Row -->
+            <div class="col-sm-12 heading-1-parent">
+                <label for="layer-selection" class="main-heading-1"> Choose type of the layer</label>
                 <br>
-            </div>
-            <div class="col-sm-12 text-center">
                 <input type="text" name="layer-selector" list="layer-selector-list" id="layer-selector">
                 <datalist id="layer-selector-list">
                     <option value="Linear">Linear</option>
@@ -28,10 +26,9 @@
                     <option value="Activation">Activation</option>
                     <option value="Softmax">Softmax</option>
                 </datalist>
-            </div>
-            <div class="col-sm-12 text-center small-window-buttons">
-                <a id="done">Add</a>
-                <a id="cancle">Cancle</a>
+                <p class="attention-note" id="new-layer-attention">* Type of the new layer is required!</p>
+                <a class="small-window-buttons" id="done">Add</a>
+                <a class="small-window-buttons" id="cancle">Cancle</a>
             </div>
         </div>
     </div>
