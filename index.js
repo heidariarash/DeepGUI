@@ -52,7 +52,9 @@ ipcMain.on('new-layer-request', () => {
         width: 400,
         height: 300,
         resizable: false,
-        maximizable: false
+        maximizable: false,
+        parent: mainWindow,
+        modal: true
     });
 
     newLayerWindon.loadURL(`file://${__dirname}/html/new-layer.html`);
