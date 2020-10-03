@@ -171,6 +171,7 @@
     font-size: 18px;
     padding-top: 4px;
     padding-bottom: 4px;
+    cursor: pointer;
 }
 /***********************************************
                    Headings
@@ -216,6 +217,12 @@
     margin-top: 5%;
 }
 
+.attention-note {
+    color: #db3a34;
+    opacity: 0;
+    font-family: normalFont;
+    /* margin-bottom: 0%; */
+}
 
 /***********************************************
                 Input Fields
@@ -318,7 +325,7 @@ input {
     border-radius: 15px;
     font-family: normalFont;
     font-size: 20;
-    margin-top: -15%;
+    margin-bottom: 10%;
 }
 
 /***********************************************
@@ -326,26 +333,23 @@ input {
 ***********************************************/
 #done {
     margin-right: 10%;
-    padding: 4px 20px;
     color: #db3a34;
-    border-radius: 15px;
-    font-family: bigFunnyFont;
-    border: 1px solid #db3a34;
-    transition: all 0.3s ease-in-out;
 }
 
 #cancle {
     margin-left: 10%;
-    padding: 4px 20px;
     color: #db3a34;
+}
+
+.small-window-buttons {
+    padding: 4px 20px;
     border-radius: 15px;
     font-family: bigFunnyFont;
     border: 1px solid #db3a34;
     transition: all 0.3s ease-in-out;
 }
 
-#cancle:hover,
-#done:hover {
+.small-window-buttons:hover {
     color: #eeef20;
     border-color: #eeef20;
     cursor: pointer;

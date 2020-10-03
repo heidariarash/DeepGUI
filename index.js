@@ -61,11 +61,17 @@ ipcMain.on('new-layer-request', () => {
 });
 
 //New Layer Add
-ipcMain.on('add-new-layer', () => {
-
+ipcMain.on('add-new-layer', (evt, args) => {
+    console.log(args);
+    newLayerWindon.close();
 });
 
 //cancle in Add New Layer Window
 ipcMain.on('close-new-layer', () => {
     newLayerWindon.close();
 })
+
+//generate button clicked
+ipcMain.on('generate-code', () => {
+    
+});

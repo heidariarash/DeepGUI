@@ -15,4 +15,8 @@ document.getElementById('max-btn').addEventListener('click', () => {
 
 document.getElementById('new-layer-button').addEventListener('click', () => {
     ipcRenderer.send('new-layer-request');
+});
+
+document.getElementById('generate-button').addEventListener('click', () => {
+    ipcRenderer.send('generate-code');
 })
