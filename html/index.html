@@ -28,12 +28,12 @@
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Choose the framework</label>
                     <!-- <br> -->
-                    <input type="text" name="framework-selector" list="framework-selector-list" id="framework-selector">
+                    <input type="text" name="framework-selector" list="framework-selector-list" id="framework-selector" placeholder="e.g. TensorFlow">
                     <datalist id="framework-selector-list">
                         <option value="TensorFlow">TensorFlow</option>
                         <option value="PyTorch">PyTorch</option>
                     </datalist>
-                    <label class="attention-note" id="framework-attention">* Please select a valid framework.</label>
+                    <p class="attention-note" id="framework-attention">* Please select a valid framework.</p>
                 </div>
                 <!-- Submit Button -->
                 <div class="col-sm-12 generate-parent">
@@ -47,7 +47,7 @@
             <div class="col-sm-6 middle-panel text-center"> <!-- Middle Panel -->
                 
                 <div class="col-sm-12 heading-4-parent"> <!-- Input Shape -->
-                    <svg class="cog" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <svg class="cog" id="input-shape-cog" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                         <path d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"/>
                     </svg>
                     <label class="main-heading-4">Input Shape: </label>
@@ -74,20 +74,20 @@
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Choose Optimizer</label>
                     <br>
-                    <input type="text" name="optimizer-selector" list="optimizer-selector-list" id="optimizer-selector">
+                    <input type="text" name="optimizer-selector" list="optimizer-selector-list" id="optimizer-selector" placeholder="e.g. Adam">
                     <datalist id="optimizer-selector-list">
                         <option value="SGD">SGD</option>
                         <option value="RMSProp">RMSProp</option>
                         <option value="Adam">Adam</option>
                     </datalist>
-                    <label class="attention-note" id="optimizer-select-attention">* Please select a valid optimizer.</label>
+                    <p class="attention-note" id="optimizer-select-attention">* Please select a valid optimizer.</p>
                 </div>
 
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Learning Rate</label>
                     <br>
                     <input type="number" name="optimizer-lr" id="optimizer-lr" step="0.0001" min="0" value="0">
-                    <label class="attention-note" id="lr-attention">* Learning Rate should be greater than zero.</label>
+                    <p class="attention-note" id="lr-attention">* Learning Rate should be greater than zero.</p>
                 </div>
 
 
@@ -98,7 +98,7 @@
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Choose Loss Function</label>
                     <br>
-                    <input type="text" name="loss-function-selector" list="loss-function-selector-list" id="loss-function-selector">
+                    <input type="text" name="loss-function-selector" list="loss-function-selector-list" id="loss-function-selector" placeholder="e.g. Mean Squared Error">
                     <datalist id="loss-function-selector-list">
                         <option value="Mean Squared Error">Mean Squared Error</option>
                         <option value="Binary Cross Entropy">Binary Cross Entropy</option>
@@ -106,7 +106,7 @@
                         <option value="Sparse Binary Cross Entropy">Sparse Binary Cross Entropy</option>
                         <option value="Sparse Categorical Cross Entropy">Sparse Categorical Cross Entropy</option>
                     </datalist>
-                    <label class="attention-note" id="loss-attention">* Please select a valid loss function.</label>
+                    <p class="attention-note" id="loss-attention">* Please select a valid loss function.</p>
                 </div>
 
                 <!-- Train Configurations -->
@@ -117,13 +117,13 @@
                     <label class="main-heading-3">Number of Epochs</label>
                     <br>
                     <input type="number" name="epoch" id="epoch" min="1" value="1">
-                    <label class="attention-note" id="epoch-attention">* Number of epochs should be a positive integer.</label>
+                    <p class="attention-note" id="epoch-attention">* Number of epochs should be a positive integer.</p>
                 </div>
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Batch Size</label>
                     <br>
                     <input type="number" name="batch" id="batch" min="1" value="1">
-                    <label class="attention-note" id="batch-attention">* Batch size should be a positive integer.</label>
+                    <p class="attention-note" id="batch-attention">* Batch size should be a positive integer.</p>
                 </div>
 
             </div> <!-- Right Panel End -->
