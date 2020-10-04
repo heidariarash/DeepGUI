@@ -72,6 +72,6 @@ ipcMain.on('close-new-layer', () => {
 })
 
 //generate button clicked
-ipcMain.on('generate-code', () => {
+ipcMain.on('generate-code', (event, arg) => {
     
 });
