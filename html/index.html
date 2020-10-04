@@ -33,6 +33,13 @@
                         <option value="TensorFlow">TensorFlow</option>
                         <option value="PyTorch">PyTorch</option>
                     </datalist>
+                    <label class="attention-note" id="framework-attention">* Please select a valid framework.</label>
+                </div>
+                <!-- Submit Button -->
+                <div class="col-sm-12 generate-parent">
+                    <a id="generate-button">
+                        Generate Code
+                    </a>
                 </div>
             </div> <!-- Left Panel End -->
 
@@ -73,12 +80,14 @@
                         <option value="RMSProp">RMSProp</option>
                         <option value="Adam">Adam</option>
                     </datalist>
+                    <label class="attention-note" id="optimizer-select-attention">* Please select a valid optimizer.</label>
                 </div>
 
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Learning Rate</label>
                     <br>
                     <input type="number" name="optimizer-lr" id="optimizer-lr" step="0.0001" min="0" value="0">
+                    <label class="attention-note" id="lr-attention">* Learning Rate should be greater than zero.</label>
                 </div>
 
 
@@ -97,6 +106,7 @@
                         <option value="Sparse Binary Cross Entropy">Sparse Binary Cross Entropy</option>
                         <option value="Sparse Categorical Cross Entropy">Sparse Categorical Cross Entropy</option>
                     </datalist>
+                    <label class="attention-note" id="loss-attention">* Please select a valid loss function.</label>
                 </div>
 
                 <!-- Train Configurations -->
@@ -107,18 +117,13 @@
                     <label class="main-heading-3">Number of Epochs</label>
                     <br>
                     <input type="number" name="epoch" id="epoch" min="1" value="1">
+                    <label class="attention-note" id="epoch-attention">* Number of epochs should be a positive integer.</label>
                 </div>
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Batch Size</label>
                     <br>
                     <input type="number" name="batch" id="batch" min="1" value="1">
-                </div>
-
-                 <!-- Submit Button -->
-                 <div class="col-sm-12 generate-parent">
-                    <a id="generate-button">
-                        Generate Code
-                    </a>
+                    <label class="attention-note" id="batch-attention">* Batch size should be a positive integer.</label>
                 </div>
 
             </div> <!-- Right Panel End -->
