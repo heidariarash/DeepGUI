@@ -1,0 +1,28 @@
+<html>
+<head>
+    <!-- CSS links -->
+    <link rel="stylesheet" href="../css/bootstrap.css"> <!-- Bootstrap -->
+    <link rel="stylesheet" href="../css/styles.css">    <!-- Customized CSS -->
+</head>
+<body>
+    <!-- Title Bar -->
+    <div id="title-bar">
+        <div id="title-sm">Input Shape Configuration</div>
+    </div>
+    <div class="container-fluid sub-window">
+        <div class="row main-panel text-center"> <!-- Main Window Row -->
+            <div class="col-sm-12 heading-1-parent">
+                <label for="layer-selection" class="main-heading-1"> Choose type of the layer</label>
+                <br>
+                <input type="number" name="layer-selector" list="layer-selector-list" id="layer-selector">
+                <br>
+                <a class='small-window-buttons' id='add_shape'>+Add New Dimension</a>
+                <p class="attention-note" id="new-layer-attention">* Type of the new layer is required!</p>
+                <a class="small-window-buttons" id="done">Add</a>
+                <a class="small-window-buttons" id="cancle">Cancle</a>
+            </div>
+        </div>
+    </div>
+    <script src="../scripts/new-layer-script.js"></script>
+</body>
+</html>
