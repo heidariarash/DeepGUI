@@ -68,3 +68,7 @@ document.getElementById('generate-button').addEventListener('click', () => {
         });
     }
 });
+
+document.getElementById('input-shape-cog').addEventListener('click', () => {
+    ipcRenderer.send('input-shape-cog');
+});

@@ -350,7 +350,11 @@ input {
 }
 
 .small-window-buttons:hover {
-    color: #eeef20;
     border-color: #eeef20;
     cursor: pointer;
+}
+
+#done:hover,
+#cancle:hover {
+    color: #eeef20;
 }

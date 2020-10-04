@@ -3,7 +3,7 @@ const electron = require('electron');
 const { app, BrowserWindow, ipcMain } = electron;
 
 let mainWindow;
-let newLayerWindon;
+let configureWindow;
 
 app.on('ready', ()=> {
     // Customizing Main Window
@@ -44,7 +44,7 @@ ipcMain.on('min-app', () => {
 
 //New Layer Request
 ipcMain.on('new-layer-request', () => {
-    newLayerWindon = new BrowserWindow({
+    configureWindow = new BrowserWindow({
         frame: false,
         webPreferences: {
             nodeIntegration: true
@@ -57,21 +57,39 @@ ipcMain.on('new-layer-request', () => {
         modal: true
     });
 
-    newLayerWindon.loadURL(`file://${__dirname}/html/new-layer.html`);
+    configureWindow.loadURL(`file://${__dirname}/html/new-layer.html`);
 });
 
 //New Layer Add
 ipcMain.on('add-new-layer', (evt, args) => {
     console.log(args);
-    newLayerWindon.close();
+    configureWindow.close();
 });
 
 //cancle in Add New Layer Window
 ipcMain.on('close-new-layer', () => {
-    newLayerWindon.close();
+    configureWindow.close();
 })
 
 //generate button clicked
 ipcMain.on('generate-code', (event, arg) => {
-    
+
 });
+
+//input shape cog clicked
+ipcMain.on('input-shape-cog', () => {
+    configureWindow = new BrowserWindow({
+        frame: false,
+        webPreferences: {
+            nodeIntegration: true
+        },
+        width: 400,
+        height: 300,
+        resizable: false,
+        maximizable: false,
+        parent: mainWindow,
+        modal: true
+    });
+
+    configureWindow.loadURL(`file://${__dirname}/html/input-shape-config.html`);
+})
