@@ -30,22 +30,16 @@
     height: 100%;
     background-color: #161a1d;
 }
-.right-panel {
-    min-height: 100%;
-}
 
 .middle-panel{
-    min-height: 100%;
-}
-
-.left-panel {
-    min-height: 100%;
+    overflow: auto;
+    height: 85%;
 }
 
 /***********************************************
               Add New Layer Button
 ***********************************************/
-.new-layer-button-parent{
+#new-layer-button-parent{
     margin-top: 50px;
 }
 
@@ -180,6 +174,7 @@
     font-family: bigFunnyFont;
     color: #db3a34;
     font-size: 20px;
+    margin-bottom: 20px;
 }
 
 .main-heading-3 {
@@ -301,7 +296,7 @@ input {
 }
 
 /***********************************************
-                     Cog
+                Cog and trash
 ***********************************************/
 .cog {
     width: 16px;
@@ -311,9 +306,19 @@ input {
     margin-right: 15px;
 }
 
+.trash:hover,
 .cog:hover {
     fill: #eeef20;
     cursor: pointer;
+}
+
+.trash-invisible,
+.trash {
+    width: 16px;
+    height: 16px;
+    fill: #db3a34;
+    transition: all 0.3s ease-in-out;
+    margin-left: 15px;
 }
 
 /***********************************************
@@ -357,4 +362,14 @@ input {
 #done:hover,
 #cancle:hover {
     color: #eeef20;
+}
+
+/***********************************************
+                    Info
+***********************************************/
+.info {
+    color: #eeef20;
+    font-family: normalFont;
+    font-size: 18;
+    line-height: 8pt;
 }
