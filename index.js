@@ -62,7 +62,7 @@ ipcMain.on('new-layer-request', () => {
 
 //New Layer Add
 ipcMain.on('add-new-layer', (evt, args) => {
-    console.log(args);
+    mainWindow.webContents.send('add-new-layer', args);
     configureWindow.close();
 });
 
