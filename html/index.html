@@ -27,13 +27,11 @@
                 </div>
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Choose the framework</label>
-                    <!-- <br> -->
-                    <input type="text" name="framework-selector" list="framework-selector-list" id="framework-selector" placeholder="e.g. TensorFlow">
-                    <datalist id="framework-selector-list">
+                    <br>
+                    <select id="framework-selector">
                         <option value="TensorFlow">TensorFlow</option>
                         <option value="PyTorch">PyTorch</option>
-                    </datalist>
-                    <p class="attention-note" id="framework-attention">* Please select a valid framework.</p>
+                    </select>
                 </div>
                 <!-- Submit Button -->
                 <div class="col-sm-12 generate-parent">
@@ -79,13 +77,11 @@
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Choose Optimizer</label>
                     <br>
-                    <input type="text" name="optimizer-selector" list="optimizer-selector-list" id="optimizer-selector" placeholder="e.g. Adam">
-                    <datalist id="optimizer-selector-list">
+                    <select id="optimizer-selector">
                         <option value="SGD">SGD</option>
                         <option value="RMSProp">RMSProp</option>
                         <option value="Adam">Adam</option>
-                    </datalist>
-                    <p class="attention-note" id="optimizer-select-attention">* Please select a valid optimizer.</p>
+                    </select>
                 </div>
 
                 <div class="col-sm-12 heading-3-parent">
@@ -103,15 +99,13 @@
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Choose Loss Function</label>
                     <br>
-                    <input type="text" name="loss-function-selector" list="loss-function-selector-list" id="loss-function-selector" placeholder="e.g. Mean Squared Error">
-                    <datalist id="loss-function-selector-list">
+                    <select id="loss-function-selector">
                         <option value="Mean Squared Error">Mean Squared Error</option>
                         <option value="Binary Cross Entropy">Binary Cross Entropy</option>
                         <option value="Categorical Cross Entropy">Categorical Cross Entropy</option>
                         <option value="Sparse Binary Cross Entropy">Sparse Binary Cross Entropy</option>
                         <option value="Sparse Categorical Cross Entropy">Sparse Categorical Cross Entropy</option>
-                    </datalist>
-                    <p class="attention-note" id="loss-attention">* Please select a valid loss function.</p>
+                    </select>
                 </div>
 
                 <!-- Train Configurations -->
