@@ -14,8 +14,7 @@
             <div class="col-sm-12 heading-1-parent">
                 <label for="layer-selection" class="main-heading-1"> Choose type of the layer</label>
                 <br>
-                <input type="text" name="layer-selector" list="layer-selector-list" id="layer-selector" placeholder="e.g. Linear">
-                <datalist id="layer-selector-list">
+                <select id="layer-selector" onmousedown="if(this.options.length>3){this.size=3;}"  onchange='this.size=0;' onblur="this.size=0;">
                     <option value="Linear">Linear</option>
                     <option value="Convolution 1D">Convolution 1D</option>
                     <option value="Convolution 2D">Convolution 2D</option>
@@ -24,8 +23,7 @@
                     <option value="Max Pool 2D">Max Pool 2D</option>
                     <option value="Max Pool 3D">Max Pool 3D</option>
                     <option value="Activation">Activation</option>
-                </datalist>
-                <p class="attention-note" id="new-layer-attention">* Type of the new layer is required!</p>
+                </select>
                 <a class="small-window-buttons" id="done">Add</a>
                 <a class="small-window-buttons" id="cancle">Cancle</a>
             </div>

@@ -376,7 +376,15 @@ input {
     line-height: 8pt;
 }
 
+/***********************************************
+                Scrollbars
+***********************************************/
+
 ::-webkit-scrollbar {
-    width: 0px;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+    width: 2px;
+    background: #161a1d;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #eeef20;
 }

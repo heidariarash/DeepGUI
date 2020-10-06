@@ -28,7 +28,7 @@
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Choose the framework</label>
                     <br>
-                    <select id="framework-selector">
+                    <select id="framework-selector" onmousedown="this.size = 2"  onchange='this.size=0;' onblur="this.size=0;">
                         <option value="TensorFlow">TensorFlow</option>
                         <option value="PyTorch">PyTorch</option>
                     </select>
@@ -77,10 +77,15 @@
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Choose Optimizer</label>
                     <br>
-                    <select id="optimizer-selector">
+                    <select id="optimizer-selector" onmousedown="this.size=3"  onchange='this.size=0;' onblur="this.size=0;">
                         <option value="SGD">SGD</option>
                         <option value="RMSProp">RMSProp</option>
                         <option value="Adam">Adam</option>
+                        <option value="Adam">Adadelta</option>
+                        <option value="Adam">Adagrad</option>
+                        <option value="Adam">Adamax</option>
+                        <option value="Adam">Nadam</option>
+                        <option value="Adam">Ftrl</option>
                     </select>
                 </div>
 
@@ -99,7 +104,7 @@
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Choose Loss Function</label>
                     <br>
-                    <select id="loss-function-selector">
+                    <select id="loss-function-selector" onmousedown="if(this.options.length>3){this.size=3;}"  onchange='this.size=0;' onblur="this.size=0;">
                         <option value="Mean Squared Error">Mean Squared Error</option>
                         <option value="Binary Cross Entropy">Binary Cross Entropy</option>
                         <option value="Categorical Cross Entropy">Categorical Cross Entropy</option>
