@@ -33,22 +33,14 @@ document.getElementById('new-layer-button').addEventListener('click', () => {
 
 document.getElementById('generate-button').addEventListener('click', () => {
     if(document.getElementById('optimizer-lr').value <= 0){
-        document.getElementById('framework-attention').setAttribute('style','opacity: 0');
-        document.getElementById('optimizer-select-attention').setAttribute('style','opacity: 0');
         document.getElementById('lr-attention').setAttribute('style','opacity: 1');
     }
     else if(document.getElementById('epoch').value < 1){
-        document.getElementById('framework-attention').setAttribute('style','opacity: 0');
-        document.getElementById('optimizer-select-attention').setAttribute('style','opacity: 0');
         document.getElementById('lr-attention').setAttribute('style','opacity: 0');
-        document.getElementById('loss-attention').setAttribute('style','opacity: 0');
         document.getElementById('epoch-attention').setAttribute('style','opacity: 1');
     }
     else if(document.getElementById('batch').value < 1){
-        document.getElementById('framework-attention').setAttribute('style','opacity: 0');
-        document.getElementById('optimizer-select-attention').setAttribute('style','opacity: 0');
         document.getElementById('lr-attention').setAttribute('style','opacity: 0');
-        document.getElementById('loss-attention').setAttribute('style','opacity: 0');
         document.getElementById('epoch-attention').setAttribute('style','opacity: 0');
         document.getElementById('batch-attention').setAttribute('style','opacity: 1');
     }
@@ -62,7 +54,8 @@ document.getElementById('generate-button').addEventListener('click', () => {
             lr: document.getElementById('optimizer-lr').value,
             loss: document.getElementById('loss-function-selector').value,
             epoch: document.getElementById('epoch').value,
-            batch: document.getElementById('batch').value
+            batch: document.getElementById('batch').value,
+            layers: layers
         });
     }
 });
