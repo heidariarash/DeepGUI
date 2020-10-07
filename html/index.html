@@ -150,7 +150,16 @@
 
 
     <!-- JS Links -->
+    
+
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <!-- normal script imports etc  -->
     <script src="../scripts/jquery.js"></script> <!-- JQuery -->
-    <script src="../scripts/script.js"></script>
+    <script src="../scripts/script.js"></script>   
+
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
 </body>
 </html>
