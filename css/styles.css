@@ -388,3 +388,13 @@ input {
 ::-webkit-scrollbar-thumb {
     background-color: #eeef20;
 }
+
+/***********************************************
+                File Name Input
+***********************************************/
+#file-name-input {
+    width: 80%;
+    text-align: center;
+    font-family: normalFont;
+    font-size: 20;
+}
