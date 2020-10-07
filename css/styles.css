@@ -33,7 +33,17 @@
 
 .middle-panel{
     overflow: auto;
-    height: 85%;
+    height: 90%;
+}
+
+.right-panel {
+    overflow: auto;
+    height: 90%;
+}
+
+.left-panel {
+    overflow: auto;
+    height: 90%;
 }
 
 /***********************************************
