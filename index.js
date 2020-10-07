@@ -1,6 +1,6 @@
 const electron = require('electron');
 
-const { app, BrowserWindow, ipcMain } = electron;
+const { app, BrowserWindow, ipcMain, dialog } = electron;
 
 let mainWindow;
 let configureWindow;
@@ -72,8 +72,9 @@ ipcMain.on('close-new-layer', () => {
 })
 
 //generate button clicked
-ipcMain.on('generate-code', (event, arg) => {
-
+ipcMain.on('generate-code', async (event, arg) => {
+    let path = await dialog.showOpenDialog(mainWindow, { properties: ['openDirectory'] })
+    console.log(path);
 });
 
 //input shape cog clicked
