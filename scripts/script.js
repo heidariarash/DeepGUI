@@ -3,6 +3,7 @@ const {ipcRenderer} = electron;
 
 let layers = [];
 let layers_count = 0;
+input_shape = [10];
 
 const delete_layer = (element) => {
     for (let i=0; i < layers.length; i++) {
@@ -50,11 +51,19 @@ document.getElementById('generate-button').addEventListener('click', () => {
         document.getElementById('batch-attention').setAttribute('style','opacity: 0');
         document.getElementById('name-attention').setAttribute('style','opacity: 1');
     }
+    else if(layers.length === 0) {
+        document.getElementById('lr-attention').setAttribute('style','opacity: 0');
+        document.getElementById('epoch-attention').setAttribute('style','opacity: 0');
+        document.getElementById('batch-attention').setAttribute('style','opacity: 0');
+        document.getElementById('name-attention').setAttribute('style','opacity: 0');
+        document.getElementById('layer-attention').setAttribute('style','opacity: 1');
+    }
     else {
         document.getElementById('lr-attention').setAttribute('style','opacity: 0');
         document.getElementById('epoch-attention').setAttribute('style','opacity: 0');
         document.getElementById('batch-attention').setAttribute('style','opacity: 0');
         document.getElementById('name-attention').setAttribute('style','opacity: 0');
+        document.getElementById('layer-attention').setAttribute('style','opacity: 0');
         ipcRenderer.send('generate-code', {
             framework: document.getElementById('framework-selector').value,
             optimizer: document.getElementById('optimizer-selector').value,
