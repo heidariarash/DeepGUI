@@ -92,11 +92,11 @@
                         <option value="SGD">SGD</option>
                         <option value="RMSProp">RMSProp</option>
                         <option value="Adam">Adam</option>
-                        <option value="Adam">Adadelta</option>
-                        <option value="Adam">Adagrad</option>
-                        <option value="Adam">Adamax</option>
-                        <option value="Adam">Nadam</option>
-                        <option value="Adam">Ftrl</option>
+                        <option value="Adadelta">Adadelta</option>
+                        <option value="Adagrad">Adagrad</option>
+                        <option value="Adamax">Adamax</option>
+                        <option value="Nadam">Nadam</option>
+                        <option value="Ftrl">Ftrl</option>
                     </select>
                 </div>
 
@@ -116,11 +116,15 @@
                     <label class="main-heading-3">Choose Loss Function</label>
                     <br>
                     <select id="loss-function-selector" onmousedown="if(this.options.length>3){this.size=3;}"  onchange='this.size=0;' onblur="this.size=0;">
-                        <option value="Mean Squared Error">Mean Squared Error</option>
-                        <option value="Binary Cross Entropy">Binary Cross Entropy</option>
-                        <option value="Categorical Cross Entropy">Categorical Cross Entropy</option>
-                        <option value="Sparse Binary Cross Entropy">Sparse Binary Cross Entropy</option>
-                        <option value="Sparse Categorical Cross Entropy">Sparse Categorical Cross Entropy</option>
+                        <option value="mean_squared_error">Mean Squared Error</option>
+                        <option value="mean_squared_logarithmic_error">Mean Squared Logarithmic Error</option>
+                        <option value="mean_absolute_error">Mean Absolute Error</option>
+                        <option value="binary_crossentropy">Binary Cross Entropy</option>
+                        <option value="hinge">Hinge</option>
+                        <option value="squared_hinge">Squared Hinge</option>
+                        <option value="categorical_crossentropy">Categorical Cross Entropy</option>
+                        <option value="sparse_categorical_crossentropy">Sparse Categorical Cross Entropy</option>
+                        <option value="kullback_leibler_divergence">Kullback Leibler Divergence</option>
                     </select>
                 </div>
 
