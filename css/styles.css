@@ -312,7 +312,7 @@ input {
 }
 
 /***********************************************
-                Cog and trash
+            Cog, trash, and notify
 ***********************************************/
 .cog {
     width: 16px;
@@ -320,6 +320,14 @@ input {
     fill: #db3a34;
     transition: all 0.3s ease-in-out;
     margin-right: 15px;
+}
+
+.notify {
+    width: 120px;
+    height: 80px;
+    fill: #eeef20;
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 .trash:hover,
@@ -350,7 +358,7 @@ input {
 }
 
 /***********************************************
-                Done and Cancel
+            Done, Cancel, and OK
 ***********************************************/
 #done {
     margin-right: 10%;
@@ -359,6 +367,10 @@ input {
 
 #cancle {
     margin-left: 10%;
+    color: #db3a34;
+}
+
+#ok {
     color: #db3a34;
 }
 
@@ -375,6 +387,7 @@ input {
     cursor: pointer;
 }
 
+#ok:hover,
 #done:hover,
 #cancle:hover {
     color: #eeef20;
