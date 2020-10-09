@@ -5,6 +5,7 @@ const { app, BrowserWindow, ipcMain, dialog } = electron;
 
 let mainWindow;
 let configureWindow;
+let notifyWindow;
 
 app.on('ready', ()=> {
     // Customizing Main Window
@@ -74,9 +75,40 @@ ipcMain.on('close-new-layer', () => {
 
 //generate button clicked
 ipcMain.on('generate-code', async (event, arg) => {
-    let folder_path = await dialog.showOpenDialog(mainWindow, { properties: ['openDirectory'] })
+    let folder_path = await dialog.showOpenDialog(mainWindow, { properties: ['openDirectory'] });
     if(~folder_path.canceled){
-        generate_code(arg, folder_path.filePaths[0]);
+        let success = await generate_code(arg, folder_path.filePaths[0]);
+        console.log(success)
+        if (success){
+            notifyWindow = new BrowserWindow({
+                frame: false,
+                webPreferences: {
+                    nodeIntegration: true
+                },
+                width: 400,
+                height: 350,
+                resizable: false,
+                maximizable: false,
+                parent: mainWindow,
+                modal: true
+            });
+            notifyWindow.loadURL(`file://${__dirname}/html/code-generated-success.html`);
+        }
+        else {
+            notifyWindow = new BrowserWindow({
+                frame: false,
+                webPreferences: {
+                    nodeIntegration: true
+                },
+                width: 400,
+                height: 400,
+                resizable: false,
+                maximizable: false,
+                parent: mainWindow,
+                modal: true
+            });
+            notifyWindow.loadURL(`file://${__dirname}/html/code-generated-unsuccess.html`);
+        }
     }
 });
 
@@ -97,3 +129,8 @@ ipcMain.on('input-shape-cog', () => {
 
     configureWindow.loadURL(`file://${__dirname}/html/input-shape-config.html`);
 })
+
+//close notify window
+ipcMain.on('close-notify', () => {
+    notifyWindow.close();
+});

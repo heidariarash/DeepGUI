@@ -1,9 +1,10 @@
-const fs = require('fs');
-const path = require('path')
+const fs = require('fs').promises;
+const path = require('path');
 
-generate_code = (options, folder_path) => {
+generate_code = async (options, folder_path) => {
     //creating the string to write (stw)
-    stw = "";
+    let stw = "";
+    let success = 1;
     if(options.framework === "TensorFlow"){
         stw += "##################################################\n";
         stw += "####### This Code is produced by Deep GUI ########\n";
@@ -11,7 +12,7 @@ generate_code = (options, folder_path) => {
         stw += "#import statements\n";
         stw += "import tensorflow as tf\n";
         stw += "import tensorflow.keras as keras\n\n\n";
-        stw += "#Specify x_train and y_train here:\n";
+        stw += "#specify x_train and y_train here:\n";
         stw += "x_train = \n";
         stw += "y_train = \n\n\n"
         stw += "#creating the model\n"
@@ -57,19 +58,23 @@ generate_code = (options, folder_path) => {
 
                 //max pool 3D case
                 case "Activation":
-                    stw += `model.add(keras.layers.${layer.type}())`
+                    stw += `model.add(keras.layers.${layer.type}())`;
             }
             stw += "\n"
         }
 
         stw += "\n";
         stw += "#compiling the model\n";
-        stw += `model.compile(optimizer = keras.optimizers.${options.optimizer}(learning_rate = ${options.lr}), loss = '${options.loss}')\n\n`
+        stw += `model.compile(optimizer = keras.optimizers.${options.optimizer}(learning_rate = ${options.lr}), loss = '${options.loss}')\n\n`;
         stw += "#training the model\n";
-        stw += `model.fit(x= x_train, y= y_train, batch_size = ${options.batch}, epochs = ${options.epoch})`
-        fs.writeFile(path.join(folder_path, `${options.file_name}.py`), stw, function (err) {
-            if (err) throw err;
-        });
+        stw += `model.fit(x= x_train, y= y_train, batch_size = ${options.batch}, epochs = ${options.epoch})`;
+        try {
+            await fs.writeFile(path.join(folder_path, `${options.file_name}.py`), stw);
+            return true;
+        }
+        catch(err){
+            return false;
+        }
     }
 }
 
