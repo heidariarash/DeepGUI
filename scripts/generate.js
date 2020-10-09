@@ -1,10 +1,22 @@
-generate_code = (options, path) => {
+const fs = require('fs');
+const path = require('path')
+
+generate_code = (options, folder_path) => {
     //creating the string to write (stw)
     stw = "";
     if(options.framework === "TensorFlow"){
+        stw += "##################################################\n";
+        stw += "####### This Code is produced by Deep GUI ########\n";
+        stw += "##################################################\n\n";
+        stw += "#import statements\n";
         stw += "import tensorflow as tf\n";
         stw += "import tensorflow.keras as keras\n\n\n";
+        stw += "#Specify x_train and y_train here:\n";
+        stw += "x_train = \n";
+        stw += "y_train = \n\n\n"
+        stw += "#creating the model\n"
         stw += "model = keras.Sequntial()\n\n"
+        stw += "#adding layers\n"
 
         for(layer of options.layers){
             switch(layer.name){
@@ -15,32 +27,32 @@ generate_code = (options, path) => {
 
                 //convolution 1D case
                 case "Convolution 1D":
-                    stw += `model.add(keras.layers.Conv1D(${layer.filter_num}, ${layer.filter_size}, strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}')`
+                    stw += `model.add(keras.layers.Conv1D(${layer.filter_num}, ${layer.filter_size}, strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}'))`
                     break;
 
                 //convolution 2D case
                 case "Convolution 2D":
-                    stw += `model.add(keras.layers.Conv2D(${layer.filter_num}, (${layer.filter_size[0]}, ${layer.filter_size[1]}), strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}')`
+                    stw += `model.add(keras.layers.Conv2D(${layer.filter_num}, (${layer.filter_size[0]}, ${layer.filter_size[1]}), strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}'))`
                     break;
 
                 //convolution 3D case
                 case "Convolution 3D":
-                    stw += `model.add(keras.layers.Conv3D(${layer.filter_num}, (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()})'`
+                    stw += `model.add(keras.layers.Conv3D(${layer.filter_num}, (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}))'`
                     break;
 
                 //max pool 1D case
                 case "Max Pool 1D":
-                    stw += `model.add(keras.layers.MaxPooling1D(${layer.filter_size}, strides = ${layer.stride})`
+                    stw += `model.add(keras.layers.MaxPooling1D(${layer.filter_size}, strides = ${layer.stride}))`
                     break;
 
                 //max pool 2D case
                 case "Max Pool 2D":
-                    stw += `model.add(keras.layers.MaxPooling2D((${layer.filter_size[0]}, ${layer.filter_size[1]}), strides = ${layer.stride})`
+                    stw += `model.add(keras.layers.MaxPooling2D((${layer.filter_size[0]}, ${layer.filter_size[1]}), strides = ${layer.stride}))`
                     break;
 
                 //max pool 3D case
                 case "Max Pool 3D":
-                    stw += `model.add(keras.layers.MaxPooling3D((${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), strides = ${layer.stride})`
+                    stw += `model.add(keras.layers.MaxPooling3D((${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), strides = ${layer.stride}))`
                     break;
 
                 //max pool 3D case
@@ -51,10 +63,13 @@ generate_code = (options, path) => {
         }
 
         stw += "\n";
+        stw += "#compiling the model\n";
         stw += `model.compile(optimizer = keras.optimizers.${options.optimizer}(learning_rate = ${options.lr}), loss = '${options.loss}')\n\n`
+        stw += "#training the model\n";
         stw += `model.fit(x= x_train, y= y_train, batch_size = ${options.batch}, epochs = ${options.epoch})`
-
-        console.log(stw)
+        fs.writeFile(path.join(folder_path, `${options.file_name}.py`), stw, function (err) {
+            if (err) throw err;
+        });
     }
 }
 

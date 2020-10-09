@@ -74,8 +74,10 @@ ipcMain.on('close-new-layer', () => {
 
 //generate button clicked
 ipcMain.on('generate-code', async (event, arg) => {
-    let path = await dialog.showOpenDialog(mainWindow, { properties: ['openDirectory'] })
-    generate_code(arg, path);
+    let folder_path = await dialog.showOpenDialog(mainWindow, { properties: ['openDirectory'] })
+    if(~folder_path.canceled){
+        generate_code(arg, folder_path.filePaths[0]);
+    }
 });
 
 //input shape cog clicked
