@@ -10,12 +10,13 @@ let notifyWindow;
 app.on('ready', ()=> {
     // Customizing Main Window
     mainWindow = new BrowserWindow({
-        minHeight: 1000,
-        minWidth: 1700,
+        minHeight: 700,
+        minWidth: 1100,
         frame: false,
         webPreferences: {
             nodeIntegration: true
         },
+        icon: __dirname + '/gallery/icon.png'
     });
 
     //Loading the corresponding HTML File
