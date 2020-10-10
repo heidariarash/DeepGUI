@@ -72,7 +72,8 @@ document.getElementById('generate-button').addEventListener('click', () => {
             epoch: document.getElementById('epoch').value,
             batch: document.getElementById('batch').value,
             layers: layers,
-            file_name: document.getElementById('file-name-input').value
+            file_name: document.getElementById('file-name-input').value,
+            input : input_shape
         });
     }
 });
