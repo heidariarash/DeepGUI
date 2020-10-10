@@ -5,7 +5,6 @@ const { app, BrowserWindow, ipcMain, dialog } = electron;
 
 let mainWindow;
 let configureWindow;
-let notifyWindow;
 
 app.on('ready', ()=> {
     // Customizing Main Window
@@ -70,7 +69,7 @@ ipcMain.on('add-new-layer', (evt, args) => {
 });
 
 //cancle in Add New Layer Window
-ipcMain.on('close-new-layer', () => {
+ipcMain.on('close-small', () => {
     configureWindow.close();
 })
 
@@ -81,7 +80,7 @@ ipcMain.on('generate-code', async (event, arg) => {
         let success = await generate_code(arg, folder_path.filePaths[0]);
         console.log(success)
         if (success){
-            notifyWindow = new BrowserWindow({
+            configureWindow = new BrowserWindow({
                 frame: false,
                 webPreferences: {
                     nodeIntegration: true
@@ -93,10 +92,10 @@ ipcMain.on('generate-code', async (event, arg) => {
                 parent: mainWindow,
                 modal: true
             });
-            notifyWindow.loadURL(`file://${__dirname}/html/code-generated-success.html`);
+            configureWindow.loadURL(`file://${__dirname}/html/code-generated-success.html`);
         }
         else {
-            notifyWindow = new BrowserWindow({
+            configureWindow = new BrowserWindow({
                 frame: false,
                 webPreferences: {
                     nodeIntegration: true
@@ -108,7 +107,7 @@ ipcMain.on('generate-code', async (event, arg) => {
                 parent: mainWindow,
                 modal: true
             });
-            notifyWindow.loadURL(`file://${__dirname}/html/code-generated-unsuccess.html`);
+            configureWindow.loadURL(`file://${__dirname}/html/code-generated-unsuccess.html`);
         }
     }
 });
@@ -129,9 +128,9 @@ ipcMain.on('input-shape-cog', () => {
     });
 
     configureWindow.loadURL(`file://${__dirname}/html/input-shape-config.html`);
-})
-
-//close notify window
-ipcMain.on('close-notify', () => {
-    notifyWindow.close();
 });
+
+//resize the small window
+ipcMain.on('resize-small', (event, arg) => {
+    configureWindow.setSize(400, 300 + arg * 50);
+})

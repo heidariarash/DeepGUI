@@ -85,7 +85,7 @@ document.getElementById('input-shape-cog').addEventListener('click', () => {
 ipcRenderer.on('add-new-layer', (event, args) => {
     //constructing layer
     const layer = document.createElement('div');
-    let attr, child, text;
+    let attr;
     //setting the class for layer
     attr = document.createAttribute('class');
     attr.value = 'col-sm-12 heading-4-parent';

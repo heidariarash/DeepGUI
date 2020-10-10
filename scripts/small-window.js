@@ -6,9 +6,10 @@ document.getElementById('done').addEventListener('click', () => {
 });
 
 document.getElementById('cancle').addEventListener('click', () => {
-    ipcRenderer.send('close-new-layer');
+    ipcRenderer.send('close-small');
 });
 
 document.getElementById('ok').addEventListener('click', () => {
-    ipcRenderer.send('close-notify');
+    ipcRenderer.send('close-small');
 });
+
