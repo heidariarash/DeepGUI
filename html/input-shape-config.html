@@ -14,17 +14,17 @@
             <div class="col-sm-12 heading-1-parent">
                 <label for="layer-selection" class="main-heading-1">How many dimensions?</label>
                 <br>
-                <select id="dimension-selector" onmousedown="this.size=3;"  onchange='this.size = 0; value_changed();' onblur="this.size=0;">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+                <input class="dimension" id="dimension-1" type="number" step="1" min="1" value="10">
                 <br>
+                <a class="small-window-buttons" id="add-sth">Add New Dimension</a>
+                <br>
+                <br>
+                <br>
+                <a class="small-window-buttons" id="done">Add</a>
+                <a class="small-window-buttons" id="cancle">Cancle</a>
             </div>
         </div>
     </div>
-    <script src="../scripts/small-window.js"></script>
+    <script src="../scripts/input-shape-config.js"></script>
 </body>
 </html>

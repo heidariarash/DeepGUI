@@ -370,6 +370,7 @@ input {
     color: #db3a34;
 }
 
+#add-sth,
 #ok {
     color: #db3a34;
 }
@@ -387,6 +388,7 @@ input {
     cursor: pointer;
 }
 
+#add-sth:hover,
 #ok:hover,
 #done:hover,
 #cancle:hover {
@@ -424,4 +426,16 @@ input {
     text-align: center;
     font-family: normalFont;
     font-size: 20;
+}
+
+/***********************************************
+                Input Shape Config
+***********************************************/
+.dimension {
+    font-family: normalFont;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 20;
+    width: 50%;
+    margin-bottom: 15px;
 }
