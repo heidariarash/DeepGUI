@@ -18,6 +18,12 @@ generate_code = async (options, folder_path) => {
         stw += "#creating the model\n"
         stw += "model = keras.Sequntial()\n\n"
         stw += "#adding layers\n"
+        let input_shape = "(";
+        for(let i = 0; i < options.input.length; i++){
+            input_shape += `${options.input[i]},`;
+        }
+        input_shape += ")";
+        stw += `model.add(keras.layers.InputLayer(input_shape = ${input_shape}))\n`
 
         for(layer of options.layers){
             switch(layer.name){
