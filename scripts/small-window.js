@@ -8,3 +8,7 @@ document.getElementById('done').addEventListener('click', () => {
 document.getElementById('cancle').addEventListener('click', () => {
     ipcRenderer.send('close-new-layer');
 });
+
+document.getElementById('ok').addEventListener('click', () => {
+    ipcRenderer.send('close-notify');
+});

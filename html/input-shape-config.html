@@ -12,17 +12,19 @@
     <div class="container-fluid sub-window">
         <div class="row main-panel text-center"> <!-- Main Window Row -->
             <div class="col-sm-12 heading-1-parent">
-                <label for="layer-selection" class="main-heading-1"> Choose type of the layer</label>
+                <label for="layer-selection" class="main-heading-1">How many dimensions?</label>
                 <br>
-                <input type="number" name="layer-selector" list="layer-selector-list" id="layer-selector">
+                <select id="dimension-selector" onmousedown="this.size=3;"  onchange='this.size = 0; value_changed();' onblur="this.size=0;">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
                 <br>
-                <a class='small-window-buttons' id='add_shape'>+Add New Dimension</a>
-                <p class="attention-note" id="new-layer-attention">* Type of the new layer is required!</p>
-                <a class="small-window-buttons" id="done">Add</a>
-                <a class="small-window-buttons" id="cancle">Cancle</a>
             </div>
         </div>
     </div>
-    <script src="../scripts/new-layer-script.js"></script>
+    <script src="../scripts/small-window.js"></script>
 </body>
 </html>
