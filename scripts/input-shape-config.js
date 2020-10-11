@@ -31,8 +31,6 @@ document.getElementById('cancle').addEventListener('click', () => {
 document.getElementById('add-sth').addEventListener('click', () => {
     ipcRenderer.send('resize-small', input_number - removed_dims);
     input_number += 1;
-    let new_dimension;
-    let attr;
     //setting the attributes
     document.getElementsByClassName('scrollable')[0].innerHTML += `<input class="dimension" id="dimension-${input_number}" type="number" step="1" min="1" value="1">
     <svg class="trash" id="dimension-${input_number}-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" onclick="delete_dimension(this)">
@@ -42,4 +40,12 @@ document.getElementById('add-sth').addEventListener('click', () => {
         id: `dimension-${input_number}`,
         value: 1
     });
+});
+
+document.getElementById('done').addEventListener('click', ()=> {
+    dimensions = [];
+    for(dim of input_shape){
+        dimensions.push(dim.value);
+    }
+    ipcRenderer.send('set-dimensions', dimensions);
 });

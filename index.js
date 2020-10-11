@@ -5,6 +5,7 @@ const { app, BrowserWindow, ipcMain, dialog } = electron;
 
 let mainWindow;
 let configureWindow;
+let dimensions = [10];
 
 app.on('ready', ()=> {
     // Customizing Main Window
@@ -73,6 +74,10 @@ ipcMain.on('close-small', () => {
     configureWindow.close();
 })
 
+////////////////////////////
+///////IMPORTNAT//////////// input shape is in this file pass it to generate code. Not fix yet.
+////////////////////////////
+
 //generate button clicked
 ipcMain.on('generate-code', async (event, arg) => {
     let folder_path = await dialog.showOpenDialog(mainWindow, { properties: ['openDirectory'] });
@@ -133,4 +138,10 @@ ipcMain.on('input-shape-cog', () => {
 // resize the small window
 ipcMain.on('resize-small', (event, arg) => {
     configureWindow.setBounds({width: 400, height: Math.min(350 + arg * 50, 500)});
+});
+
+//setting the input dimensions
+ipcMain.on('set-dimensions', (event, arg) => {
+    configureWindow.close();
+    dimensions = arg;
 })

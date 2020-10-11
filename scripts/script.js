@@ -3,7 +3,6 @@ const {ipcRenderer} = electron;
 
 let layers = [];
 let layers_count = 0;
-input_shape = [10];
 
 const delete_layer = (element) => {
     for (let i=0; i < layers.length; i++) {
@@ -72,8 +71,7 @@ document.getElementById('generate-button').addEventListener('click', () => {
             epoch: document.getElementById('epoch').value,
             batch: document.getElementById('batch').value,
             layers: layers,
-            file_name: document.getElementById('file-name-input').value,
-            input : input_shape
+            file_name: document.getElementById('file-name-input').value
         });
     }
 });
