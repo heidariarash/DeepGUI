@@ -130,7 +130,7 @@ ipcMain.on('input-shape-cog', () => {
     configureWindow.loadURL(`file://${__dirname}/html/input-shape-config.html`);
 });
 
-//resize the small window
+// resize the small window
 ipcMain.on('resize-small', (event, arg) => {
-    configureWindow.setSize(400, Math.min(350 + arg * 50, 500));
+    configureWindow.setBounds({width: 400, height: Math.min(350 + arg * 50, 500)});
 })

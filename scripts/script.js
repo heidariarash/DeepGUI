@@ -7,9 +7,9 @@ input_shape = [10];
 
 const delete_layer = (element) => {
     for (let i=0; i < layers.length; i++) {
-        if (layers[i].id === element.id.slice(0,7)) {
+        if (layers[i].id === element.id.slice(0,-6)) {
             layers.splice(i, 1);
-            layer_to_remove = document.getElementById(element.id.slice(0,7));
+            layer_to_remove = document.getElementById(element.id.slice(0,-6));
             layer_to_remove.parentNode.removeChild(layer_to_remove);
             break;
         }
