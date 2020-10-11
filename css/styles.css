@@ -46,6 +46,12 @@
     height: 90%;
 }
 
+.scrollable {
+    overflow: auto;
+    max-height: 250px;
+    margin-bottom: 10px;
+}
+
 /***********************************************
               Add New Layer Button
 ***********************************************/

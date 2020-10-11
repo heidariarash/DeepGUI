@@ -120,7 +120,7 @@ ipcMain.on('input-shape-cog', () => {
             nodeIntegration: true
         },
         width: 400,
-        height: 300,
+        height: 350,
         resizable: false,
         maximizable: false,
         parent: mainWindow,
@@ -132,5 +132,5 @@ ipcMain.on('input-shape-cog', () => {
 
 //resize the small window
 ipcMain.on('resize-small', (event, arg) => {
-    configureWindow.setSize(400, 300 + arg * 50);
+    configureWindow.setSize(400, Math.min(350 + arg * 50, 450));
 })

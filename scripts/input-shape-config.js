@@ -31,7 +31,7 @@ document.getElementById('add-sth').addEventListener('click', () => {
     attr = document.createAttribute('value');
     attr.value = "1";
     new_dimension.setAttributeNode(attr);
-    document.getElementsByClassName('heading-1-parent')[0].insertBefore(new_dimension, document.getElementById('add-sth'));
+    document.getElementsByClassName('scrollable')[0].insertBefore(new_dimension, document.getElementById('add-sth'));
     new_dimension = document.createElement("br");
-    document.getElementsByClassName('heading-1-parent')[0].insertBefore(new_dimension, document.getElementById('add-sth'));
+    document.getElementsByClassName('scrollable')[0].insertBefore(new_dimension, document.getElementById('add-sth'));
 });
