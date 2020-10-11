@@ -132,5 +132,5 @@ ipcMain.on('input-shape-cog', () => {
 
 //resize the small window
 ipcMain.on('resize-small', (event, arg) => {
-    configureWindow.setSize(400, Math.min(350 + arg * 50, 450));
+    configureWindow.setSize(400, Math.min(350 + arg * 50, 500));
 })
