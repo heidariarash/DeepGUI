@@ -14,21 +14,31 @@
             <div class="col-sm-12 heading-1-parent">
                 <label for="layer-selection" class="main-heading-1"> Choose type of the layer</label>
                 <br>
-                <select id="layer-selector" onmousedown="if(this.options.length>3){this.size=3;}"  onchange='this.size=0;' onblur="this.size=0;">
-                    <option value="Linear">Linear</option>
+                <select id="layer-selector" onmousedown="this.size=3;"  onchange='this.size=0;' onblur="this.size=0;">
+                    <option value="Activation">Activation</option>
+                    <option value="Avg Pool 1D">Avg Pool 1D</option>
+                    <option value="Avg Pool 2D">Avg Pool 2D</option>
+                    <option value="Avg Pool 3D">Avg Pool 3D</option>
+                    <option value="Batch Normalization">Batch Normalization</option>
                     <option value="Convolution 1D">Convolution 1D</option>
                     <option value="Convolution 2D">Convolution 2D</option>
                     <option value="Convolution 3D">Convolution 3D</option>
+                    <option value="Linear">Dense</option>
+                    <option value="Dropout">Dropout</option>
+                    <option value="Flatten">Flatten</option>
+                    <option value="GRU">GRU</option>
+                    <option value="LSTM">LSTM</option>
                     <option value="Max Pool 1D">Max Pool 1D</option>
                     <option value="Max Pool 2D">Max Pool 2D</option>
                     <option value="Max Pool 3D">Max Pool 3D</option>
-                    <option value="Activation">Activation</option>
+                    <option value="RNN">RNN</option>
+                    
                 </select>
                 <a class="small-window-buttons" id="done">Add</a>
                 <a class="small-window-buttons" id="cancle">Cancle</a>
             </div>
         </div>
     </div>
-    <script src="../scripts/small-window.js"></script>
+    <script src="../scripts/add-new-layer.js"></script>
 </body>
 </html>

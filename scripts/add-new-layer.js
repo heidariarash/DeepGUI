@@ -9,7 +9,3 @@ document.getElementById('cancle').addEventListener('click', () => {
     ipcRenderer.send('close-small');
 });
 
-document.getElementById('ok').addEventListener('click', () => {
-    ipcRenderer.send('close-small');
-});
-
