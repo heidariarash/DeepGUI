@@ -131,7 +131,7 @@ ipcMain.on('input-shape-cog', () => {
         parent: mainWindow,
         modal: true
     });
-
+    
     configureWindow.loadURL(`file://${__dirname}/html/input-shape-config.html`);
 });
 
@@ -144,5 +144,9 @@ ipcMain.on('resize-small', (event, arg) => {
 ipcMain.on('set-dimensions', (event, arg) => {
     configureWindow.close();
     dimensions = arg;
-    console.log(dimensions)
+});
+
+//sending initialization parameters to input config menu
+ipcMain.on('ready-input-config', () => {
+    configureWindow.webContents.send('initialize', dimensions);
 })
