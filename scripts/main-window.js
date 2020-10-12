@@ -103,7 +103,8 @@ ipcRenderer.on('add-new-layer', (event, args) => {
                         <p class="info">Number of filters: 32</p>
                         <p class="info">Filter Size: 3,3</p>
                         <p class="info">stride: 1</p>
-                        <p class="info">activation: ReLu</p>`
+                        <p class="info">activation: ReLu</p>
+                        <p class="info">Padding: valid</p>`
 
     //changing the label name.
     layer.getElementsByClassName('main-heading-4')[0].innerHTML = args;
@@ -123,7 +124,8 @@ ipcRenderer.on('add-new-layer', (event, args) => {
                 filter_num : 32,
                 filter_size: 3,
                 stride: 1,
-                activation: "ReLu"
+                activation: "ReLu",
+                padding: "valid"
             });
             break;
         case "Convolution 2D":
@@ -133,7 +135,8 @@ ipcRenderer.on('add-new-layer', (event, args) => {
                 filter_num : 32,
                 filter_size: [3,3],
                 stride: 1,
-                activation: "ReLu"
+                activation: "ReLu",
+                padding: "valid"
             });
             break;
         case "Convolution 3D":
@@ -144,11 +147,13 @@ ipcRenderer.on('add-new-layer', (event, args) => {
                 filter_num : 32,
                 filter_size: [3,3,3],
                 stride: 1,
-                activation: "ReLu"
+                activation: "ReLu",
+                padding: "valid"
             });
             break;
         case "Max Pool 1D":
             info[1].innerHTML = "Filter Size: 3";
+            info[4].parentNode.removeChild(info[4]);
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
             layers.push({
@@ -159,6 +164,7 @@ ipcRenderer.on('add-new-layer', (event, args) => {
             });
             break;
         case "Max Pool 2D":
+            info[4].parentNode.removeChild(info[4]);
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
             layers.push({
@@ -170,6 +176,7 @@ ipcRenderer.on('add-new-layer', (event, args) => {
             break;
         case "Max Pool 3D":
             info[1].innerHTML = "Filter Size: 3,3,3";
+            info[4].parentNode.removeChild(info[4]);
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
             layers.push({
@@ -181,6 +188,7 @@ ipcRenderer.on('add-new-layer', (event, args) => {
             break;
         case "Linear":
             info[0].innerHTML = "Number of units: 10";
+            info[4].parentNode.removeChild(info[4]);
             info[2].parentNode.removeChild(info[2]);
             info[1].parentNode.removeChild(info[1]);
             layers.push({
@@ -192,6 +200,7 @@ ipcRenderer.on('add-new-layer', (event, args) => {
             break;
         case "Activation":
             info[0].innerHTML = "Type: ReLu";
+            info[4].parentNode.removeChild(info[4]);
             info[3].parentNode.removeChild(info[3]);
             info[2].parentNode.removeChild(info[2]);
             info[1].parentNode.removeChild(info[1]);

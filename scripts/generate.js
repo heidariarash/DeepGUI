@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-generate_code = async (options, folder_path) => {
+generate_code = async (options, dimensions, folder_path) => {
     //creating the string to write (stw)
     let stw = "";
     let success = 1;
@@ -19,9 +19,10 @@ generate_code = async (options, folder_path) => {
         stw += "model = keras.Sequntial()\n\n"
         stw += "#adding layers\n"
         let input_shape = "(";
-        for(let i = 0; i < options.input.length; i++){
-            input_shape += `${options.input[i]},`;
+        for(let i = 0; i < dimensions.length; i++){
+            input_shape += `${dimensions[i]},`;
         }
+        input_shape = input_shape.slice(0,-1);
         input_shape += ")";
         stw += `model.add(keras.layers.InputLayer(input_shape = ${input_shape}))\n`
 
@@ -34,17 +35,17 @@ generate_code = async (options, folder_path) => {
 
                 //convolution 1D case
                 case "Convolution 1D":
-                    stw += `model.add(keras.layers.Conv1D(${layer.filter_num}, ${layer.filter_size}, strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}'))`
+                    stw += `model.add(keras.layers.Conv1D(${layer.filter_num}, ${layer.filter_size}, strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}', padding = '${layer.padding}'))`
                     break;
 
                 //convolution 2D case
                 case "Convolution 2D":
-                    stw += `model.add(keras.layers.Conv2D(${layer.filter_num}, (${layer.filter_size[0]}, ${layer.filter_size[1]}), strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}'))`
+                    stw += `model.add(keras.layers.Conv2D(${layer.filter_num}, (${layer.filter_size[0]}, ${layer.filter_size[1]}), strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}', padding = '${layer.padding}'))`
                     break;
 
                 //convolution 3D case
                 case "Convolution 3D":
-                    stw += `model.add(keras.layers.Conv3D(${layer.filter_num}, (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}))'`
+                    stw += `model.add(keras.layers.Conv3D(${layer.filter_num}, (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}', padding = '${layer.padding}'))`
                     break;
 
                 //max pool 1D case
