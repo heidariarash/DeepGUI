@@ -144,6 +144,7 @@ ipcMain.on('resize-small', (event, arg) => {
 ipcMain.on('set-dimensions', (event, arg) => {
     configureWindow.close();
     dimensions = arg;
+    mainWindow.webContents.send('set-input-shape', dimensions);
 });
 
 //sending initialization parameters to input config menu

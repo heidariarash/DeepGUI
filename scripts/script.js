@@ -205,3 +205,13 @@ ipcRenderer.on('add-new-layer', (event, args) => {
     
     document.getElementById('layers-panel').insertBefore(layer, document.getElementById('new-layer-button-parent'));
 });
+
+//setting input shape
+ipcRenderer.on('set-input-shape', (event, arg) => {
+    let shape = "";
+    for (dim of arg){
+        shape += `${dim}, `;
+    }
+    shape = shape.slice(0,-2);
+    document.getElementById('input-shape-text').innerHTML = shape;
+})
