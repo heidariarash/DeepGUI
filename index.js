@@ -144,4 +144,5 @@ ipcMain.on('resize-small', (event, arg) => {
 ipcMain.on('set-dimensions', (event, arg) => {
     configureWindow.close();
     dimensions = arg;
+    console.log(dimensions)
 })
