@@ -74,15 +74,11 @@ ipcMain.on('close-small', () => {
     configureWindow.close();
 })
 
-////////////////////////////
-///////IMPORTNAT//////////// input shape is in this file pass it to generate code. Not fix yet.
-////////////////////////////
-
 //generate button clicked
 ipcMain.on('generate-code', async (event, arg) => {
     let folder_path = await dialog.showOpenDialog(mainWindow, { properties: ['openDirectory'] });
     if(~folder_path.canceled){
-        let success = await generate_code(arg, folder_path.filePaths[0]);
+        let success = await generate_code(arg, dimensions, folder_path.filePaths[0]);
         console.log(success)
         if (success){
             configureWindow = new BrowserWindow({
