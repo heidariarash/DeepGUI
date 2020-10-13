@@ -16,23 +16,7 @@ const delete_layer = (element) => {
     }
 }
 
-document.getElementById('close-btn').addEventListener('click', () => {
-    ipcRenderer.send('exit-app');
-});
-
-document.getElementById('min-btn').addEventListener('click', () => {
-    ipcRenderer.send('min-app');
-});
-
-document.getElementById('max-btn').addEventListener('click', () => {
-    ipcRenderer.send('max-app');
-});
-
-document.getElementById('new-layer-button').addEventListener('click', () => {
-    ipcRenderer.send('new-layer-request');
-});
-
-document.getElementById('generate-button').addEventListener('click', () => {
+const check_and_generate = () => {
     if(document.getElementById('optimizer-lr').value <= 0){
         document.getElementById('lr-attention').setAttribute('style','opacity: 1');
     }
@@ -75,6 +59,26 @@ document.getElementById('generate-button').addEventListener('click', () => {
             file_name: document.getElementById('file-name-input').value
         });
     }
+}
+
+document.getElementById('close-btn').addEventListener('click', () => {
+    ipcRenderer.send('exit-app');
+});
+
+document.getElementById('min-btn').addEventListener('click', () => {
+    ipcRenderer.send('min-app');
+});
+
+document.getElementById('max-btn').addEventListener('click', () => {
+    ipcRenderer.send('max-app');
+});
+
+document.getElementById('new-layer-button').addEventListener('click', () => {
+    ipcRenderer.send('new-layer-request');
+});
+
+document.getElementById('generate-button').addEventListener('click', () => {
+    check_and_generate();
 });
 
 document.getElementById('input-shape-cog').addEventListener('click', () => {
