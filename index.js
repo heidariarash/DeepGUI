@@ -77,9 +77,8 @@ ipcMain.on('close-small', () => {
 //generate button clicked
 ipcMain.on('generate-code', async (event, arg) => {
     let folder_path = await dialog.showOpenDialog(mainWindow, { properties: ['openDirectory'] });
-    if(~folder_path.canceled){
+    if(folder_path.canceled === false){
         let success = await generate_code(arg, dimensions, folder_path.filePaths[0]);
-        console.log(success)
         if (success){
             configureWindow = new BrowserWindow({
                 frame: false,
