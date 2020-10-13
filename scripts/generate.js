@@ -24,9 +24,12 @@ generate_code = async (options, dimensions, folder_path) => {
         }
         input_shape = input_shape.slice(0,-1);
         input_shape += ")";
-        stw += `model.add(keras.layers.InputLayer(input_shape = ${input_shape}))\n`
+        if (options.layers[0].name !== "Embedding"){
+            stw += `model.add(keras.layers.InputLayer(input_shape = ${input_shape}))\n`;
+        }
 
         for(layer of options.layers){
+            let ret_seq = "False";
             switch(layer.name){
                 //linear case
                 case "Linear":
@@ -66,6 +69,59 @@ generate_code = async (options, dimensions, folder_path) => {
                 //max pool 3D case
                 case "Activation":
                     stw += `model.add(keras.layers.${layer.type}())`;
+                    break;
+
+                //avg pool 1D case
+                case "Avg Pool 1D":
+                    stw += `model.add(keras.layers.AveragePooling1D(${layer.filter_size}, strides = ${layer.stride}))`;
+                    break;
+
+                //avg pool 2D case
+                case "Avg Pool 2D":
+                    stw += `model.add(keras.layers.AveragePooling2D((${layer.filter_size[0]}, ${layer.filter_size[1]}), strides = ${layer.stride}))`;
+                    break;
+
+                //avg pool 3D case
+                case "Avg Pool 3D":
+                    stw += `model.add(keras.layers.AveragePooling3D((${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), strides = ${layer.stride}))`;
+                    break;
+
+                //batch normalization case
+                case "Batch Normalization":
+                    stw += `model.add(keras.layers.BatchNormalization())`;
+                    break;
+
+                //dropout case
+                case "Dropout":
+                    stw += `model.add(keras.layers.Dropout(rate = ${layer.prob}))`;
+                    break;
+                
+                //embedding case
+                case "Embedding":
+                    stw += `model.add(keras.layers.Embedding(input_dim = ${layer.input_dim}, output_dim = ${layer.output_dim}, input_length = ${layer.input_length}))`;
+                    break;
+
+                //flatten case
+                case "Flatten":
+                    stw += `model.add(keras.layers.Flatten())`;
+                    break;
+
+                //LSTM and GRU case
+                case "GRU":
+                case "LSTM":
+                    if(layer.ret_seq) {
+                        ret_seq = "True";
+                    }
+                    stw += `model.add(keras.layers.${layer.name}(units = ${layer.units}, activations = '${layer.activation}', recurrent_activation = '${layer.re_activation}', return_sequences = ${ret_seq}))`;
+                    break;
+
+                //RNN case
+                case "RNN":
+                    if(layer.ret_seq) {
+                        ret_seq = "True";
+                    }
+                    stw += `model.add(keras.layers.SimpleRNN(units = ${layer.units}, activations = '${layer.activation}', return_sequences = ${ret_seq}))`;
+                    break;
             }
             stw += "\n"
         }
