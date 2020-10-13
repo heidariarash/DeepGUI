@@ -317,7 +317,7 @@ ipcRenderer.on('add-new-layer', (event, args) => {
                 name: args,
                 units: 10,
                 activation: "tanh",
-                return_sequence: false
+                ret_seq: false
             });
             break;
     };
