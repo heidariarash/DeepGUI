@@ -1,0 +1,59 @@
+<html>
+<head>
+    <!-- CSS links -->
+    <link rel="stylesheet" href="../css/bootstrap.css"> <!-- Bootstrap -->
+    <link rel="stylesheet" href="../css/styles.css">    <!-- Customized CSS -->
+</head>
+<body>
+    <!-- Title Bar -->
+    <div id="title-bar">
+        <div id="title-sm">Convolution Layer Configuration</div>
+    </div>
+    <div class="container-fluid sub-window">
+        <div class="row main-panel text-center"> <!-- Main Window Row -->
+            <div class="col-sm-12 heading-3-parent">
+                <div class="scrollable">
+                    <br>
+                    <label class="info">Filter Size: </label>
+                    <br>
+                    <input class = "small-input" type="number" min="1" step="1" required>
+                    <input class = "small-input" type="number" min="1" step="1" required>
+                    <input class = "small-input" type="number" min="1" step="1" required>
+                    <br>
+                    <br>
+                    <label class="info">Number of Filters: </label>
+                    <br>
+                    <input id="number-of-filters" type="number" min="1" step="1" required>
+                    <br>
+                    <br>
+                    <label class="info">Stride: </label>
+                    <br>
+                    <input id="stride" type="number" min="1" step="1" required>
+                    <br>
+                    <br>
+                    <label class="info">activation: </label>
+                    <br>
+                    <select id="activation-selector" onmousedown="this.size=3;"  onchange='this.size=0;' onblur="this.size=0;">
+                        <option value="relu">ReLu</option>
+                        <option value="tanh">Tanh</option>
+                        <option value="sigmoid">Sigmoid</option>
+                        <option value="linear">Linear</option>
+                    </select>
+                    <br>
+                    <br>
+                    <label class="info">Padding: </label>
+                    <br>
+                    <select id="padding-selector" onmousedown="this.size=2;"  onchange='this.size=0;' onblur="this.size=0;">
+                        <option value="valid">Valid</option>
+                        <option value="same">Same</option>
+                    </select>
+                </div>
+                <br>
+                <a class="small-window-buttons" id="done">Done</a>
+                <a class="small-window-buttons" id="cancle">Cancle</a>
+            </div>
+        </div>
+    </div>
+    <script src="../scripts/convolution-config.js"></script>
+</body>
+</html>
