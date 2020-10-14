@@ -6,6 +6,7 @@ const { app, BrowserWindow, ipcMain, dialog } = electron;
 let mainWindow;
 let configureWindow;
 let dimensions = [10];
+let layer_under_config;
 
 app.on('ready', ()=> {
     // Customizing Main Window
@@ -142,7 +143,46 @@ ipcMain.on('set-dimensions', (event, arg) => {
     mainWindow.webContents.send('set-input-shape', dimensions);
 });
 
-//sending initialization parameters to input config menu
+//sending initialization parameters to input config window
 ipcMain.on('ready-input-config', () => {
     configureWindow.webContents.send('initialize', dimensions);
-})
+});
+
+//configuring a layer
+ipcMain.on("config-layer", (event, arg) => {
+    configureWindow = new BrowserWindow({
+        frame: false,
+        webPreferences: {
+            nodeIntegration: true
+        },
+        width: 400,
+        height: 370,
+        resizable: false,
+        maximizable: false,
+        parent: mainWindow,
+        modal: true
+    });
+
+    layer_under_config = arg;
+    
+    switch(arg.name){
+        case "Convolution 1D":
+        case "Convolution 2D":
+        case "Convolution 3D":
+            configureWindow.loadURL(`file://${__dirname}/html/convolution-config.html`);
+            break;
+        default:
+            configureWindow.close();
+    }
+});
+
+//sending initialization parameters to layer config window
+ipcMain.on("ready-layer-config", () => {
+    configureWindow.webContents.send("layer-config", layer_under_config);
+});
+
+//getting layer config
+ipcMain.on("layer-config-finish", (event, arg) => {
+    configureWindow.close();
+    mainWindow.webContents.send("set-config", arg);
+});
