@@ -16,6 +16,15 @@ const delete_layer = (element) => {
     }
 }
 
+const layer_config = element => {
+    for (let i=0; i < layers.length; i++) {
+        if (layers[i].id === element.id.slice(0,-4)) {
+            ipcRenderer.send("config-layer", layers[i])
+            break;
+        }
+    }
+}
+
 const check_and_generate = () => {
     if(document.getElementById('optimizer-lr').value <= 0){
         document.getElementById('lr-attention').setAttribute('style','opacity: 1');
@@ -98,4 +107,37 @@ ipcRenderer.on('set-input-shape', (event, arg) => {
     }
     shape = shape.slice(0,-2);
     document.getElementById('input-shape-text').innerHTML = shape;
+})
+
+//getting configurations
+ipcRenderer.on('set-config', (event, layer) => {
+    let filter_size = ""
+    for (let i=0; i < layers.length; i++) {
+        if (layers[i].id === layer.id) {
+            layers[i] = layer;
+            configed_layer = document.getElementById(layer.id);
+            switch(layer.name){
+                case "Convolution 1D":
+                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of filters: ${layer.filter_num}`;
+                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Filter Size: ${layer.filter_size}`;
+                    configed_layer.getElementsByTagName("p")[2].innerHTML = `Stride: ${layer.stride}`;
+                    configed_layer.getElementsByTagName("p")[3].innerHTML = `Activation: ${layer.activation}`;
+                    configed_layer.getElementsByTagName("p")[4].innerHTML = `Padding: ${layer.padding}`;
+                    break;
+                case "Convolution 2D":
+                case "Convolution 3D":
+                    for(size of layer.filter_size){
+                        filter_size += `${size},`;
+                    }
+                    filter_size = filter_size.slice(0,-1);
+                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Filter Size: ${filter_size}`;
+                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of filters: ${layer.filter_num}`;
+                    configed_layer.getElementsByTagName("p")[2].innerHTML = `Stride: ${layer.stride}`;
+                    configed_layer.getElementsByTagName("p")[3].innerHTML = `Activation: ${layer.activation}`;
+                    configed_layer.getElementsByTagName("p")[4].innerHTML = `Padding: ${layer.padding}`;
+                    break;
+            }
+            break;
+        }
+    }
 })
