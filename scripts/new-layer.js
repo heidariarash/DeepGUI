@@ -20,8 +20,8 @@ add_new_layer = (args, layers_count) => {
                         <br>
                         <p class="info">Number of filters: 32</p>
                         <p class="info">Filter Size: 3,3</p>
-                        <p class="info">stride: 1</p>
-                        <p class="info">activation: ReLu</p>
+                        <p class="info">Stride: 1</p>
+                        <p class="info">Activation: relu</p>
                         <p class="info">Padding: valid</p>`
    
     //changing the information.
@@ -110,7 +110,7 @@ add_new_layer = (args, layers_count) => {
             });
             break;
         case "Activation":
-            info[0].innerHTML = "Type: ReLu";
+            info[0].innerHTML = "Type: relu";
             info[4].parentNode.removeChild(info[4]);
             info[3].parentNode.removeChild(info[3]);
             info[2].parentNode.removeChild(info[2]);
