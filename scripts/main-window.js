@@ -167,6 +167,7 @@ ipcRenderer.on('set-config', (event, layer) => {
                 case "Linear":
                     configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of Units: ${layer.unit_num}`;
                     configed_layer.getElementsByTagName("p")[1].innerHTML = `Activation: ${layer.activation.split('_').join(' ')}`;
+                    break;
             }
             break;
         }
