@@ -171,6 +171,15 @@ ipcMain.on("config-layer", (event, arg) => {
         case "Convolution 3D":
             configureWindow.loadURL(`file://${__dirname}/html/convolution-config.html`);
             break;
+        case "Max Pool 1D":
+        case "Max Pool 2D":
+        case "Max Pool 3D":
+        case "Avg Pool 1D":
+        case "Avg Pool 2D":
+        case "Avg Pool 3D":
+            configureWindow.setBounds({width: 400, height: 300});
+            configureWindow.loadURL(`file://${__dirname}/html/pooling-config.html`);
+            break;
         default:
             configureWindow.close();
     }

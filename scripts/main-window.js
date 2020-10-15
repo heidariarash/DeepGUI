@@ -136,6 +136,22 @@ ipcRenderer.on('set-config', (event, layer) => {
                     configed_layer.getElementsByTagName("p")[3].innerHTML = `Activation: ${layer.activation}`;
                     configed_layer.getElementsByTagName("p")[4].innerHTML = `Padding: ${layer.padding}`;
                     break;
+                case "Avg Pool 1D":
+                case "Max Pool 1D":
+                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Filter Size: ${layer.filter_size}`;
+                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Stride: ${layer.stride}`;
+                    break;
+                case "Avg Pool 2D":
+                case "Avg Pool 3D":
+                case "Max Pool 2D":
+                case "Max Pool 3D":
+                    for(size of layer.filter_size){
+                        filter_size += `${size},`;
+                    }
+                    filter_size = filter_size.slice(0,-1);
+                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Filter Size: ${filter_size}`;
+                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Stride: ${layer.stride}`;
+                    break;
             }
             break;
         }
