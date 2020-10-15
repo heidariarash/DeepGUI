@@ -152,6 +152,18 @@ ipcRenderer.on('set-config', (event, layer) => {
                     configed_layer.getElementsByTagName("p")[0].innerHTML = `Filter Size: ${filter_size}`;
                     configed_layer.getElementsByTagName("p")[1].innerHTML = `Stride: ${layer.stride}`;
                     break;
+                case "LSTM":
+                case "GRU":
+                    configed_layer.getElementsByTagName("p")[2].innerHTML = `Recurrent Activation: ${layer.re_activation}`;
+                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of Units: ${layer.units}`;
+                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Activation: ${layer.activation}`;
+                    configed_layer.getElementsByTagName("p")[3].innerHTML = `Return Sequence: ${layer.return_sequence?'True':'False'}`;
+                    break;
+                case "RNN":
+                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of Units: ${layer.units}`;
+                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Activation: ${layer.activation}`;
+                    configed_layer.getElementsByTagName("p")[2].innerHTML = `Return Sequence: ${layer.return_sequence?'True':'False'}`;
+                    break;
             }
             break;
         }

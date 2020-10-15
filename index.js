@@ -180,6 +180,11 @@ ipcMain.on("config-layer", (event, arg) => {
             configureWindow.setBounds({width: 400, height: 300});
             configureWindow.loadURL(`file://${__dirname}/html/pooling-config.html`);
             break;
+        case "RNN":
+        case "LSTM":
+        case "GRU":
+            configureWindow.loadURL(`file://${__dirname}/html/recurrent-config.html`);
+            break;
         default:
             configureWindow.close();
     }
