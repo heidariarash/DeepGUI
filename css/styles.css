@@ -52,6 +52,18 @@
     margin-bottom: 10px;
 }
 
+.scrollable-small {
+    overflow: auto;
+    max-height: 170px;
+    margin-bottom: 10px;
+}
+
+.no-overflow {
+    overflow: visible;
+    max-height: 170px;
+    margin-bottom: 10px;
+}
+
 /***********************************************
               Add New Layer Button
 ***********************************************/
@@ -371,8 +383,7 @@ input:invalid {
     text-align: center;
     border-radius: 15px;
     font-family: normalFont;
-    font-size: 20;
-    margin-bottom: 10%;
+    font-size: 18px;
 }
 
 /***********************************************
