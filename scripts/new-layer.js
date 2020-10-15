@@ -98,7 +98,7 @@ add_new_layer = (args, layers_count) => {
             });
             break;
         case "Linear":
-            info[0].innerHTML = "Number of units: 10";
+            info[0].innerHTML = "Number of Units: 10";
             info[4].parentNode.removeChild(info[4]);
             info[2].parentNode.removeChild(info[2]);
             info[1].parentNode.removeChild(info[1]);

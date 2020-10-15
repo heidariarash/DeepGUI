@@ -185,6 +185,10 @@ ipcMain.on("config-layer", (event, arg) => {
         case "GRU":
             configureWindow.loadURL(`file://${__dirname}/html/recurrent-config.html`);
             break;
+        case "Linear":
+            configureWindow.setBounds({width: 400, height: 300});
+            configureWindow.loadURL(`file://${__dirname}/html/dense-config.html`);
+            break;
         default:
             configureWindow.close();
     }
