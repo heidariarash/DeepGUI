@@ -64,6 +64,10 @@
     margin-bottom: 10px;
 }
 
+.no-overflow #activation-selector{
+    font-size: 18px;
+}
+
 /***********************************************
               Add New Layer Button
 ***********************************************/

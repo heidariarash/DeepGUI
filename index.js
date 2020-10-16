@@ -192,6 +192,10 @@ ipcMain.on("config-layer", (event, arg) => {
         case "Embedding":
             configureWindow.loadURL(`file://${__dirname}/html/embedding-config.html`);
             break;
+        case "Activation":
+            configureWindow.setBounds({width: 400, height: 300});
+            configureWindow.loadURL(`file://${__dirname}/html/activation-config.html`);
+            break;
         default:
             configureWindow.close();
     }

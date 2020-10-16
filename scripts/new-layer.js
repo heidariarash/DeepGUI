@@ -110,7 +110,7 @@ add_new_layer = (args, layers_count) => {
             });
             break;
         case "Activation":
-            info[0].innerHTML = "Type: relu";
+            info[0].innerHTML = "Type: ReLU";
             info[4].parentNode.removeChild(info[4]);
             info[3].parentNode.removeChild(info[3]);
             info[2].parentNode.removeChild(info[2]);
@@ -118,7 +118,7 @@ add_new_layer = (args, layers_count) => {
             layers.push({
                 id: `layer-${layers_count}`,
                 name: args,
-                type: "ReLu"
+                type: "ReLU"
             });
             break;
         case "Avg Pool 1D":
