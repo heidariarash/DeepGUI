@@ -1,6 +1,7 @@
 const electron = require('electron');
 const {ipcRenderer} = electron;
 const add_layer_to_window = require("../scripts/new-layer.js");
+const change_desc = require("../scripts/change-desc.js");
 
 let layers = [];
 let layers_count = 0;
@@ -22,6 +23,18 @@ const layer_config = element => {
             ipcRenderer.send("config-layer", layers[i])
             break;
         }
+    }
+}
+
+const remove_attention = element => {
+    if(element.id === "optimizer-lr"){
+        document.getElementById('lr-attention').setAttribute('style','opacity: 0');
+    }
+    else if(element.id === "batch") {
+        document.getElementById('batch-attention').setAttribute('style','opacity: 0');
+    }
+    else if(element.id === "epoch") {
+        document.getElementById('epoch-attention').setAttribute('style','opacity: 0');
     }
 }
 
@@ -90,6 +103,17 @@ document.getElementById('generate-button').addEventListener('click', () => {
     check_and_generate();
 });
 
+document.getElementById("framework-selector").addEventListener('change', () => {
+    if(document.getElementById("framework-selector").value === "PyTorch"){
+        document.getElementById('framework-attention').setAttribute('style','opacity: 1');
+        document.getElementById('generate-button').style.display = "none";
+    }
+    else {
+        document.getElementById('framework-attention').setAttribute('style','opacity: 0');
+        document.getElementById('generate-button').style.display = "inline-block";
+    }
+});
+
 document.getElementById('input-shape-cog').addEventListener('click', () => {
     ipcRenderer.send('input-shape-cog');
 });
@@ -97,6 +121,7 @@ document.getElementById('input-shape-cog').addEventListener('click', () => {
 ipcRenderer.on('add-new-layer', (event, args) => {
     add_layer_to_window(args, layers_count);
     layers_count += 1;
+    document.getElementById('layer-attention').setAttribute('style','opacity: 0');
 });
 
 //setting input shape
@@ -115,68 +140,7 @@ ipcRenderer.on('set-config', (event, layer) => {
     for (let i=0; i < layers.length; i++) {
         if (layers[i].id === layer.id) {
             layers[i] = layer;
-            configed_layer = document.getElementById(layer.id);
-            switch(layer.name){
-                case "Convolution 1D":
-                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of filters: ${layer.filter_num}`;
-                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Filter Size: ${layer.filter_size}`;
-                    configed_layer.getElementsByTagName("p")[2].innerHTML = `Stride: ${layer.stride}`;
-                    configed_layer.getElementsByTagName("p")[3].innerHTML = `Activation: ${layer.activation}`;
-                    configed_layer.getElementsByTagName("p")[4].innerHTML = `Padding: ${layer.padding}`;
-                    break;
-                case "Convolution 2D":
-                case "Convolution 3D":
-                    for(size of layer.filter_size){
-                        filter_size += `${size},`;
-                    }
-                    filter_size = filter_size.slice(0,-1);
-                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Filter Size: ${filter_size}`;
-                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of filters: ${layer.filter_num}`;
-                    configed_layer.getElementsByTagName("p")[2].innerHTML = `Stride: ${layer.stride}`;
-                    configed_layer.getElementsByTagName("p")[3].innerHTML = `Activation: ${layer.activation}`;
-                    configed_layer.getElementsByTagName("p")[4].innerHTML = `Padding: ${layer.padding}`;
-                    break;
-                case "Avg Pool 1D":
-                case "Max Pool 1D":
-                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Filter Size: ${layer.filter_size}`;
-                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Stride: ${layer.stride}`;
-                    break;
-                case "Avg Pool 2D":
-                case "Avg Pool 3D":
-                case "Max Pool 2D":
-                case "Max Pool 3D":
-                    for(size of layer.filter_size){
-                        filter_size += `${size},`;
-                    }
-                    filter_size = filter_size.slice(0,-1);
-                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Filter Size: ${filter_size}`;
-                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Stride: ${layer.stride}`;
-                    break;
-                case "LSTM":
-                case "GRU":
-                    configed_layer.getElementsByTagName("p")[2].innerHTML = `Recurrent Activation: ${layer.re_activation}`;
-                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of Units: ${layer.units}`;
-                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Activation: ${layer.activation}`;
-                    configed_layer.getElementsByTagName("p")[3].innerHTML = `Return Sequence: ${layer.return_sequence?'True':'False'}`;
-                    break;
-                case "RNN":
-                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of Units: ${layer.units}`;
-                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Activation: ${layer.activation}`;
-                    configed_layer.getElementsByTagName("p")[2].innerHTML = `Return Sequence: ${layer.return_sequence?'True':'False'}`;
-                    break;
-                case "Linear":
-                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of Units: ${layer.unit_num}`;
-                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Activation: ${layer.activation.split('_').join(' ')}`;
-                    break;
-                case "Embedding":
-                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Input Dimension: ${layer.input_dim}`;
-                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Output Dimension: ${layer.output_dim}`;
-                    configed_layer.getElementsByTagName("p")[2].innerHTML = `Input Length: ${layer.input_length}`;
-                    break;
-                case "Activation":
-                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Type: ${layer.type}`;
-                    break;
-            }
+            change_desc(layer);
             break;
         }
     }
