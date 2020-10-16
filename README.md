@@ -17,9 +17,9 @@ The specifications of this version:
     - Dropout layer,
     - and Activation layer.
 
-+ Only TensorFlow framwork is accessible. PyTorch will be added soon.
++ Only TensorFlow framework is accessible. PyTorch will be added soon.
 + Basic configurations of each layer is added. Advanced configurations will be added soon.
-+ Only Sequensial models are available in this version.
++ Only Sequential  models are available in this version.
 
 ## Some Screenshots of the GUI
 I provide some of the screenshots of the GUI here. I know that this configuration is not OK for a 10-class image dataset classification. It's just a simple example.
