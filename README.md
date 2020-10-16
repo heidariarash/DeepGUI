@@ -9,7 +9,7 @@ The specifications of this version:
 + These layers are available in this version:
     - Dense,
     - Convolution (1D, 2D, and 3D) layers,
-    - Pooling (Max and Average) (1D, 2D, and 3D,
+    - Pooling (Max and Average) (1D, 2D, and 3D)
     - RNN, LSTM, and GRU layers,
     - Embedding layer,
     - Batch Normalization layer,
