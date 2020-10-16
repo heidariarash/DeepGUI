@@ -189,6 +189,9 @@ ipcMain.on("config-layer", (event, arg) => {
             configureWindow.setBounds({width: 400, height: 300});
             configureWindow.loadURL(`file://${__dirname}/html/dense-config.html`);
             break;
+        case "Embedding":
+            configureWindow.loadURL(`file://${__dirname}/html/embedding-config.html`);
+            break;
         default:
             configureWindow.close();
     }

@@ -168,6 +168,11 @@ ipcRenderer.on('set-config', (event, layer) => {
                     configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of Units: ${layer.unit_num}`;
                     configed_layer.getElementsByTagName("p")[1].innerHTML = `Activation: ${layer.activation.split('_').join(' ')}`;
                     break;
+                case "Embedding":
+                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Input Dimension: ${layer.input_dim}`;
+                    configed_layer.getElementsByTagName("p")[1].innerHTML = `Output Dimension: ${layer.output_dim}`;
+                    configed_layer.getElementsByTagName("p")[2].innerHTML = `Input Length: ${layer.input_length}`;
+                    break;
             }
             break;
         }

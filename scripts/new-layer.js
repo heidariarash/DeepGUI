@@ -192,7 +192,7 @@ add_new_layer = (args, layers_count) => {
                 name: args,
                 input_dim: 1000,
                 output_dim: 50,
-                input_length: 20
+                input_length: 10
             });
             break;
         case "Flatten":
