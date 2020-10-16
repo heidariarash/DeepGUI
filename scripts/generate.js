@@ -68,7 +68,12 @@ generate_code = async (options, dimensions, folder_path) => {
 
                 //max pool 3D case
                 case "Activation":
-                    stw += `model.add(keras.layers.${layer.type}())`;
+                    if (['ELU', 'LeakyReLU', 'PReLU', 'ReLU', 'Softmax', 'ThresholdedReLU'].indexOf(layer.type) >= 0){
+                        stw += `model.add(keras.layers.${layer.type}())`;
+                    }
+                    else{
+                        stw += `model.add(keras.layers.Activation(activations.${layer.type}))`
+                    }
                     break;
 
                 //avg pool 1D case
