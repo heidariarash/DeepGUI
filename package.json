@@ -1,6 +1,6 @@
 {
   "name": "deepgui",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A Graphical User Interface to produce deep learning related python codes (such as tensorflow or pytorch)",
   "main": "index.js",
   "scripts": {
