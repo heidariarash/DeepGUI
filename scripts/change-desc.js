@@ -60,6 +60,9 @@ const change_desc = layer => {
                 case "Activation":
                     configed_layer.getElementsByTagName("p")[0].innerHTML = `Type: ${layer.type}`;
                     break;
+                case "Dropout":
+                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Probability: ${layer.prob}`;
+                    break;
             }
 }
 

@@ -196,6 +196,10 @@ ipcMain.on("config-layer", (event, arg) => {
             configureWindow.setBounds({width: 400, height: 300});
             configureWindow.loadURL(`file://${__dirname}/html/activation-config.html`);
             break;
+        case "Dropout":
+            configureWindow.setBounds({width: 400, height: 200});
+            configureWindow.loadURL(`file://${__dirname}/html/dropout-config.html`);
+            break;
         default:
             configureWindow.close();
     }

@@ -1,0 +1,30 @@
+<html>
+<head>
+    <!-- CSS links -->
+    <link rel="stylesheet" href="../css/bootstrap.css"> <!-- Bootstrap -->
+    <link rel="stylesheet" href="../css/styles.css">    <!-- Customized CSS -->
+</head>
+<body>
+    <!-- Title Bar -->
+    <div id="title-bar">
+        <div id="title-sm">Dense Layer Configuration</div>
+    </div>
+    <div class="container-fluid sub-window">
+        <div class="row main-panel text-center"> <!-- Main Window Row -->
+            <div class="col-sm-12 heading-3-parent">
+                <div class="scrollable-small">
+                    <br>
+                    <label class="info">Probability: </label>
+                    <br>
+                    <input id="probability" type="number" min="0" max="1" step="0.1">
+                    <br>
+                </div>
+                <br>
+                <a class="small-window-buttons" id="done">Done</a>
+                <a class="small-window-buttons" id="cancle">Cancle</a>
+            </div>
+        </div>
+    </div>
+    <script src="../scripts/dropout-config.js"></script>
+</body>
+</html>
