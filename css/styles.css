@@ -33,17 +33,20 @@
 
 .middle-panel{
     overflow: auto;
-    height: 90%;
+    margin-top: 0.5%;
+    height: 95%;
 }
 
 .right-panel {
     overflow: auto;
-    height: 90%;
+    height: 95%;
+    margin-top: 0.5%;
 }
 
 .left-panel {
     overflow: auto;
-    height: 90%;
+    margin-top: 0.5%;
+    height: 95%;
 }
 
 .scrollable {
@@ -96,19 +99,6 @@
     cursor: pointer;
 }
 
-
-/***********************************************
-                     Credit
-***********************************************/
-.credit-parent{
-    font-family: bigFunnyFont;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #161a1d;
-    min-height: 5%;
-    color: #eeef20;
-}
 
 /***********************************************
                Framework Selector
@@ -443,12 +433,12 @@ input:invalid {
 ***********************************************/
 
 ::-webkit-scrollbar {
-    width: 2px;
+    width: 5px;
     background: #161a1d;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #eeef20;
+    background-color: #db3a34;
 }
 
 /***********************************************
