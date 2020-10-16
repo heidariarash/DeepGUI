@@ -32,6 +32,7 @@
                         <option value="TensorFlow">TensorFlow</option>
                         <option value="PyTorch">PyTorch</option>
                     </select>
+                    <p class="attention-note" id="framework-attention">* Unfortunately PyTorch is not supported yet. Select TensorFlow.</p>
                 </div>
 
                 <div class="col-sm-12 heading-2-parent">
@@ -103,7 +104,7 @@
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Learning Rate</label>
                     <br>
-                    <input type="number" name="optimizer-lr" id="optimizer-lr" step="0.0001" min="0" value="0" required>
+                    <input type="number" name="optimizer-lr" id="optimizer-lr" step="0.0001" min="0" value="0" onchange="remove_attention(this);" required>
                     <p class="attention-note" id="lr-attention">* Learning Rate should be greater than zero.</p>
                 </div>
 
@@ -135,13 +136,13 @@
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Number of Epochs</label>
                     <br>
-                    <input type="number" name="epoch" id="epoch" min="1" value="1" required>
+                    <input type="number" name="epoch" id="epoch" min="1" value="1" onchange="remove_attention(this);" required>
                     <p class="attention-note" id="epoch-attention">* Number of epochs should be a positive integer.</p>
                 </div>
                 <div class="col-sm-12 heading-3-parent">
                     <label class="main-heading-3">Batch Size</label>
                     <br>
-                    <input type="number" name="batch" id="batch" min="1" value="1" required>
+                    <input type="number" name="batch" id="batch" min="1" value="1" onchange="remove_attention(this);" required>
                     <p class="attention-note" id="batch-attention">* Batch size should be a positive integer.</p>
                 </div>
 
