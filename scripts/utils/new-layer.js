@@ -46,7 +46,7 @@ add_new_layer = (args, layers_count) => {
     switch(args.name){
         case "Convolution 1D":
             info[1].innerHTML = "Filter Size: 3";
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 filter_num : 32,
@@ -54,10 +54,17 @@ add_new_layer = (args, layers_count) => {
                 stride: 1,
                 activation: "relu",
                 padding: "valid"
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "Convolution 2D":
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 filter_num : 32,
@@ -65,11 +72,18 @@ add_new_layer = (args, layers_count) => {
                 stride: 1,
                 activation: "relu",
                 padding: "valid"
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "Convolution 3D":
             info[1].innerHTML = "Filter Size: 3,3,3";
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 filter_num : 32,
@@ -77,54 +91,89 @@ add_new_layer = (args, layers_count) => {
                 stride: 1,
                 activation: "relu",
                 padding: "valid"
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "Max Pool 1D":
             info[1].innerHTML = "Filter Size: 3";
             info[4].parentNode.removeChild(info[4]);
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 filter_size: 3,
                 stride: 1
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "Max Pool 2D":
             info[4].parentNode.removeChild(info[4]);
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 filter_size: [3,3],
                 stride: 1
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "Max Pool 3D":
             info[1].innerHTML = "Filter Size: 3,3,3";
             info[4].parentNode.removeChild(info[4]);
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 filter_size: [3,3,3],
                 stride: 1
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "Linear":
             info[0].innerHTML = "Number of Units: 10";
             info[4].parentNode.removeChild(info[4]);
             info[2].parentNode.removeChild(info[2]);
             info[1].parentNode.removeChild(info[1]);
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 unit_num : 10,
                 activation: "relu"
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "Activation":
             info[0].innerHTML = "Type: ReLU";
@@ -132,46 +181,74 @@ add_new_layer = (args, layers_count) => {
             info[3].parentNode.removeChild(info[3]);
             info[2].parentNode.removeChild(info[2]);
             info[1].parentNode.removeChild(info[1]);
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 type: "ReLU"
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "Avg Pool 1D":
             info[1].innerHTML = "Filter Size: 3";
             info[4].parentNode.removeChild(info[4]);
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 filter_size: 3,
                 stride: 1
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "Avg Pool 2D":
             info[4].parentNode.removeChild(info[4]);
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 filter_size: [3,3],
                 stride: 1
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "Avg Pool 3D":
             info[1].innerHTML = "Filter Size: 3,3,3";
             info[4].parentNode.removeChild(info[4]);
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 filter_size: [3,3,3],
                 stride: 1
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "Batch Normalization":
             info[4].parentNode.removeChild(info[4]);
@@ -179,10 +256,17 @@ add_new_layer = (args, layers_count) => {
             info[2].parentNode.removeChild(info[2]);
             info[1].parentNode.removeChild(info[1]);
             info[0].parentNode.removeChild(info[0]);
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             layer.getElementsByClassName('cog')[0].innerHTML = "";
             layer.getElementsByClassName('cog')[0].setAttribute('class', `cog-invisible`);
             break;
@@ -192,11 +276,18 @@ add_new_layer = (args, layers_count) => {
             info[2].parentNode.removeChild(info[2]);
             info[1].parentNode.removeChild(info[1]);
             info[0].innerHTML = "Probability: 0.5"
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 prob: 0.5
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "Embedding":
             info[4].parentNode.removeChild(info[4]);
@@ -204,13 +295,20 @@ add_new_layer = (args, layers_count) => {
             info[2].innerHTML = "Input Length: 10";
             info[1].innerHTML = "Output Dimension: 50";
             info[0].innerHTML = "Input Dimension: 1000";
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 input_dim: 1000,
                 output_dim: 50,
                 input_length: 10
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "Flatten":
             info[4].parentNode.removeChild(info[4]);
@@ -218,10 +316,17 @@ add_new_layer = (args, layers_count) => {
             info[2].parentNode.removeChild(info[2]);
             info[1].parentNode.removeChild(info[1]);
             info[0].parentNode.removeChild(info[0]);
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             layer.getElementsByClassName('cog')[0].innerHTML = "";
             layer.getElementsByClassName('cog')[0].setAttribute('class', `cog-invisible`);
             break;
@@ -232,14 +337,21 @@ add_new_layer = (args, layers_count) => {
             info[2].innerHTML = "Recurrent Activation: sigmoid"
             info[1].innerHTML = "Activation: tanh"
             info[0].innerHTML = "Number of Units: 10"
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 units: 10,
                 activation: "tanh",
                 re_activation: "sigmoid",
                 return_sequence: false
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
         case "RNN":
             info[4].parentNode.removeChild(info[4]);
@@ -247,16 +359,22 @@ add_new_layer = (args, layers_count) => {
             info[2].parentNode.removeChild(info[2]);
             info[1].innerHTML = "Activation: tanh"
             info[0].innerHTML = "Number of Units: 10"
-            layers.push({
+            new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 units: 10,
                 activation: "tanh",
                 ret_seq: false
-            });
+            };
+            if(args.button === "new-layer-button-parent"){
+                layers.push(new_layer);
+            }
+            else{
+                let item_index = layers.findIndex(x => x.id == args.button);
+                layers.splice(item_index, 0, new_layer);
+            }
             break;
     };
-    console.log(args.button)
     document.getElementById('layers-panel').insertBefore(layer, document.getElementById(args.button));
 }
 
