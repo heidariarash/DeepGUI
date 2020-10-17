@@ -21,6 +21,10 @@ The specifications of this version:
 + Basic configurations of each layer is added. Advanced configurations will be added soon.
 + Only Sequential  models are available in this version.
 
+## The latest version of the DeepGUI
+The latest version of DeepGUI has these added specifications:
++ Now you can add new layers in between of other layers.
+
 ## Some Screenshots of the GUI
 I provide some of the screenshots of the GUI here. I know that this configuration is not OK for a 10-class image dataset classification. It's just a simple example.
 ### Main Window
