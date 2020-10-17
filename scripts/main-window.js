@@ -17,13 +17,8 @@ const delete_layer = (element) => {
     }
 }
 
-const layer_config = element => {
-    for (let i=0; i < layers.length; i++) {
-        if (layers[i].id === element.id.slice(0,-4)) {
-            ipcRenderer.send("config-layer", layers[i])
-            break;
-        }
-    }
+const add_new_layer_buttons = element => {
+    ipcRenderer.send('new-layer-request', element.id.slice(0,-4));
 }
 
 const remove_attention = element => {
@@ -96,7 +91,7 @@ document.getElementById('max-btn').addEventListener('click', () => {
 });
 
 document.getElementById('new-layer-button').addEventListener('click', () => {
-    ipcRenderer.send('new-layer-request');
+    add_new_layer_buttons({id: 'new-layer-button-parent-add'})
 });
 
 document.getElementById('generate-button').addEventListener('click', () => {

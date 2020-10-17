@@ -335,7 +335,7 @@ input:invalid {
 }
 
 /***********************************************
-            Cog, trash, and notify
+          Add, Cog, trash, and notify
 ***********************************************/
 .cog-invisible,
 .cog {
@@ -367,6 +367,20 @@ input:invalid {
     fill: #db3a34;
     transition: all 0.3s ease-in-out;
     margin-left: 15px;
+}
+
+.add {
+    width: 235px;
+    height: 35px;
+    opacity: 0.25;
+    margin-bottom: 15px;
+    padding: auto 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.add:hover {
+    opacity: 1;
+    cursor: pointer;
 }
 
 /***********************************************

@@ -7,6 +7,7 @@ let mainWindow;
 let configureWindow;
 let dimensions = [10];
 let layer_under_config;
+let requested_add_button;
 
 app.on('ready', ()=> {
     // Customizing Main Window
@@ -47,7 +48,7 @@ ipcMain.on('min-app', () => {
 });
 
 //New Layer Request
-ipcMain.on('new-layer-request', () => {
+ipcMain.on('new-layer-request', (event, args) => {
     configureWindow = new BrowserWindow({
         frame: false,
         webPreferences: {
@@ -60,13 +61,13 @@ ipcMain.on('new-layer-request', () => {
         parent: mainWindow,
         modal: true
     });
-
+    requested_add_button = args;
     configureWindow.loadURL(`file://${__dirname}/html/new-layer.html`);
 });
 
 //New Layer Add
 ipcMain.on('add-new-layer', (evt, args) => {
-    mainWindow.webContents.send('add-new-layer', args);
+    mainWindow.webContents.send('add-new-layer', {name: args, button: requested_add_button});
     configureWindow.close();
 });
 
