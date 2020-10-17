@@ -1,7 +1,7 @@
 const electron = require('electron');
 const {ipcRenderer} = electron;
-const add_layer_to_window = require("../scripts/new-layer.js");
-const change_desc = require("../scripts/change-desc.js");
+const add_layer_to_window = require("../scripts/utils/new-layer.js");
+const change_desc = require("../scripts/utils/change-desc.js");
 
 let layers = [];
 let layers_count = 0;

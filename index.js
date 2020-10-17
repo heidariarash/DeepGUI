@@ -1,5 +1,5 @@
 const electron = require('electron');
-const generate_code = require('./scripts/generate');
+const generate_code = require('./scripts/utils/generate');
 
 const { app, BrowserWindow, ipcMain, dialog } = electron;
 
