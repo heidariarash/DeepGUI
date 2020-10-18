@@ -9,6 +9,7 @@ let configureWindow;
 let dimensions = [10];
 let layer_under_config;
 let requested_add_button;
+let notify_configure;
 
 app.on('ready', ()=> {
     // Customizing Main Window
@@ -83,6 +84,7 @@ ipcMain.on('generate-code', async (event, arg) => {
     if(file_path.canceled === false){
         let success = await generate_code(arg, dimensions, file_path.filePath);
         if (success){
+            notify_configure = ["code", "success"];
             configureWindow = new BrowserWindow({
                 frame: false,
                 webPreferences: {
@@ -98,6 +100,7 @@ ipcMain.on('generate-code', async (event, arg) => {
             configureWindow.loadURL(`file://${__dirname}/html/code-generated-success.html`);
         }
         else {
+            notify_configure = ["code", "unsuccess"];
             configureWindow = new BrowserWindow({
                 frame: false,
                 webPreferences: {
@@ -121,6 +124,7 @@ ipcMain.on('save-diagram', async (event, arg) => {
     if(file_path.canceled === false){
         let success = await save_diagram(arg, dimensions, file_path.filePath);
         if (success){
+            notify_configure = ["save", "success"];
             configureWindow = new BrowserWindow({
                 frame: false,
                 webPreferences: {
@@ -136,6 +140,7 @@ ipcMain.on('save-diagram', async (event, arg) => {
             configureWindow.loadURL(`file://${__dirname}/html/code-generated-success.html`);
         }
         else {
+            notify_configure = ["save", "unsuccess"];
             configureWindow = new BrowserWindow({
                 frame: false,
                 webPreferences: {
@@ -151,6 +156,11 @@ ipcMain.on('save-diagram', async (event, arg) => {
             configureWindow.loadURL(`file://${__dirname}/html/code-generated-unsuccess.html`);
         }
     }
+});
+
+//configure notify window
+ipcMain.on("ready-notify-config", () => {
+    configureWindow.webContents.send("configure-notify", notify_configure);
 });
 
 //input shape cog clicked
