@@ -1,5 +1,6 @@
 const electron = require('electron');
 const generate_code = require('./scripts/utils/generate');
+const {save_diagram} = require('./scripts/utils/saver_loader');
 
 const { app, BrowserWindow, ipcMain, dialog } = electron;
 
@@ -103,7 +104,45 @@ ipcMain.on('generate-code', async (event, arg) => {
                     nodeIntegration: true
                 },
                 width: 400,
-                height: 400,
+                height: 300,
+                resizable: false,
+                maximizable: false,
+                parent: mainWindow,
+                modal: true
+            });
+            configureWindow.loadURL(`file://${__dirname}/html/code-generated-unsuccess.html`);
+        }
+    }
+});
+
+//save button clicked
+ipcMain.on('save-diagram', async (event, arg) => {
+    let file_path = await dialog.showSaveDialog(mainWindow, { filters: [{ name: "DeepGUI File", extensions: ["dgui"]}] });
+    if(file_path.canceled === false){
+        let success = await save_diagram(arg, dimensions, file_path.filePath);
+        if (success){
+            configureWindow = new BrowserWindow({
+                frame: false,
+                webPreferences: {
+                    nodeIntegration: true
+                },
+                width: 400,
+                height: 350,
+                resizable: false,
+                maximizable: false,
+                parent: mainWindow,
+                modal: true
+            });
+            configureWindow.loadURL(`file://${__dirname}/html/code-generated-success.html`);
+        }
+        else {
+            configureWindow = new BrowserWindow({
+                frame: false,
+                webPreferences: {
+                    nodeIntegration: true
+                },
+                width: 400,
+                height: 300,
                 resizable: false,
                 maximizable: false,
                 parent: mainWindow,

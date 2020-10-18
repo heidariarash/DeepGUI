@@ -6,6 +6,18 @@ const change_desc = require("../scripts/utils/change-desc.js");
 let layers = [];
 let layers_count = 0;
 
+const diagram = () => {
+    return {
+        framework: document.getElementById('framework-selector').value,
+        optimizer: document.getElementById('optimizer-selector').value,
+        lr: document.getElementById('optimizer-lr').value,
+        loss: document.getElementById('loss-function-selector').value,
+        epoch: document.getElementById('epoch').value,
+        batch: document.getElementById('batch').value,
+        layers: layers
+    }
+}
+
 const delete_layer = (element) => {
     for (let i=0; i < layers.length; i++) {
         if (layers[i].id === element.id.slice(0,-6)) {
@@ -66,15 +78,7 @@ const check_and_generate = () => {
         document.getElementById('epoch-attention').setAttribute('style','opacity: 0');
         document.getElementById('batch-attention').setAttribute('style','opacity: 0');
         document.getElementById('layer-attention').setAttribute('style','opacity: 0');
-        ipcRenderer.send('generate-code', {
-            framework: document.getElementById('framework-selector').value,
-            optimizer: document.getElementById('optimizer-selector').value,
-            lr: document.getElementById('optimizer-lr').value,
-            loss: document.getElementById('loss-function-selector').value,
-            epoch: document.getElementById('epoch').value,
-            batch: document.getElementById('batch').value,
-            layers: layers
-        });
+        ipcRenderer.send('generate-code', diagram());
     }
 }
 
@@ -97,6 +101,10 @@ document.getElementById('new-layer-button').addEventListener('click', () => {
 document.getElementById('generate-button').addEventListener('click', () => {
     check_and_generate();
 });
+
+document.getElementById('save-button').addEventListener('click', () => {
+    ipcRenderer.send('save-diagram', diagram());
+})
 
 document.getElementById("framework-selector").addEventListener('change', () => {
     if(document.getElementById("framework-selector").value === "PyTorch"){
