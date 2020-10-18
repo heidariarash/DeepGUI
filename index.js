@@ -78,9 +78,10 @@ ipcMain.on('close-small', () => {
 
 //generate button clicked
 ipcMain.on('generate-code', async (event, arg) => {
-    let folder_path = await dialog.showOpenDialog(mainWindow, { properties: ['openDirectory'] });
-    if(folder_path.canceled === false){
-        let success = await generate_code(arg, dimensions, folder_path.filePaths[0]);
+    let file_path = await dialog.showSaveDialog(mainWindow, { filters: [{ name: "Python File", extensions: ["py"]}], properties: [] });
+    console.log(file_path);
+    if(file_path.canceled === false){
+        let success = await generate_code(arg, dimensions, file_path.filePath);
         if (success){
             configureWindow = new BrowserWindow({
                 frame: false,

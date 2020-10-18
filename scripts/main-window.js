@@ -55,24 +55,16 @@ const check_and_generate = () => {
         document.getElementById('epoch-attention').setAttribute('style','opacity: 0');
         document.getElementById('batch-attention').setAttribute('style','opacity: 1');
     }
-    else if(document.getElementById('file-name-input').value == ""){
-        document.getElementById('lr-attention').setAttribute('style','opacity: 0');
-        document.getElementById('epoch-attention').setAttribute('style','opacity: 0');
-        document.getElementById('batch-attention').setAttribute('style','opacity: 0');
-        document.getElementById('name-attention').setAttribute('style','opacity: 1');
-    }
     else if(layers.length === 0) {
         document.getElementById('lr-attention').setAttribute('style','opacity: 0');
         document.getElementById('epoch-attention').setAttribute('style','opacity: 0');
         document.getElementById('batch-attention').setAttribute('style','opacity: 0');
-        document.getElementById('name-attention').setAttribute('style','opacity: 0');
         document.getElementById('layer-attention').setAttribute('style','opacity: 1');
     }
     else {
         document.getElementById('lr-attention').setAttribute('style','opacity: 0');
         document.getElementById('epoch-attention').setAttribute('style','opacity: 0');
         document.getElementById('batch-attention').setAttribute('style','opacity: 0');
-        document.getElementById('name-attention').setAttribute('style','opacity: 0');
         document.getElementById('layer-attention').setAttribute('style','opacity: 0');
         ipcRenderer.send('generate-code', {
             framework: document.getElementById('framework-selector').value,
@@ -81,8 +73,7 @@ const check_and_generate = () => {
             loss: document.getElementById('loss-function-selector').value,
             epoch: document.getElementById('epoch').value,
             batch: document.getElementById('batch').value,
-            layers: layers,
-            file_name: document.getElementById('file-name-input').value
+            layers: layers
         });
     }
 }

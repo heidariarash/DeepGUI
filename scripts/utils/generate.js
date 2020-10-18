@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-generate_code = async (options, dimensions, folder_path) => {
+generate_code = async (options, dimensions, file_path) => {
     //creating the string to write (stw)
     let stw = "";
     let success = 1;
@@ -137,7 +137,7 @@ generate_code = async (options, dimensions, folder_path) => {
         stw += "#training the model\n";
         stw += `model.fit(x= x_train, y= y_train, batch_size = ${options.batch}, epochs = ${options.epoch})`;
         try {
-            await fs.writeFile(path.join(folder_path, `${options.file_name}.py`), stw);
+            await fs.writeFile(file_path, stw);
             return true;
         }
         catch(err){
