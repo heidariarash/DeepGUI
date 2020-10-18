@@ -189,6 +189,39 @@
     padding-bottom: 4px;
     cursor: pointer;
 }
+
+/***********************************************
+                Save and Load
+***********************************************/
+.saveload-parent {
+    width: 80%;
+    position: absolute;
+    bottom: 5%;
+    left: 10%;
+}
+
+#save-button,
+#load-button {
+    border: 1px solid #db3a34;
+    font-family: bigFunnyFont;
+    width: 100%;
+    border-radius: 20px;
+    padding: 5px 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.5s ease-in-out;
+    color: #db3a34;
+}
+
+#save-button:hover,
+#load-button:hover{
+    cursor: pointer;
+    border-color: #eeef20;
+    color: #eeef20;
+}
+
 /***********************************************
                    Headings
 ***********************************************/

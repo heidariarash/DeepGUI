@@ -79,7 +79,6 @@ ipcMain.on('close-small', () => {
 //generate button clicked
 ipcMain.on('generate-code', async (event, arg) => {
     let file_path = await dialog.showSaveDialog(mainWindow, { filters: [{ name: "Python File", extensions: ["py"]}], properties: [] });
-    console.log(file_path);
     if(file_path.canceled === false){
         let success = await generate_code(arg, dimensions, file_path.filePath);
         if (success){
