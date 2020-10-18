@@ -1,6 +1,6 @@
 const electron = require('electron');
 const generate_code = require('./scripts/utils/generate');
-const {save_diagram} = require('./scripts/utils/saver_loader');
+const {save_diagram, load_diagram} = require('./scripts/utils/saver_loader');
 
 const { app, BrowserWindow, ipcMain, dialog } = electron;
 
@@ -141,6 +141,46 @@ ipcMain.on('save-diagram', async (event, arg) => {
         }
         else {
             notify_configure = ["save", "unsuccess"];
+            configureWindow = new BrowserWindow({
+                frame: false,
+                webPreferences: {
+                    nodeIntegration: true
+                },
+                width: 400,
+                height: 300,
+                resizable: false,
+                maximizable: false,
+                parent: mainWindow,
+                modal: true
+            });
+            configureWindow.loadURL(`file://${__dirname}/html/code-generated-unsuccess.html`);
+        }
+    }
+});
+
+//load button clicked
+ipcMain.on('load-diagram', async () => {
+    let file_path = await dialog.showOpenDialog(mainWindow, { filters: [{ name: "DeepGUI File", extensions: ["dgui"]}], properties: ['openFile'] });
+    if(file_path.canceled === false){
+        let success = await load_diagram(file_path.filePaths[0]);
+        if (success){
+            notify_configure = ["load", "success"];
+            configureWindow = new BrowserWindow({
+                frame: false,
+                webPreferences: {
+                    nodeIntegration: true
+                },
+                width: 400,
+                height: 350,
+                resizable: false,
+                maximizable: false,
+                parent: mainWindow,
+                modal: true
+            });
+            configureWindow.loadURL(`file://${__dirname}/html/code-generated-success.html`);
+        }
+        else {
+            notify_configure = ["load", "unsuccess"];
             configureWindow = new BrowserWindow({
                 frame: false,
                 webPreferences: {

@@ -104,7 +104,11 @@ document.getElementById('generate-button').addEventListener('click', () => {
 
 document.getElementById('save-button').addEventListener('click', () => {
     ipcRenderer.send('save-diagram', diagram());
-})
+});
+
+document.getElementById('load-button').addEventListener('click', () => {
+    ipcRenderer.send('load-diagram');
+});
 
 document.getElementById("framework-selector").addEventListener('change', () => {
     if(document.getElementById("framework-selector").value === "PyTorch"){
