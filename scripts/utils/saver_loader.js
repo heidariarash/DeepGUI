@@ -21,9 +21,14 @@ const save_diagram = async (diagram, dimension, file_path) => {
 }
 
 const load_diagram = async file_path => {
-    const diagram = JSON.parse(fs.readFileSync(file_path, 'utf8'));
-    dimensions = diagram.dimensions;
-    mainWindow.webContents.send('set-input-shape', dimensions);
+    try{
+        let diagram = await fs.readFile(file_path, 'utf8');
+        diagram = JSON.parse(diagram.replace(/^\n+|\n+$/g, "").replace(/\n+/g, ","));
+        return diagram
+    }
+    catch {
+        return false;
+    }
 }
 
 module.exports.save_diagram = save_diagram;
