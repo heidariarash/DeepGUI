@@ -143,12 +143,21 @@ ipcRenderer.on('set-input-shape', (event, arg) => {
 
 //getting configurations
 ipcRenderer.on('set-config', (event, layer) => {
-    let filter_size = ""
     for (let i=0; i < layers.length; i++) {
         if (layers[i].id === layer.id) {
             layers[i] = layer;
             change_desc(layer);
             break;
         }
+    }
+});
+
+//cleaning the diagram
+ipcRenderer.on("load-new-diagram", (event, arg) => {
+    layers_count = 0;
+    layers = [];
+    let diagram_layers = document.getElementsByClassName('layer-class');
+    while(diagram_layers.length > 0){
+        diagram_layers[0].parentNode.removeChild(diagram_layers[0]);
     }
 })

@@ -167,8 +167,17 @@ ipcMain.on('load-diagram', async () => {
             if (diagram.dimensions === undefined || diagram.layers === undefined || diagram.framework === undefined || diagram.lr === undefined || diagram.loss === undefined || diagram.optimizer === undefined || diagram.epoch === undefined || diagram.batch === undefined) {
                 throw "error";
             };
+            mainWindow.webContents.send('load-new-diagram', diagram);
             dimensions = diagram.dimensions;
             mainWindow.webContents.send('set-input-shape', dimensions);
+            requested_add_button = "new-layer-button-parent";
+            for(let i=0; i<diagram.layers.length; i++){
+                mainWindow.webContents.send('add-new-layer', {name: diagram.layers[i].name, button: requested_add_button});
+                diagram.layers[i].id = `layer-${i}`;
+            }
+            for (layer of diagram.layers) {
+                mainWindow.webContents.send("set-config", layer);
+            }
             notify_configure = ["load", "success"];
             configureWindow = new BrowserWindow({
                 frame: false,

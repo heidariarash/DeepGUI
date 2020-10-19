@@ -4,7 +4,7 @@ add_new_layer = (args, layers_count) => {
     let attr;
     //setting the class for layer
     attr = document.createAttribute('class');
-    attr.value = 'col-sm-12 heading-4-parent';
+    attr.value = 'col-sm-12 heading-4-parent layer-class';
     layer.setAttributeNode(attr);
     attr = document.createAttribute('id');
     attr.value = `layer-${layers_count}`;
