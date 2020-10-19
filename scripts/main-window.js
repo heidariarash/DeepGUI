@@ -160,4 +160,18 @@ ipcRenderer.on("load-new-diagram", (event, arg) => {
     while(diagram_layers.length > 0){
         diagram_layers[0].parentNode.removeChild(diagram_layers[0]);
     }
+    document.getElementById("framework-selector").value = arg.framework;
+    document.getElementById('optimizer-selector').value = arg.optimizer;
+    document.getElementById('optimizer-lr').value = arg.lr;
+    document.getElementById('loss-function-selector').value = arg.loss;
+    document.getElementById('epoch').value = arg.epoch;
+    document.getElementById('batch').value = arg.batch;
+    if(arg.framework === "PyTorch"){
+        document.getElementById('framework-attention').setAttribute('style','opacity: 1');
+        document.getElementById('generate-button').style.display = "none";
+    }
+    else {
+        document.getElementById('framework-attention').setAttribute('style','opacity: 0');
+        document.getElementById('generate-button').style.display = "inline-block";
+    }
 })
