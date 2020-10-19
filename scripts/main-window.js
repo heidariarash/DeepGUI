@@ -10,10 +10,10 @@ const diagram = () => {
     return {
         framework: document.getElementById('framework-selector').value,
         optimizer: document.getElementById('optimizer-selector').value,
-        lr: document.getElementById('optimizer-lr').value,
+        lr: parseInt(document.getElementById('optimizer-lr').value),
         loss: document.getElementById('loss-function-selector').value,
-        epoch: document.getElementById('epoch').value,
-        batch: document.getElementById('batch').value,
+        epoch: parseInt(document.getElementById('epoch').value),
+        batch: parseInt(document.getElementById('batch').value),
         layers: layers
     }
 }

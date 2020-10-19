@@ -162,8 +162,13 @@ ipcMain.on('save-diagram', async (event, arg) => {
 ipcMain.on('load-diagram', async () => {
     let file_path = await dialog.showOpenDialog(mainWindow, { filters: [{ name: "DeepGUI File", extensions: ["dgui"]}], properties: ['openFile'] });
     if(file_path.canceled === false){
-        let success = await load_diagram(file_path.filePaths[0]);
-        if (success){
+        const diagram = await load_diagram(file_path.filePaths[0]);
+        try {
+            if (diagram.dimensions === undefined || diagram.layers === undefined || diagram.framework === undefined || diagram.lr === undefined || diagram.loss === undefined || diagram.optimizer === undefined || diagram.epoch === undefined || diagram.batch === undefined) {
+                throw "error";
+            };
+            dimensions = diagram.dimensions;
+            mainWindow.webContents.send('set-input-shape', dimensions);
             notify_configure = ["load", "success"];
             configureWindow = new BrowserWindow({
                 frame: false,
@@ -179,7 +184,7 @@ ipcMain.on('load-diagram', async () => {
             });
             configureWindow.loadURL(`file://${__dirname}/html/code-generated-success.html`);
         }
-        else {
+        catch {
             notify_configure = ["load", "unsuccess"];
             configureWindow = new BrowserWindow({
                 frame: false,
@@ -229,7 +234,11 @@ ipcMain.on('resize-small', (event, arg) => {
 //setting the input dimensions
 ipcMain.on('set-dimensions', (event, arg) => {
     configureWindow.close();
-    dimensions = arg;
+    temp = [];
+    for(dim of arg){
+        temp.push(parseInt(dim));
+    }
+    dimensions = temp;
     mainWindow.webContents.send('set-input-shape', dimensions);
 });
 
