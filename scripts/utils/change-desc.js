@@ -1,4 +1,5 @@
 const change_desc = layer => {
+    let filter_size = "";
     configed_layer = document.getElementById(layer.id);
             switch(layer.name){
                 case "Convolution 1D":
