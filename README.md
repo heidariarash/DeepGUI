@@ -24,6 +24,7 @@ The specifications of this version:
 ## The latest version of the DeepGUI
 The latest version of DeepGUI has these added specifications:
 + Now you can add new layers in between of other layers.
++ It is possible to save your diagram into a .dgui file and load it back later.
 
 ## Some Screenshots of the GUI
 I provide some of the screenshots of the GUI here. I know that this configuration is not OK for a 10-class image dataset classification. It's just a simple example.
