@@ -18,7 +18,8 @@ app.on('ready', ()=> {
         minWidth: 1100,
         frame: false,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            devTools: false
         },
         icon: __dirname + '/gallery/icon.png'
     });
@@ -54,7 +55,8 @@ ipcMain.on('new-layer-request', (event, args) => {
     configureWindow = new BrowserWindow({
         frame: false,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            devTools: false
         },
         width: 400,
         height: 300,
@@ -88,7 +90,8 @@ ipcMain.on('generate-code', async (event, arg) => {
             configureWindow = new BrowserWindow({
                 frame: false,
                 webPreferences: {
-                    nodeIntegration: true
+                    nodeIntegration: true,
+                    devTools: false
                 },
                 width: 400,
                 height: 350,
@@ -104,7 +107,8 @@ ipcMain.on('generate-code', async (event, arg) => {
             configureWindow = new BrowserWindow({
                 frame: false,
                 webPreferences: {
-                    nodeIntegration: true
+                    nodeIntegration: true,
+                    devTools: false
                 },
                 width: 400,
                 height: 300,
@@ -128,7 +132,8 @@ ipcMain.on('save-diagram', async (event, arg) => {
             configureWindow = new BrowserWindow({
                 frame: false,
                 webPreferences: {
-                    nodeIntegration: true
+                    nodeIntegration: true,
+                    devTools: false
                 },
                 width: 400,
                 height: 350,
@@ -144,7 +149,8 @@ ipcMain.on('save-diagram', async (event, arg) => {
             configureWindow = new BrowserWindow({
                 frame: false,
                 webPreferences: {
-                    nodeIntegration: true
+                    nodeIntegration: true,
+                    devTools: false
                 },
                 width: 400,
                 height: 300,
@@ -182,7 +188,8 @@ ipcMain.on('load-diagram', async () => {
             configureWindow = new BrowserWindow({
                 frame: false,
                 webPreferences: {
-                    nodeIntegration: true
+                    nodeIntegration: true,
+                    devTools: false
                 },
                 width: 400,
                 height: 350,
@@ -198,7 +205,8 @@ ipcMain.on('load-diagram', async () => {
             configureWindow = new BrowserWindow({
                 frame: false,
                 webPreferences: {
-                    nodeIntegration: true
+                    nodeIntegration: true,
+                    devTools: false
                 },
                 width: 400,
                 height: 300,
@@ -222,7 +230,8 @@ ipcMain.on('input-shape-cog', () => {
     configureWindow = new BrowserWindow({
         frame: false,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            devTools: false
         },
         width: 400,
         height: 350,
@@ -261,7 +270,8 @@ ipcMain.on("config-layer", (event, arg) => {
     configureWindow = new BrowserWindow({
         frame: false,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            devTools: false
         },
         width: 400,
         height: 370,
