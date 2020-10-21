@@ -10,6 +10,7 @@ let dimensions = [10];
 let layer_under_config;
 let requested_add_button;
 let notify_configure;
+let framework = "TensorFlow";
 
 app.on('ready', ()=> {
     // Customizing Main Window
@@ -19,7 +20,7 @@ app.on('ready', ()=> {
         frame: false,
         webPreferences: {
             nodeIntegration: true,
-            devTools: false
+            // devTools: false
         },
         icon: __dirname + '/gallery/icon.png'
     });
@@ -325,11 +326,16 @@ ipcMain.on("config-layer", (event, arg) => {
 
 //sending initialization parameters to layer config window
 ipcMain.on("ready-layer-config", () => {
-    configureWindow.webContents.send("layer-config", layer_under_config);
+    configureWindow.webContents.send("layer-config", {layer:layer_under_config, framework:framework});
 });
 
 //getting layer config
 ipcMain.on("layer-config-finish", (event, arg) => {
     configureWindow.close();
     mainWindow.webContents.send("set-config", arg);
+});
+
+//change framwork signal
+ipcMain.on("change-framework", (event, arg) => {
+    framework = arg;
 });
