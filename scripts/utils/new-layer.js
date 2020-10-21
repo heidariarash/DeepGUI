@@ -1,4 +1,4 @@
-add_new_layer = (args, layers_count) => {
+add_new_layer = (args, layers_count, framework) => {
     //constructing layer
     const layer = document.createElement('div');
     let attr;
@@ -157,16 +157,20 @@ add_new_layer = (args, layers_count) => {
             }
             break;
         case "Linear":
-            info[0].innerHTML = "Number of Units: 10";
             info[4].parentNode.removeChild(info[4]);
             info[2].parentNode.removeChild(info[2]);
             info[1].parentNode.removeChild(info[1]);
+            info[0].innerHTML = "Number of Units: 10";
             new_layer = {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 unit_num : 10,
                 activation: "relu"
             };
+            if (framework == "PyTorch"){
+                info[1].innerHTML = "Activation: ReLU";
+                new_layer.activation = "ReLU";
+            }
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
             }
