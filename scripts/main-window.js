@@ -5,6 +5,7 @@ const change_desc = require("../scripts/utils/change-desc.js");
 
 let layers = [];
 let layers_count = 0;
+let framework = "TensorFlow";
 
 const diagram = () => {
     return {
@@ -119,6 +120,8 @@ document.getElementById("framework-selector").addEventListener('change', () => {
         document.getElementById('framework-attention').setAttribute('style','opacity: 0');
         document.getElementById('generate-button').style.display = "inline-block";
     }
+    ipcRenderer.send("change-framework", document.getElementById("framework-selector").value);
+    framework = document.getElementById("framework-selector").value;
 });
 
 document.getElementById('input-shape-cog').addEventListener('click', () => {
@@ -126,7 +129,7 @@ document.getElementById('input-shape-cog').addEventListener('click', () => {
 });
 
 ipcRenderer.on('add-new-layer', (event, args) => {
-    add_layer_to_window(args, layers_count);
+    add_layer_to_window(args, layers_count, framework);
     layers_count += 1;
     document.getElementById('layer-attention').setAttribute('style','opacity: 0');
 });

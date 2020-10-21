@@ -8,7 +8,7 @@ generate_code = async (options, dimensions, file_path) => {
     stw += "##################################################\n\n";
     stw += "#import statements\n";;
     let success = 1;
-    if(options.framework === "PyTorch"){
+    if(options.framework === "TensorFlow"){
         stw += "import tensorflow as tf\n";
         stw += "import tensorflow.keras as keras\n\n\n";
         stw += "#specify x_train and y_train here:\n";
@@ -143,7 +143,7 @@ generate_code = async (options, dimensions, file_path) => {
             return false;
         }
     }
-    else if(options.framework == "TensorFlow"){
+    else if(options.framework == "PyTorch"){
         stw += "import torch\n";
         stw += "import torch.nn as nn\n";
         stw += "from torch.utils.data import Dataset, DataLoader\n\n\n";
@@ -173,7 +173,9 @@ generate_code = async (options, dimensions, file_path) => {
                 case "Linear":
                     stw += `\tnn.Linear(in_features = ${dimensions[dimensions.length - 1]}, out_features = ${layer.unit_num})`;
                     dimensions[dimensions.length - 1] = layer.unit_num;
-                    stw += `\tnn.${layer.activation}`;
+                    if (layer.activation !== "No Activation"){
+                        stw += `\tnn.${layer.activation}`;
+                    }
                     break;
 
                 //convolution 1D case
