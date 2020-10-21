@@ -171,7 +171,9 @@ generate_code = async (options, dimensions, file_path) => {
             switch(layer.name){
                 //linear case
                 case "Linear":
-                    stw += `model.add(keras.layers.Dense(${layer.unit_num}, activation = '${layer.activation.toLowerCase()}'))`
+                    stw += `\tnn.Linear(in_features = ${dimensions[dimensions.length - 1]}, out_features = ${layer.unit_num})`;
+                    dimensions[dimensions.length - 1] = layer.unit_num;
+                    stw += `\tnn.${layer.activation}`;
                     break;
 
                 //convolution 1D case
