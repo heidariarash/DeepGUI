@@ -16,7 +16,8 @@ document.getElementById('done').addEventListener('click', ()=> {
     ipcRenderer.send("layer-config-finish", layer);
 });
 
-ipcRenderer.on("layer-config", (event , layer_config) => {
+ipcRenderer.on("layer-config", (event , arg) => {
+    layer_config = arg.layer;
     document.getElementById("probability").value = layer_config.prob;
     layer = layer_config;
 });

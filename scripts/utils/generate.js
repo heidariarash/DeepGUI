@@ -210,12 +210,7 @@ generate_code = async (options, dimensions, file_path) => {
 
                 //max pool 3D case
                 case "Activation":
-                    if (['ELU', 'LeakyReLU', 'PReLU', 'ReLU', 'Softmax', 'ThresholdedReLU'].indexOf(layer.type) >= 0){
-                        stw += `model.add(keras.layers.${layer.type}())`;
-                    }
-                    else{
-                        stw += `model.add(keras.layers.Activation(activations.${layer.type}))`
-                    }
+                    stw += `\tnn.${layer.type}()`;
                     break;
 
                 //avg pool 1D case
@@ -240,7 +235,7 @@ generate_code = async (options, dimensions, file_path) => {
 
                 //dropout case
                 case "Dropout":
-                    stw += `model.add(keras.layers.Dropout(rate = ${layer.prob}))`;
+                    stw += `\tnn.Dropout(p = ${layer.prob})`;
                     break;
                 
                 //embedding case
