@@ -55,6 +55,12 @@ add_new_layer = (args, layers_count, framework) => {
                 activation: "relu",
                 padding: "valid"
             };
+            if (framework == "PyTorch"){
+                new_layer.padding = 0;
+                new_layer.activation = "ReLU";
+                info[3].innerHTML = "Activation: ReLU" ;
+                info[4].innerHTML = "Padding: 0";
+            }
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
             }
@@ -73,6 +79,12 @@ add_new_layer = (args, layers_count, framework) => {
                 activation: "relu",
                 padding: "valid"
             };
+            if (framework == "PyTorch"){
+                new_layer.padding = 0;
+                new_layer.activation = "ReLU";
+                info[3].innerHTML = "Activation: ReLU" ;
+                info[4].innerHTML = "Padding: 0";
+            }
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
             }
@@ -92,6 +104,12 @@ add_new_layer = (args, layers_count, framework) => {
                 activation: "relu",
                 padding: "valid"
             };
+            if (framework == "PyTorch"){
+                new_layer.padding = 0;
+                new_layer.activation = "ReLU";
+                info[3].innerHTML = "Activation: ReLU" ;
+                info[4].innerHTML = "Padding: 0";
+            }
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
             }

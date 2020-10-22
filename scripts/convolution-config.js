@@ -28,7 +28,8 @@ document.getElementById('done').addEventListener('click', ()=> {
     ipcRenderer.send("layer-config-finish", layer);
 });
 
-ipcRenderer.on("layer-config", (event , layer_config) => {
+ipcRenderer.on("layer-config", (event , arg) => {
+    layer_config = arg.layer;
     if(layer_config.filter_size.length === 3){
         document.getElementsByClassName("small-input")[0].value = layer_config.filter_size[0];
         document.getElementsByClassName("small-input")[1].value = layer_config.filter_size[1];
@@ -46,6 +47,41 @@ ipcRenderer.on("layer-config", (event , layer_config) => {
     }
     document.getElementById("number-of-filters").value = layer_config.filter_num;
     document.getElementById("stride").value = layer_config.stride;
+    if (arg.framework === "PyTorch"){
+        let attr;
+        //selecting the parent of padding select tag
+        const padding_parent = document.getElementById("padding-selector").parentNode;
+        
+        //deleting padding select tag
+        padding_parent.removeChild(document.getElementById("padding-selector"));
+        
+        //creating input tag for padding
+        const padding = document.createElement("input");
+        attr = document.createAttribute('id');
+        attr.value = 'padding-selector';
+        padding.setAttributeNode(attr);
+        attr = document.createAttribute('min');
+        attr.value = '0';
+        padding.setAttributeNode(attr);
+        attr = document.createAttribute('type');
+        attr.value = 'number';
+        padding.setAttributeNode(attr);
+        attr = document.createAttribute('required');
+        padding.setAttributeNode(attr);
+        padding_parent.appendChild(padding);
+
+        //changing the options for activation
+        document.getElementById('activation-selector').innerHTML = `
+            <option value="ELU">Elu</option>
+            <option value="LeakyReLU">Leaky ReLU</option>
+            <option value="LogSigmoid">Log Sigmoid</option>
+            <option value="Linear">Linear</option>
+            <option value="ReLU">ReLU</option>
+            <option value="Sigmoid">Sigmoid</option>
+            <option value="Softmax">Softmax</option>
+            <option value="Tanh">Tanh</option>
+        `;
+    }
     document.getElementById("activation-selector").value = layer_config.activation;
     document.getElementById("padding-selector").value = layer_config.padding;
     layer = layer_config;

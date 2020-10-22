@@ -171,26 +171,44 @@ generate_code = async (options, dimensions, file_path) => {
             switch(layer.name){
                 //linear case
                 case "Linear":
-                    stw += `\tnn.Linear(in_features = ${dimensions[dimensions.length - 1]}, out_features = ${layer.unit_num})`;
+                    stw += `\tnn.Linear(in_features = ${dimensions[dimensions.length - 1]}, out_features = ${layer.unit_num})\n`;
                     dimensions[dimensions.length - 1] = layer.unit_num;
                     if (layer.activation !== "Linear"){
-                        stw += `\tnn.${layer.activation}`;
+                        stw += `\tnn.${layer.activation}()\n`;
                     }
                     break;
 
                 //convolution 1D case
                 case "Convolution 1D":
-                    stw += `model.add(keras.layers.Conv1D(${layer.filter_num}, ${layer.filter_size}, strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}', padding = '${layer.padding}'))`
+                    stw += `\tnn.Conv1D(in_channels = ${dimensions[0]}, out_channels = ${layer.filter_num}, kernel_size = ${layer.filter_size}, stride = ${layer.stride}, padding = ${layer.padding})\n`;
+                    if (layer.activation !== "Linear"){
+                        stw += `\tnn.${layer.activation}()\n`;
+                    }
+                    dimensions[0] = layer.filter_num;
+                    dimensions[1] = Math.floor((dimensions[1] + 2 * layer.padding - (layer.filter_size - 1) - 1) / layer.stride + 1);
                     break;
 
                 //convolution 2D case
                 case "Convolution 2D":
-                    stw += `model.add(keras.layers.Conv2D(${layer.filter_num}, (${layer.filter_size[0]}, ${layer.filter_size[1]}), strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}', padding = '${layer.padding}'))`
+                    stw += `\tnn.Conv2D(in_channels = ${dimensions[0]}, out_channels = ${layer.filter_num}, kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}), stride = ${layer.stride}, padding = ${layer.padding})\n`;
+                    if (layer.activation !== "Linear"){
+                        stw += `\tnn.${layer.activation}()\n`;
+                    }
+                    dimensions[0] = layer.filter_num;
+                    dimensions[1] = Math.floor((dimensions[1] + 2 * layer.padding - (layer.filter_size[0] - 1) - 1) / layer.stride + 1);
+                    dimensions[2] = Math.floor((dimensions[2] + 2 * layer.padding - (layer.filter_size[1] - 1) - 1) / layer.stride + 1);
                     break;
 
                 //convolution 3D case
                 case "Convolution 3D":
-                    stw += `model.add(keras.layers.Conv3D(${layer.filter_num}, (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), strides = ${layer.stride}, activation = '${layer.activation.toLowerCase()}', padding = '${layer.padding}'))`
+                    stw += `\tnn.Conv3D(in_channels = ${dimensions[0]}, out_channels = ${layer.filter_num}, kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride}, padding = ${layer.padding})\n`;
+                    if (layer.activation !== "Linear"){
+                        stw += `\tnn.${layer.activation}()\n`;
+                    }
+                    dimensions[0] = layer.filter_num;
+                    dimensions[1] = Math.floor((dimensions[1] + 2 * layer.padding - (layer.filter_size[0] - 1) - 1) / layer.stride + 1);
+                    dimensions[2] = Math.floor((dimensions[2] + 2 * layer.padding - (layer.filter_size[1] - 1) - 1) / layer.stride + 1);
+                    dimensions[3] = Math.floor((dimensions[3] + 2 * layer.padding - (layer.filter_size[2] - 1) - 1) / layer.stride + 1);
                     break;
 
                 //max pool 1D case
@@ -265,7 +283,6 @@ generate_code = async (options, dimensions, file_path) => {
                     stw += `model.add(keras.layers.SimpleRNN(units = ${layer.units}, activations = '${layer.activation}', return_sequences = ${ret_seq}))`;
                     break;
             }
-            stw += "\n"
         }
 
         stw += "\n";
