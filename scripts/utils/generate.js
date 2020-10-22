@@ -274,7 +274,9 @@ generate_code = async (options, dimensions, file_path) => {
 
                 //flatten case
                 case "Flatten":
-                    stw += `model.add(keras.layers.Flatten())`;
+                    stw += `\tnn.Flatten()`;
+                    let final = dimensions.reduce(Math.imul);
+                    dimensions = [final];
                     break;
 
                 //LSTM and GRU case
