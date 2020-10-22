@@ -7,7 +7,6 @@ generate_code = async (options, dimensions, file_path) => {
     stw += "####### This Code is produced by Deep GUI ########\n";
     stw += "##################################################\n\n";
     stw += "#import statements\n";;
-    let success = 1;
     if(options.framework === "TensorFlow"){
         stw += "import tensorflow as tf\n";
         stw += "import tensorflow.keras as keras\n\n\n";
@@ -213,17 +212,23 @@ generate_code = async (options, dimensions, file_path) => {
 
                 //max pool 1D case
                 case "Max Pool 1D":
-                    stw += `model.add(keras.layers.MaxPooling1D(${layer.filter_size}, strides = ${layer.stride}))`
+                    stw += `\tnn.MaxPool1D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}), stride = ${layer.stride})\n`;
+                    dimensions[1] = Math.floor((dimensions[1] - (layer.filter_size - 1) - 1) / layer.stride + 1);
                     break;
 
                 //max pool 2D case
                 case "Max Pool 2D":
-                    stw += `model.add(keras.layers.MaxPooling2D((${layer.filter_size[0]}, ${layer.filter_size[1]}), strides = ${layer.stride}))`
+                    stw += `\tnn.MaxPool2D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride})\n`;
+                    dimensions[1] = Math.floor((dimensions[1] - (layer.filter_size[0] - 1) - 1) / layer.stride + 1);
+                    dimensions[2] = Math.floor((dimensions[2] - (layer.filter_size[1] - 1) - 1) / layer.stride + 1);
                     break;
 
                 //max pool 3D case
                 case "Max Pool 3D":
-                    stw += `model.add(keras.layers.MaxPooling3D((${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), strides = ${layer.stride}))`
+                    stw += `\tnn.MaxPool3D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride})\n`;
+                    dimensions[1] = Math.floor((dimensions[1] - (layer.filter_size[0] - 1) - 1) / layer.stride + 1);
+                    dimensions[2] = Math.floor((dimensions[2] - (layer.filter_size[1] - 1) - 1) / layer.stride + 1);
+                    dimensions[3] = Math.floor((dimensions[3] - (layer.filter_size[2] - 1) - 1) / layer.stride + 1);
                     break;
 
                 //max pool 3D case
@@ -233,17 +238,23 @@ generate_code = async (options, dimensions, file_path) => {
 
                 //avg pool 1D case
                 case "Avg Pool 1D":
-                    stw += `model.add(keras.layers.AveragePooling1D(${layer.filter_size}, strides = ${layer.stride}))`;
+                    stw += `\tnn.AvgPool1D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}), stride = ${layer.stride})\n`;
+                    dimensions[1] = Math.floor((dimensions[1] - (layer.filter_size - 1) - 1) / layer.stride + 1);
                     break;
 
                 //avg pool 2D case
                 case "Avg Pool 2D":
-                    stw += `model.add(keras.layers.AveragePooling2D((${layer.filter_size[0]}, ${layer.filter_size[1]}), strides = ${layer.stride}))`;
+                    stw += `\tnn.AvgPool2D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride})\n`;
+                    dimensions[1] = Math.floor((dimensions[1] - (layer.filter_size[0] - 1) - 1) / layer.stride + 1);
+                    dimensions[2] = Math.floor((dimensions[2] - (layer.filter_size[1] - 1) - 1) / layer.stride + 1);
                     break;
 
                 //avg pool 3D case
                 case "Avg Pool 3D":
-                    stw += `model.add(keras.layers.AveragePooling3D((${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), strides = ${layer.stride}))`;
+                    stw += `\tnn.AvgPool3D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride})\n`;
+                    dimensions[1] = Math.floor((dimensions[1] - (layer.filter_size[0] - 1) - 1) / layer.stride + 1);
+                    dimensions[2] = Math.floor((dimensions[2] - (layer.filter_size[1] - 1) - 1) / layer.stride + 1);
+                    dimensions[3] = Math.floor((dimensions[3] - (layer.filter_size[2] - 1) - 1) / layer.stride + 1);
                     break;
 
                 //batch normalization case

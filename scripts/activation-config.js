@@ -25,7 +25,6 @@ ipcRenderer.on("layer-config", (event , arg) => {
         <option value="LeakyReLU">Leaky ReLU</option>
         <option value="LogSigmoid">Log Sigmoid</option>
         <option value="LogSoftmax">Log Softmax</option>
-        <option value="No Activation">No Activation</option>
         <option value="PReLU">PReLU</option>
         <option value="ReLU">ReLU</option>
         <option value="ReLU6">ReLU 6</option>

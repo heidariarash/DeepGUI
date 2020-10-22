@@ -24,7 +24,8 @@ document.getElementById('done').addEventListener('click', ()=> {
     ipcRenderer.send("layer-config-finish", layer);
 });
 
-ipcRenderer.on("layer-config", (event , layer_config) => {
+ipcRenderer.on("layer-config", (event , arg) => {
+    layer_config = arg.layer;
     if(layer_config.filter_size.length === 3){
         document.getElementsByClassName("small-input")[0].value = layer_config.filter_size[0];
         document.getElementsByClassName("small-input")[1].value = layer_config.filter_size[1];
