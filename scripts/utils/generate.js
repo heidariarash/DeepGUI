@@ -173,7 +173,7 @@ generate_code = async (options, dimensions, file_path) => {
                 case "Linear":
                     stw += `\tnn.Linear(in_features = ${dimensions[dimensions.length - 1]}, out_features = ${layer.unit_num})`;
                     dimensions[dimensions.length - 1] = layer.unit_num;
-                    if (layer.activation !== "No Activation"){
+                    if (layer.activation !== "Linear"){
                         stw += `\tnn.${layer.activation}`;
                     }
                     break;
