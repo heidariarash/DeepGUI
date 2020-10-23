@@ -112,16 +112,14 @@ document.getElementById('load-button').addEventListener('click', () => {
 });
 
 document.getElementById("framework-selector").addEventListener('change', () => {
-    if(document.getElementById("framework-selector").value === "PyTorch"){
-        document.getElementById('framework-attention').setAttribute('style','opacity: 1');
-        document.getElementById('generate-button').style.display = "none";
-    }
-    else {
-        document.getElementById('framework-attention').setAttribute('style','opacity: 0');
-        document.getElementById('generate-button').style.display = "inline-block";
-    }
     ipcRenderer.send("change-framework", document.getElementById("framework-selector").value);
     framework = document.getElementById("framework-selector").value;
+    if(document.getElementById("framework-selector").value === "PyTorch"){
+        
+    }
+    else {
+        
+    }
 });
 
 document.getElementById('input-shape-cog').addEventListener('click', () => {
@@ -170,11 +168,9 @@ ipcRenderer.on("load-new-diagram", (event, arg) => {
     document.getElementById('epoch').value = arg.epoch;
     document.getElementById('batch').value = arg.batch;
     if(arg.framework === "PyTorch"){
-        document.getElementById('framework-attention').setAttribute('style','opacity: 1');
-        document.getElementById('generate-button').style.display = "none";
+
     }
     else {
-        document.getElementById('framework-attention').setAttribute('style','opacity: 0');
-        document.getElementById('generate-button').style.display = "inline-block";
+        
     }
 })
