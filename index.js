@@ -319,6 +319,12 @@ ipcMain.on("config-layer", (event, arg) => {
             configureWindow.setBounds({width: 400, height: 200});
             configureWindow.loadURL(`file://${__dirname}/html/dropout-config.html`);
             break;
+        case "Batch Norm 1D":
+        case "Batch Norm 2D":
+        case "Batch Norm 3D":
+            configureWindow.setBounds({width: 400, height: 200});
+            configureWindow.loadURL(`file://${__dirname}/html/batch-norm-config.html`);
+            break;
         default:
             configureWindow.close();
     }

@@ -170,18 +170,18 @@ generate_code = async (options, dimensions, file_path) => {
             switch(layer.name){
                 //linear case
                 case "Linear":
-                    stw += `\tnn.Linear(in_features = ${dimensions[dimensions.length - 1]}, out_features = ${layer.unit_num})\n`;
+                    stw += `\tnn.Linear(in_features = ${dimensions[dimensions.length - 1]}, out_features = ${layer.unit_num}),\n`;
                     dimensions[dimensions.length - 1] = layer.unit_num;
                     if (layer.activation !== "Linear"){
-                        stw += `\tnn.${layer.activation}()\n`;
+                        stw += `\tnn.${layer.activation}(),\n`;
                     }
                     break;
 
                 //convolution 1D case
                 case "Convolution 1D":
-                    stw += `\tnn.Conv1D(in_channels = ${dimensions[0]}, out_channels = ${layer.filter_num}, kernel_size = ${layer.filter_size}, stride = ${layer.stride}, padding = ${layer.padding})\n`;
+                    stw += `\tnn.Conv1D(in_channels = ${dimensions[0]}, out_channels = ${layer.filter_num}, kernel_size = ${layer.filter_size}, stride = ${layer.stride}, padding = ${layer.padding}),\n`;
                     if (layer.activation !== "Linear"){
-                        stw += `\tnn.${layer.activation}()\n`;
+                        stw += `\tnn.${layer.activation}(),\n`;
                     }
                     dimensions[0] = layer.filter_num;
                     dimensions[1] = Math.floor((dimensions[1] + 2 * layer.padding - (layer.filter_size - 1) - 1) / layer.stride + 1);
@@ -189,9 +189,9 @@ generate_code = async (options, dimensions, file_path) => {
 
                 //convolution 2D case
                 case "Convolution 2D":
-                    stw += `\tnn.Conv2D(in_channels = ${dimensions[0]}, out_channels = ${layer.filter_num}, kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}), stride = ${layer.stride}, padding = ${layer.padding})\n`;
+                    stw += `\tnn.Conv2D(in_channels = ${dimensions[0]}, out_channels = ${layer.filter_num}, kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}), stride = ${layer.stride}, padding = ${layer.padding}),\n`;
                     if (layer.activation !== "Linear"){
-                        stw += `\tnn.${layer.activation}()\n`;
+                        stw += `\tnn.${layer.activation}(),\n`;
                     }
                     dimensions[0] = layer.filter_num;
                     dimensions[1] = Math.floor((dimensions[1] + 2 * layer.padding - (layer.filter_size[0] - 1) - 1) / layer.stride + 1);
@@ -200,9 +200,9 @@ generate_code = async (options, dimensions, file_path) => {
 
                 //convolution 3D case
                 case "Convolution 3D":
-                    stw += `\tnn.Conv3D(in_channels = ${dimensions[0]}, out_channels = ${layer.filter_num}, kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride}, padding = ${layer.padding})\n`;
+                    stw += `\tnn.Conv3D(in_channels = ${dimensions[0]}, out_channels = ${layer.filter_num}, kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride}, padding = ${layer.padding}),\n`;
                     if (layer.activation !== "Linear"){
-                        stw += `\tnn.${layer.activation}()\n`;
+                        stw += `\tnn.${layer.activation}(),\n`;
                     }
                     dimensions[0] = layer.filter_num;
                     dimensions[1] = Math.floor((dimensions[1] + 2 * layer.padding - (layer.filter_size[0] - 1) - 1) / layer.stride + 1);
@@ -212,20 +212,20 @@ generate_code = async (options, dimensions, file_path) => {
 
                 //max pool 1D case
                 case "Max Pool 1D":
-                    stw += `\tnn.MaxPool1D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}), stride = ${layer.stride})\n`;
+                    stw += `\tnn.MaxPool1D(kernel_size = (${layer.filter_size}), stride = ${layer.stride}),\n`;
                     dimensions[1] = Math.floor((dimensions[1] - (layer.filter_size - 1) - 1) / layer.stride + 1);
                     break;
 
                 //max pool 2D case
                 case "Max Pool 2D":
-                    stw += `\tnn.MaxPool2D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride})\n`;
+                    stw += `\tnn.MaxPool2D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride}),\n`;
                     dimensions[1] = Math.floor((dimensions[1] - (layer.filter_size[0] - 1) - 1) / layer.stride + 1);
                     dimensions[2] = Math.floor((dimensions[2] - (layer.filter_size[1] - 1) - 1) / layer.stride + 1);
                     break;
 
                 //max pool 3D case
                 case "Max Pool 3D":
-                    stw += `\tnn.MaxPool3D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride})\n`;
+                    stw += `\tnn.MaxPool3D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride}),\n`;
                     dimensions[1] = Math.floor((dimensions[1] - (layer.filter_size[0] - 1) - 1) / layer.stride + 1);
                     dimensions[2] = Math.floor((dimensions[2] - (layer.filter_size[1] - 1) - 1) / layer.stride + 1);
                     dimensions[3] = Math.floor((dimensions[3] - (layer.filter_size[2] - 1) - 1) / layer.stride + 1);
@@ -233,38 +233,46 @@ generate_code = async (options, dimensions, file_path) => {
 
                 //max pool 3D case
                 case "Activation":
-                    stw += `\tnn.${layer.type}()`;
+                    stw += `\tnn.${layer.type}(),\n`;
                     break;
 
                 //avg pool 1D case
                 case "Avg Pool 1D":
-                    stw += `\tnn.AvgPool1D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}), stride = ${layer.stride})\n`;
+                    stw += `\tnn.AvgPool1D(kernel_size = (${layer.filter_size}), stride = ${layer.stride}),\n`;
                     dimensions[1] = Math.floor((dimensions[1] - (layer.filter_size - 1) - 1) / layer.stride + 1);
                     break;
 
                 //avg pool 2D case
                 case "Avg Pool 2D":
-                    stw += `\tnn.AvgPool2D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride})\n`;
+                    stw += `\tnn.AvgPool2D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride}),\n`;
                     dimensions[1] = Math.floor((dimensions[1] - (layer.filter_size[0] - 1) - 1) / layer.stride + 1);
                     dimensions[2] = Math.floor((dimensions[2] - (layer.filter_size[1] - 1) - 1) / layer.stride + 1);
                     break;
 
                 //avg pool 3D case
                 case "Avg Pool 3D":
-                    stw += `\tnn.AvgPool3D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride})\n`;
+                    stw += `\tnn.AvgPool3D(kernel_size = (${layer.filter_size[0]}, ${layer.filter_size[1]}, ${layer.filter_size[2]}), stride = ${layer.stride}),\n`;
                     dimensions[1] = Math.floor((dimensions[1] - (layer.filter_size[0] - 1) - 1) / layer.stride + 1);
                     dimensions[2] = Math.floor((dimensions[2] - (layer.filter_size[1] - 1) - 1) / layer.stride + 1);
                     dimensions[3] = Math.floor((dimensions[3] - (layer.filter_size[2] - 1) - 1) / layer.stride + 1);
                     break;
 
-                //batch normalization case
-                case "Batch Normalization":
-                    stw += `model.add(keras.layers.BatchNormalization())`;
+                //batch normalization cases
+                case "Batch Norm 1D":
+                    stw += `\tnn.BatchNorm1d(num_features = ${layer.param_num}),\n`;
+                    break;
+
+                case "Batch Norm 2D":
+                    stw += `\tnn.BatchNorm2d(num_features = ${layer.param_num}),\n`;
+                    break;
+
+                case "Batch Norm 3D":
+                    stw += `\tnn.BatchNorm3d(num_features = ${layer.param_num}),\n`;
                     break;
 
                 //dropout case
                 case "Dropout":
-                    stw += `\tnn.Dropout(p = ${layer.prob})`;
+                    stw += `\tnn.Dropout(p = ${layer.prob}),\n`;
                     break;
                 
                 //embedding case
@@ -274,7 +282,7 @@ generate_code = async (options, dimensions, file_path) => {
 
                 //flatten case
                 case "Flatten":
-                    stw += `\tnn.Flatten()`;
+                    stw += `\tnn.Flatten(),\n`;
                     let final = dimensions.reduce(Math.imul);
                     dimensions = [final];
                     break;

@@ -64,6 +64,11 @@ const change_desc = layer => {
                 case "Dropout":
                     configed_layer.getElementsByTagName("p")[0].innerHTML = `Probability: ${layer.prob}`;
                     break;
+                case "Batch Norm 1D":
+                case "Batch Norm 2D":
+                case "Batch Norm 3D":
+                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of Features: ${layer.param_num}`;
+                    break;
             }
 }
 
