@@ -321,9 +321,14 @@ add_new_layer = (args, layers_count, framework) => {
                 id: `layer-${layers_count}`,
                 name: args.name,
                 input_dim: 1000,
-                output_dim: 50,
-                input_length: 10
+                output_dim: 50
             };
+            if (framework == "PyTorch"){
+                info[2].parentNode.removeChild(info[2]);
+            }
+            else {
+                new_layer.input_length = 10;
+            }
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
             }

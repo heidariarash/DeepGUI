@@ -1,4 +1,4 @@
-const change_desc = layer => {
+const change_desc = (layer, framework) => {
     let filter_size = "";
     configed_layer = document.getElementById(layer.id);
             switch(layer.name){
@@ -56,7 +56,9 @@ const change_desc = layer => {
                 case "Embedding":
                     configed_layer.getElementsByTagName("p")[0].innerHTML = `Input Dimension: ${layer.input_dim}`;
                     configed_layer.getElementsByTagName("p")[1].innerHTML = `Output Dimension: ${layer.output_dim}`;
-                    configed_layer.getElementsByTagName("p")[2].innerHTML = `Input Length: ${layer.input_length}`;
+                    if (framework !== "PyTorch"){
+                        configed_layer.getElementsByTagName("p")[2].innerHTML = `Input Length: ${layer.input_length}`;
+                    }
                     break;
                 case "Activation":
                     configed_layer.getElementsByTagName("p")[0].innerHTML = `Type: ${layer.type}`;

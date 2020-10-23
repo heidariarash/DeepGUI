@@ -147,7 +147,7 @@ ipcRenderer.on('set-config', (event, layer) => {
     for (let i=0; i < layers.length; i++) {
         if (layers[i].id === layer.id) {
             layers[i] = layer;
-            change_desc(layer);
+            change_desc(layer, framework);
             break;
         }
     }
