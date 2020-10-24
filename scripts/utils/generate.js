@@ -287,22 +287,21 @@ generate_code = async (options, dimensions, file_path) => {
                     let final = dimensions.reduce(Math.imul);
                     dimensions = [final];
                     break;
-
-                //LSTM and GRU case
-                case "GRU":
-                case "LSTM":
-                    if(layer.ret_seq) {
-                        ret_seq = "True";
-                    }
-                    stw += `model.add(keras.layers.${layer.name}(units = ${layer.units}, activations = '${layer.activation}', recurrent_activation = '${layer.re_activation}', return_sequences = ${ret_seq}))`;
+                
+                //Recurrent cells case
+                case "RNN Cell":
+                    stw += `\tnn.RNNCell(input_size = ${dimensions[0]}, hidden_size = ${layer.hid_size}),\n`;
+                    dimensions[0] = layer.hid_size;
                     break;
 
-                //RNN case
-                case "RNN":
-                    if(layer.ret_seq) {
-                        ret_seq = "True";
-                    }
-                    stw += `model.add(keras.layers.SimpleRNN(units = ${layer.units}, activations = '${layer.activation}', return_sequences = ${ret_seq}))`;
+                case "GRU Cell":
+                    stw += `\tnn.GRUCell(input_size = ${dimensions[0]}, hidden_size = ${layer.hid_size}),\n`;
+                    dimensions[0] = layer.hid_size;
+                    break;
+
+                case "LSTM Cell":
+                    stw += `\tnn.LSTMCell(input_size = ${dimensions[0]}, hidden_size = ${layer.hid_size}),\n`;
+                    dimensions[0] = layer.hid_size;
                     break;
             }
         }
