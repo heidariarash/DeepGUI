@@ -161,7 +161,7 @@ generate_code = async (options, dimensions, file_path) => {
         stw += "#Instantiating the dataset\n";
         stw += "custom_dataset = CustomDataset()\n\n\n";
         stw += "#Define DataLoader here\n";
-        stw += `data = DataLoader(custom_dataset, batch_size = ${options.batch}, shuffle = True)\n\n\n`;
+        stw += `data_loader = DataLoader(custom_dataset, batch_size = ${options.batch}, shuffle = True)\n\n\n`;
         stw += "#creating the model\n";
         stw += "model = nn.Sequntial(\n";
 
@@ -305,12 +305,21 @@ generate_code = async (options, dimensions, file_path) => {
                     break;
             }
         }
-
-        stw += "\n";
-        stw += "#compiling the model\n";
-        stw += `model.compile(optimizer = keras.optimizers.${options.optimizer}(learning_rate = ${options.lr}), loss = '${options.loss}')\n\n`;
-        stw += "#training the model\n";
-        stw += `model.fit(x= x_train, y= y_train, batch_size = ${options.batch}, epochs = ${options.epoch})`;
+        stw = stw.slice(0,-2);
+        stw += "\n)\n\n";
+        stw += "#loss function definition\n";
+        stw += `loss_fn = nn.${options.loss}()\n\n`;
+        stw += "#optomizer definition\n";
+        stw += `optimizer = torch.optim.${options.optimizer}(model.parameters(), lr = ${options.lr})\n\n`;
+        stw += "#training loop\n";
+        stw += "model.train()\n";
+        stw += `for epoch in range(${options.epoch}):\n`;
+        stw += `\tfor x_train, labels in data_loader:\n`;
+        stw += "\t\ty_hat = model(x_train)\n";
+        stw += "\t\tloss = loss_fn(y_hat, labels)\n";
+        stw += "\t\tloss.backward()\n";
+        stw += "\t\toptimizer.step()\n"
+        stw += "\t\toptimizer.zero_grad()\n"
         try {
             await fs.writeFile(file_path, stw);
             return true;
