@@ -20,7 +20,8 @@ document.getElementById('done').addEventListener('click', ()=> {
     ipcRenderer.send("layer-config-finish", layer);
 });
 
-ipcRenderer.on("layer-config", (event , layer_config) => {
+ipcRenderer.on("layer-config", (event , arg) => {
+    layer_config = arg.layer;
     layer = layer_config;
     if(layer_config.re_activation){
         document.getElementById("re_activation-selector").value = layer_config.re_activation;

@@ -325,6 +325,12 @@ ipcMain.on("config-layer", (event, arg) => {
             configureWindow.setBounds({width: 400, height: 200});
             configureWindow.loadURL(`file://${__dirname}/html/batch-norm-config.html`);
             break;
+        case "RNN Cell":
+        case "GRU Cell":
+        case "LSTM Cell":
+            configureWindow.setBounds({width: 400, height: 200});
+            configureWindow.loadURL(`file://${__dirname}/html/recurrent-cell-config.html`);
+            break;
         default:
             configureWindow.close();
     }
