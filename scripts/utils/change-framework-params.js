@@ -37,7 +37,34 @@ const change_losses = framework => {
 }
 
 const change_optimizers = framework => {
-    
+    const optim_selector = document.getElementById("optimizer-selector");
+    if (framework == "TensorFlow"){
+        optim_selector.innerHTML = `
+        <option value="Adam">Adam</option>
+        <option value="Adadelta">Adadelta</option>
+        <option value="Adagrad">Adagrad</option>
+        <option value="Adamax">Adamax</option>
+        <option value="Ftrl">Ftrl</option>
+        <option value="Nadam">Nadam</option>
+        <option value="RMSProp">RMSProp</option>
+        <option value="SGD">SGD</option>
+        `
+    }
+    else if(framework == "PyTorch"){
+        optim_selector.innerHTML = `
+        <option value="Adam">Adam</option>
+        <option value="AdamW">Adam W</option>
+        <option value="Adadelta">Adadelta</option>
+        <option value="Adagrad">Adagrad</option>
+        <option value="Adamax">Adamax</option>
+        <option value="ASGD">ASGD</option>
+        <option value="LBFGS">LBFGS</option>
+        <option value="RMSProp">RMSProp</option>
+        <option value="Rprop">Rprop</option>
+        <option value="SGD">SGD</option>
+        <option value="SparseAdam">SparseAdam</option>
+        `
+    }
 }
 
 module.exports.change_losses = change_losses;
