@@ -2,6 +2,7 @@ const electron = require('electron');
 const {ipcRenderer} = electron;
 const add_layer_to_window = require("../scripts/utils/new-layer.js");
 const change_desc = require("../scripts/utils/change-desc.js");
+const {change_losses, change_optimizers} = require("../scripts/utils/change-framework-params.js");
 
 let layers = [];
 let layers_count = 0;
@@ -115,10 +116,12 @@ document.getElementById("framework-selector").addEventListener('change', () => {
     ipcRenderer.send("change-framework", document.getElementById("framework-selector").value);
     framework = document.getElementById("framework-selector").value;
     if(document.getElementById("framework-selector").value === "PyTorch"){
-        
+        change_optimizers("PyTorch");
+        change_losses("PyTorch");
     }
     else {
-        
+        change_optimizers("TensorFlow");
+        change_losses("TensorFlow");
     }
 });
 
@@ -162,15 +165,17 @@ ipcRenderer.on("load-new-diagram", (event, arg) => {
         diagram_layers[0].parentNode.removeChild(diagram_layers[0]);
     }
     document.getElementById("framework-selector").value = arg.framework;
-    document.getElementById('optimizer-selector').value = arg.optimizer;
     document.getElementById('optimizer-lr').value = arg.lr;
-    document.getElementById('loss-function-selector').value = arg.loss;
     document.getElementById('epoch').value = arg.epoch;
     document.getElementById('batch').value = arg.batch;
     if(arg.framework === "PyTorch"){
-
+        change_optimizers("PyTorch");
+        change_losses("PyTorch");
     }
     else {
-        
+        change_optimizers("TensorFlow");
+        change_losses("TensorFlow");
     }
+    document.getElementById('optimizer-selector').value = arg.optimizer;
+    document.getElementById('loss-function-selector').value = arg.loss;
 })
