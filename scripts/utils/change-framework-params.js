@@ -136,6 +136,39 @@ const change_layers = (framework, prev_layers) => {
                 new_layers.push(layer);
             }
 
+            //Activation Layer
+            else if(layer.name === "Activation"){
+                const infos = document.getElementById(layer.id).getElementsByClassName("info");
+                switch(layer.type){
+                    case "ELU":
+                    case "ReLU":
+                    case "PReLU":
+                    case "LeakyReLU":
+                    case "Softmax":
+                        break;
+                    case "tanh":
+                        layer.type = "Tanh";
+                        break;
+                    case "sigmoid":
+                        layer.type = "Sigmoid";
+                        break;
+                    case "selu":
+                        layer.type = "SELU";
+                        break;
+                    case "softplus":
+                        layer.type = "Softplus";
+                        break;
+                    case "softsign":
+                        layer.type = "Softsign";
+                        break;    
+                    default:
+                        layer.type = "ReLU";
+                        break;
+                }
+                infos[0].innerHTML = `Type: ${layer.type}`;
+                new_layers.push(layer);
+            }
+
         }
 
     }
@@ -200,6 +233,40 @@ const change_layers = (framework, prev_layers) => {
                 infos[1].innerHTML = `Activation: ${layer.activation}`;
                 new_layers.push(layer);
             }
+
+            //Activation Layer
+            else if(layer.name === "Activation"){
+                const infos = document.getElementById(layer.id).getElementsByClassName("info");
+                switch(layer.type){
+                    case "ELU":
+                    case "ReLU":
+                    case "PReLU":
+                    case "LeakyReLU":
+                    case "Softmax":
+                        break;
+                    case "Tanh":
+                        layer.type = "tanh";
+                        break;
+                    case "Sigmoid":
+                        layer.type = "sigmoid";
+                        break;
+                    case "SELU":
+                        layer.type = "selu";
+                        break;
+                    case "Softplus":
+                        layer.type = "softplus";
+                        break;
+                    case "Softsign":
+                        layer.type = "softsign";
+                        break;    
+                    default:
+                        layer.type = "ReLU";
+                        break;
+                }
+                infos[0].innerHTML = `Type: ${layer.type}`;
+                new_layers.push(layer);
+            }
+
         }
 
     }
