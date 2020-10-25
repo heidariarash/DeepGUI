@@ -114,9 +114,38 @@ const change_layers = (framework, prev_layers) => {
 
     //TensorFlow Case
     else if (framework === "TensorFlow"){
+
         for(layer of prev_layers){
-            
+
+            if(['Flatten', 'Max Pool 1D', 'Max Pool 2D', 'Max Pool 3D', 'Avg Pool 1D', 'Avg Pool 2D', 'Avg Pool 3D', 'Dropout'].indexOf(layer.name) >= 0){
+                //Do Nothing with these layers
+                new_layers.push(layer);
+            }
+
+            //Convolutions
+            else if (['Convolution 1D', 'Convolution 2D', 'Convolution 3D'].indexOf(layer.name) >= 0){
+                const infos = document.getElementById(layer.id).getElementsByClassName("info");
+                layer.padding = "valid";
+                infos[4].innerHTML = "Padding: valid";
+                switch(layer.activation){
+                    case "ReLU":
+                        layer.activation = "relu";
+                        break;
+                    case "Tanh":
+                        layer.activation = "tanh";
+                        break;
+                    case "Sigmoid":
+                        layer.activation = "sigmoid";
+                        break;
+                    case "Linear":
+                        layer.activation = "linear";
+                        break;
+                }
+                infos[3].innerHTML = `Activation: ${layer.activation}`;
+                new_layers.push(layer);
+            }
         }
+
     }
     return new_layers;
 }

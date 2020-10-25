@@ -123,7 +123,7 @@ document.getElementById("framework-selector").addEventListener('change', () => {
     else {
         change_optimizers("TensorFlow");
         change_losses("TensorFlow");
-        layers = change_layers("PyTorch", layers);
+        layers = change_layers("TensorFlow", layers);
     }
 });
 
