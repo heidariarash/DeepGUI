@@ -67,5 +67,60 @@ const change_optimizers = framework => {
     }
 }
 
+const change_layers = (framework, prev_layers) => {
+    const new_layers = [];
+
+    //PyToch Case
+    if(framework === "PyTorch"){
+
+        for(layer of prev_layers){
+
+            if(['Flatten', 'Max Pool 1D', 'Max Pool 2D', 'Max Pool 3D', 'Avg Pool 1D', 'Avg Pool 2D', 'Avg Pool 3D', 'Dropout'].indexOf(layer.name) >= 0){
+                //Do Nothing with these layers
+                new_layers.push(layer);
+            }
+
+            else if(['RNN', 'LSTM', 'GRU', 'Batch Normalization'].indexOf(layer.name) >= 0){
+                //Delete these layers
+                document.getElementById("layers-panel").removeChild(document.getElementById(layer.id));
+            }
+
+            //Convolutions
+            else if (['Convolution 1D', 'Convolution 2D', 'Convolution 3D'].indexOf(layer.name) >= 0){
+                const infos = document.getElementById(layer.id).getElementsByClassName("info");
+                layer.padding = 0;
+                infos[4].innerHTML = "Padding: 0";
+                switch(layer.activation){
+                    case "relu":
+                        layer.activation = "ReLU";
+                        break;
+                    case "tanh":
+                        layer.activation = "Tanh";
+                        break;
+                    case "sigmoid":
+                        layer.activation = "Sigmoid";
+                        break;
+                    case "linear":
+                        layer.activation = "Linear";
+                        break;
+                }
+                infos[3].innerHTML = `Activation: ${layer.activation}`;
+                new_layers.push(layer);
+            }
+
+        }
+
+    }
+
+    //TensorFlow Case
+    else if (framework === "TensorFlow"){
+        for(layer of prev_layers){
+            
+        }
+    }
+    return new_layers;
+}
+
 module.exports.change_losses = change_losses;
 module.exports.change_optimizers = change_optimizers;
+module.exports.change_layers = change_layers;

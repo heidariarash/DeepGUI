@@ -72,13 +72,9 @@ ipcRenderer.on("layer-config", (event , arg) => {
 
         //changing the options for activation
         document.getElementById('activation-selector').innerHTML = `
-            <option value="ELU">Elu</option>
-            <option value="LeakyReLU">Leaky ReLU</option>
-            <option value="LogSigmoid">Log Sigmoid</option>
             <option value="Linear">Linear</option>
             <option value="ReLU">ReLU</option>
             <option value="Sigmoid">Sigmoid</option>
-            <option value="Softmax">Softmax</option>
             <option value="Tanh">Tanh</option>
         `;
     }
