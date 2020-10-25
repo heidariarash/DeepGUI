@@ -108,6 +108,34 @@ const change_layers = (framework, prev_layers) => {
                 new_layers.push(layer);
             }
 
+            //Linear (or Dense)
+            else if(layer.name === "Linear"){
+                const infos = document.getElementById(layer.id).getElementsByClassName("info");
+                switch(layer.activation){
+                    case "tanh":
+                        layer.activation = "Tanh";
+                        break;
+                    case "sigmoid":
+                        layer.activation = "Sigmoid";
+                        break;
+                    case "linear":
+                        layer.activation = "Linear";
+                        break;
+                    case "elu":
+                        layer.activation = "ELU";
+                        break;
+                    case "softmax":
+                        layer.activation = "Softmax";
+                        break;
+                    default:
+                        layer.activation = "ReLU";
+                        break;
+                    
+                }
+                infos[1].innerHTML = `Activation: ${layer.activation}`;
+                new_layers.push(layer);
+            }
+
         }
 
     }
@@ -142,6 +170,34 @@ const change_layers = (framework, prev_layers) => {
                         break;
                 }
                 infos[3].innerHTML = `Activation: ${layer.activation}`;
+                new_layers.push(layer);
+            }
+
+            //Linear (or Dense)
+            else if(layer.name === "Linear"){
+                const infos = document.getElementById(layer.id).getElementsByClassName("info");
+                switch(layer.activation){
+                    case "Tanh":
+                        layer.activation = "tanh";
+                        break;
+                    case "Sigmoid":
+                        layer.activation = "sigmoid";
+                        break;
+                    case "Linear":
+                        layer.activation = "linear";
+                        break;
+                    case "ELU":
+                        layer.activation = "elu";
+                        break;
+                    case "Softmax":
+                        layer.activation = "softmax";
+                        break;
+                    default:
+                        layer.activation = "relu";
+                        break;
+                    
+                }
+                infos[1].innerHTML = `Activation: ${layer.activation}`;
                 new_layers.push(layer);
             }
         }
