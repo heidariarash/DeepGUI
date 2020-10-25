@@ -422,27 +422,6 @@ add_new_layer = (args, layers_count, framework) => {
                 layers.splice(item_index, 0, new_layer);
             }
             break;
-        case "RNN Cell":
-        case "GRU Cell":
-        case "LSTM Cell":
-            info[4].parentNode.removeChild(info[4]);
-            info[3].parentNode.removeChild(info[3]);
-            info[2].parentNode.removeChild(info[2]);
-            info[1].parentNode.removeChild(info[1]);
-            info[0].innerHTML = "Hidden Size: 10";
-            new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
-                hid_size: 10
-            };
-            if(args.button === "new-layer-button-parent"){
-                layers.push(new_layer);
-            }
-            else{
-                let item_index = layers.findIndex(x => x.id == args.button);
-                layers.splice(item_index, 0, new_layer);
-            }
-            break;
     };
     document.getElementById('layers-panel').insertBefore(layer, document.getElementById(args.button));
 }

@@ -71,11 +71,6 @@ const change_desc = (layer, framework) => {
                 case "Batch Norm 3D":
                     configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of Features: ${layer.param_num}`;
                     break;
-                case "RNN Cell":
-                case "LSTM Cell":
-                case "GRU Cell":
-                    configed_layer.getElementsByTagName("p")[0].innerHTML = `Hidden Size: ${layer.hid_size}`;
-                    break;
             }
 }
 

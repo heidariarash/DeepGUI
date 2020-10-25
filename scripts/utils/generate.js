@@ -287,22 +287,6 @@ generate_code = async (options, dimensions, file_path) => {
                     let final = dimensions.reduce(Math.imul);
                     dimensions = [final];
                     break;
-                
-                //Recurrent cells case
-                case "RNN Cell":
-                    stw += `\tnn.RNNCell(input_size = ${dimensions[0]}, hidden_size = ${layer.hid_size}),\n`;
-                    dimensions[0] = layer.hid_size;
-                    break;
-
-                case "GRU Cell":
-                    stw += `\tnn.GRUCell(input_size = ${dimensions[0]}, hidden_size = ${layer.hid_size}),\n`;
-                    dimensions[0] = layer.hid_size;
-                    break;
-
-                case "LSTM Cell":
-                    stw += `\tnn.LSTMCell(input_size = ${dimensions[0]}, hidden_size = ${layer.hid_size}),\n`;
-                    dimensions[0] = layer.hid_size;
-                    break;
             }
         }
         stw = stw.slice(0,-2);

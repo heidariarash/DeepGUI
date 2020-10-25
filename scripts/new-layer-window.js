@@ -26,12 +26,9 @@ ipcRenderer.on("layer-config", (event , arg) => {
         <option value="Dropout">Dropout</option>
         <option value="Embedding">Embedding</option>
         <option value="Flatten">Flatten</option>
-        <option value="GRU Cell">GRU Cell</option>
-        <option value="LSTM Cell">LSTM Cell</option>
         <option value="Max Pool 1D">Max Pool 1D</option>
         <option value="Max Pool 2D">Max Pool 2D</option>
         <option value="Max Pool 3D">Max Pool 3D</option>
-        <option value="RNN Cell">RNN Cell</option>
         `
     }
 });
