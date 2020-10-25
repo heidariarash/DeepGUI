@@ -169,6 +169,13 @@ const change_layers = (framework, prev_layers) => {
                 new_layers.push(layer);
             }
 
+            //Embedding Layer
+            else if(layer.name === "Embedding"){
+                const infos = document.getElementById(layer.id).getElementsByClassName("info");
+                infos[2].parentNode.removeChild(infos[2]);
+                new_layers.push(layer);
+            }
+
         }
 
     }
@@ -264,6 +271,18 @@ const change_layers = (framework, prev_layers) => {
                         break;
                 }
                 infos[0].innerHTML = `Type: ${layer.type}`;
+                new_layers.push(layer);
+            }
+
+            //Embedding Layer
+            else if(layer.name === "Embedding"){
+                const infos = document.getElementById(layer.id);
+                const new_info = document.createElement('p');
+                const attr = document.createAttribute("class");
+                attr.value = "info";
+                new_info.setAttributeNode(attr);
+                new_info.innerHTML = `Input Length: ${layer.input_length}`;
+                infos.appendChild(new_info);
                 new_layers.push(layer);
             }
 

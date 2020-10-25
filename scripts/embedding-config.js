@@ -9,16 +9,20 @@ document.getElementById('done').addEventListener('click', ()=> {
     let complete = true;
     if(document.getElementById("input-dimension").value == "") { complete = false}
     if(document.getElementById("output-dimension").value == "") { complete = false}
-    if (document.getElementById("input-length" !== undefined)){
+    try{
         if(document.getElementById("input-length").value == "") { complete = false}
     }
+    catch(err) {}
     if( complete === false){
         return;
     }
     layer.input_dim = document.getElementById("input-dimension").value;
     layer.output_dim = document.getElementById("output-dimension").value;
-    if (document.getElementById("input-length" !== undefined)){
+    try{
         layer.input_length = document.getElementById("input-length").value;
+    }
+    catch (err){
+
     }
     ipcRenderer.send("layer-config-finish", layer);
 });
