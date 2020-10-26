@@ -286,6 +286,20 @@ const change_layers = (framework, prev_layers) => {
                 new_layers.push(layer);
             }
 
+            //Batch Normalizations
+            else if(['Batch Norm 1D', 'Batch Norm 2D', 'Batch Norm 3D'].indexOf(layer.name) >= 0){
+                const infos = document.getElementById(layer.id);
+                infos.removeChild(infos.getElementsByClassName('info')[0]);
+                infos.getElementsByClassName('cog')[0].innerHTML = "";
+                infos.getElementsByClassName('cog')[0].setAttribute('class', "cog-invisible");
+                infos.getElementsByClassName('main-heading-4')[0].innerHTML = "Batch Normalization";
+                const new_layer = {
+                    id: layer.id,
+                    name: "Batch Normalization"
+                };
+                new_layers.push(new_layer);
+            }
+
         }
 
     }
