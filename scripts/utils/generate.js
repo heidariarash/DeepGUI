@@ -16,11 +16,15 @@ generate_code = async (options, dimensions, file_path) => {
         stw += "#creating the model\n"
         stw += "model = keras.Sequntial()\n\n"
         stw += "#adding layers\n"
+
         let input_shape = "(";
         for(let i = 0; i < dimensions.length; i++){
             input_shape += `${dimensions[i]},`;
         }
-        input_shape = input_shape.slice(0,-1);
+        if(dimensions.length !== 1){
+            input_shape = input_shape.slice(0,-1);
+        }
+
         input_shape += ")";
         if (options.layers[0].name !== "Embedding"){
             stw += `model.add(keras.layers.InputLayer(input_shape = ${input_shape}))\n`;
