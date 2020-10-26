@@ -15,7 +15,7 @@ const change_losses = framework => {
     else if(framework == "PyTorch"){
         loss_selector.innerHTML = `
             <option value="BCELoss">Binary Cross Entropy</option>
-            <option value="BCEWithLogitsLoss">Binary Cross Entropy with Sigmoid</option>
+            <option value="BCEWithLogitsLoss">Binary Cross Entropy with Logits</option>
             <option value="CTCLoss">Connectionist Temporal Classification</option>
             <option value="CosineEmbeddingLoss">Cosine Embedding</option>
             <option value="CrossEntropyLoss">Cross Entropy</option>
