@@ -4,7 +4,15 @@ DeepGUI is a graphical user interface which generates Deep Learning Frameworks c
 
 DeepGUI is built using Electron.js framework.
 
-## DeepGUI 0.1.0 is OUT!
+## DeepGUI Version 0.2.0 is OUT!
+What's New!? Now you can ...
++ Generate code using PyTorch framework (although, because PyTorch sequential models doesn't support time analysis, recurrent layers are not supported).
+
++ Add new layers in between of other layers. Previously it was only possible to add layers at the end of the sequence.
+
++ Save the diagram into a .dgui file and load it back later.
+
+## DeepGUI Version 0.1.0 is OUT!
 The specifications of this version:
 + These layers are available in this version:
     - Dense,
@@ -21,16 +29,11 @@ The specifications of this version:
 + Basic configurations of each layer is added. Advanced configurations will be added soon.
 + Only Sequential  models are available in this version.
 
-## The latest version of the DeepGUI
-The latest version of DeepGUI has these added specifications:
-+ Now you can add new layers in between of other layers.
-+ It is possible to save your diagram into a .dgui file and load it back later.
-
 ## Some Screenshots of the GUI
-I provide some of the screenshots of the GUI here. I know that this configuration is not OK for a 10-class image dataset classification. It's just a simple example.
+I provide some screenshots of the GUI here. I know that this configuration is not OK for a 10-class image dataset classification. It's just a simple example.
 ### Main Window
 <p align="center">
-  <img width="1920" height="1000" src="./gallery/Main-Window.PNG">
+  <img width="1096" height="996" src="./gallery/Main-Window.PNG">
 </p>
 
 ### Convolutions Configurations
