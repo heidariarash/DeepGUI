@@ -20,7 +20,7 @@ app.on('ready', ()=> {
         frame: false,
         webPreferences: {
             nodeIntegration: true,
-            // devTools: false
+            devTools: false
         },
         icon: __dirname + '/gallery/icon.png'
     });
