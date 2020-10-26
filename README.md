@@ -8,7 +8,7 @@ DeepGUI is built using Electron.js framework.
 What's New!? Now you can ...
 + Generate code using PyTorch framework (although, because PyTorch sequential models doesn't support time analysis, recurrent layers are not supported).
 
-+ Add new layers in between of other layers. Previously it was only possible to add layers at the end of the sequence.
++ Add new layers between other layers. Previously it was only possible to add layers at the end of the sequence.
 
 + Save the diagram into a .dgui file and load it back later.
 
