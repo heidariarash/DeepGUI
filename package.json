@@ -1,6 +1,6 @@
 {
   "name": "deepgui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A Graphical User Interface to produce deep learning related python codes (such as tensorflow or pytorch)",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "TensorFlow"
   ],
   "author": "Arash Heidari",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/heidariarash/DeepGUI/issues"
   },
