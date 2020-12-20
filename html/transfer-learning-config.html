@@ -1,0 +1,80 @@
+<html>
+<head>
+    <!-- CSS links -->
+    <link rel="stylesheet" href="../css/bootstrap.css"> <!-- Bootstrap -->
+    <link rel="stylesheet" href="../css/styles.css">    <!-- Customized CSS -->
+</head>
+<body>
+    <!-- Title Bar -->
+    <div id="title-bar">
+        <div id="title-sm">Transfer Learning Configuration</div>
+    </div>
+    <div class="container-fluid sub-window">
+        <div class="row main-panel text-center"> <!-- Main Window Row -->
+            <div class="col-sm-12 heading-3-parent">
+                <div class="scrollable">
+                    <label class="info">Model: </label>
+                    <br>
+                    <select id="activation-selector" onmousedown="this.size=2;"  onchange='this.size=0;' onblur="this.size=0;">
+                        <option value="DenseNet121">DenseNet121</option>
+                        <option value="DenseNet169">DenseNet169</option>
+                        <option value="DenseNet201">DenseNet201</option>
+                        <option value="EfficientNetB0">EfficientNetB0</option>
+                        <option value="EfficientNetB1">EfficientNetB1</option>
+                        <option value="EfficientNetB2">EfficientNetB2</option>
+                        <option value="EfficientNetB3">EfficientNetB3</option>
+                        <option value="EfficientNetB4">EfficientNetB4</option>
+                        <option value="EfficientNetB5">EfficientNetB5</option>
+                        <option value="EfficientNetB6">EfficientNetB6</option>
+                        <option value="EfficientNetB7">EfficientNetB7</option>
+                        <option value="InceptionResNetV2">Inception ResNetV2</option>
+                        <option value="Inception V3">Inception V3</option>
+                        <option value="MobileNet">MobileNet</option>
+                        <option value="MobileNetV2">MobileNetV2</option>
+                        <option value="MobileNetV3Large">MobileNetV3Large</option>
+                        <option value="MobileNetV3Small">MobileNetV3Small</option>
+                        <option value="NASNetLarge">NASNetLarge</option>
+                        <option value="NASNetMobile">NASNetMobile</option>
+                        <option value="ResNet101">ResNet101</option>
+                        <option value="ResNet101V2">ResNet101V2</option>
+                        <option value="ResNet152">ResNet152</option>
+                        <option value="ResNet152V2">ResNet152V2</option>
+                        <option value="ResNet50">ResNet50</option>
+                        <option value="ResNet50V2">ResNet50V2</option>
+                        <option value="VGG16">VGG16</option>
+                        <option value="VGG19">VGG19</option>
+                        <option value="Xception">Xception</option>
+                    </select>
+                    <br>
+                    <br>
+                    <br>
+                    <label class="info">Input Size: </label>
+                    <br>
+                    <input class = "small-input" type="number" min="1" step="1" required>
+                    <input class = "small-input" type="number" min="1" step="1" required>
+                    <input class = "small-input" type="number" min="1" step="1" required>
+                    <br>
+                    <br>
+                    <label class="info">Pretrained:</label>
+                    <br>
+                    <input id="Pretrained" type="checkbox">
+                    <br>
+                    <br>
+                    <label class="info">Top Layer: </label>
+                    <br>
+                    <input id="top-layer" type="checkbox">
+                    <br>
+                    <br>
+                    <label class="info">Trainable: </label>
+                    <br>
+                    <input id="trainable" type="checkbox">
+                </div>
+                <br>
+                <a class="small-window-buttons" id="done">Done</a>
+                <a class="small-window-buttons" id="cancle">Cancle</a>
+            </div>
+        </div>
+    </div>
+    <script src="../scripts/recurrent-config.js"></script>
+</body>
+</html>
