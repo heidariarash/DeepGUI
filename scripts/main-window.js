@@ -7,6 +7,7 @@ const {change_losses, change_optimizers, change_layers} = require("../scripts/ut
 let layers = [];
 let layers_count = 0;
 let framework = "TensorFlow";
+let transfer_learning = false;
 
 const diagram = () => {
     return {
@@ -129,6 +130,19 @@ document.getElementById("framework-selector").addEventListener('change', () => {
 
 document.getElementById('input-shape-cog').addEventListener('click', () => {
     ipcRenderer.send('input-shape-cog');
+});
+
+document.getElementById('transfer-learning').addEventListener('change', () => {
+    transfer_learning = document.getElementById('transfer-learning').checked;
+    ipcRenderer.send('change_tl', document.getElementById('transfer-learning').checked);
+    if(transfer_learning){
+        document.getElementById('input-shape-config').hidden = true;
+        document.getElementById('transfer-learning-config').style.display = 'block';
+    }
+    else{
+        document.getElementById('input-shape-config').hidden = false;
+        document.getElementById('transfer-learning-config').style.display = 'none';
+    }
 });
 
 ipcRenderer.on('add-new-layer', (event, args) => {
