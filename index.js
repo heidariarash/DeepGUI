@@ -245,6 +245,25 @@ ipcMain.on('input-shape-cog', () => {
     configureWindow.loadURL(`file://${__dirname}/html/input-shape-config.html`);
 });
 
+//input shape cog clicked
+ipcMain.on('transfer-learning-cog', () => {
+    configureWindow = new BrowserWindow({
+        frame: false,
+        webPreferences: {
+            nodeIntegration: true,
+            devTools: false
+        },
+        width: 400,
+        height: 350,
+        resizable: false,
+        maximizable: false,
+        parent: mainWindow,
+        modal: true
+    });
+    
+    configureWindow.loadURL(`file://${__dirname}/html/transfer-learning-config.html`);
+});
+
 // resize the small window
 ipcMain.on('resize-small', (event, arg) => {
     configureWindow.setBounds({width: 400, height: Math.min(350 + arg * 50, 500)});

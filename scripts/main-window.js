@@ -132,9 +132,12 @@ document.getElementById('input-shape-cog').addEventListener('click', () => {
     ipcRenderer.send('input-shape-cog');
 });
 
+document.getElementById('transfer-learning-cog').addEventListener('click', () => {
+    ipcRenderer.send('transfer-learning-cog');
+});
+
 document.getElementById('transfer-learning').addEventListener('change', () => {
     transfer_learning = document.getElementById('transfer-learning').checked;
-    ipcRenderer.send('change_tl', document.getElementById('transfer-learning').checked);
     if(transfer_learning){
         document.getElementById('input-shape-config').hidden = true;
         document.getElementById('transfer-learning-config').style.display = 'block';
