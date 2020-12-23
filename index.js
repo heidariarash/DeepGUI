@@ -11,6 +11,13 @@ let layer_under_config;
 let requested_add_button;
 let notify_configure;
 let framework = "TensorFlow";
+let transfer_learning = {
+    model: 'VGG16',
+    top_layer: false,
+    pretrained: true,
+    shape: [224,224,3],
+    trainable: false
+}
 
 app.on('ready', ()=> {
     // Customizing Main Window
@@ -251,11 +258,11 @@ ipcMain.on('transfer-learning-cog', () => {
         frame: false,
         webPreferences: {
             nodeIntegration: true,
-            devTools: false
+            // devTools: false
         },
         width: 400,
         height: 350,
-        resizable: false,
+        // resizable: false,
         maximizable: false,
         parent: mainWindow,
         modal: true
@@ -363,4 +370,9 @@ ipcMain.on("layer-config-finish", (event, arg) => {
 //change framwork signal
 ipcMain.on("change-framework", (event, arg) => {
     framework = arg;
+});
+
+//transfer learning config start
+ipcMain.on("ready-tl-config", () => {
+    configureWindow.webContents.send('initialize', transfer_learning);
 });
