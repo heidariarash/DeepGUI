@@ -199,4 +199,14 @@ ipcRenderer.on("load-new-diagram", (event, arg) => {
     document.getElementById('batch').value = arg.batch;
     document.getElementById('optimizer-selector').value = arg.optimizer;
     document.getElementById('loss-function-selector').value = arg.loss;
-})
+});
+
+//setting transfer learning text
+ipcRenderer.on('set-transfer-learning', (event, arg) => {
+    document.getElementById('transfer-learning-model').innerHTML = `Model: ${arg.model}`;
+    document.getElementById('transfer-learning-top-layer').innerHTML = `Top Layer: ${arg.top_layer?'True':'False'}`;
+    document.getElementById('transfer-learning-pretrained').innerHTML = `Pretrained Weights: ${arg.pretrained?'True':'False'}`;
+    document.getElementById('transfer-learning-trainable').innerHTML = `Trainble: ${arg.trainable?'True':'False'}`;
+    let shape = arg.shape[0] + ", " + arg.shape[1] + ", " + arg.shape[2];
+    document.getElementById('transfer-learning-shape').innerHTML = `Input Shape: ${shape}`;
+});

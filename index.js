@@ -27,7 +27,7 @@ app.on('ready', ()=> {
         frame: false,
         webPreferences: {
             nodeIntegration: true,
-            devTools: false
+            // devTools: false
         },
         icon: __dirname + '/gallery/icon.png'
     });
@@ -381,4 +381,5 @@ ipcMain.on("ready-tl-config", () => {
 ipcMain.on("set-transfer-learning", (event, arg) => {
     transfer_learning = arg;
     mainWindow.webContents.send("set-transfer-learning", arg);
+    configureWindow.close();
 })
