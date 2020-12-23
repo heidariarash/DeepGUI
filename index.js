@@ -376,3 +376,9 @@ ipcMain.on("change-framework", (event, arg) => {
 ipcMain.on("ready-tl-config", () => {
     configureWindow.webContents.send('initialize', transfer_learning);
 });
+
+//setting transfer learning configuration
+ipcMain.on("set-transfer-learning", (event, arg) => {
+    transfer_learning = arg;
+    mainWindow.webContents.send("set-transfer-learning", arg);
+})
