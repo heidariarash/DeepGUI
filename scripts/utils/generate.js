@@ -1,12 +1,12 @@
-const fs = require('fs').promises;
+const fs   = require('fs').promises;
 const path = require('path');
 
 generate_code = async (options, dimensions, file_path) => {
     //creating the string to write (stw)
     let stw = "##################################################\n";
-    stw += "####### This Code is produced by Deep GUI ########\n";
-    stw += "##################################################\n\n";
-    stw += "#import statements\n";;
+    stw     += "####### This Code is produced by Deep GUI ########\n";
+    stw     += "##################################################\n\n";
+    stw     += "#import statements\n";;
     if(options.framework === "TensorFlow"){
         stw += "import tensorflow as tf\n";
         stw += "import tensorflow.keras as keras\n\n\n";

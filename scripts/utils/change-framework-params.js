@@ -276,10 +276,10 @@ const change_layers = (framework, prev_layers) => {
 
             //Embedding Layer
             else if(layer.name === "Embedding"){
-                const infos = document.getElementById(layer.id);
-                const new_info = document.createElement('p');
-                const attr = document.createAttribute("class");
-                attr.value = "info";
+                const infos        = document.getElementById(layer.id);
+                const new_info     = document.createElement('p');
+                const attr         = document.createAttribute("class");
+                attr.value         = "info";
                 new_info.setAttributeNode(attr);
                 new_info.innerHTML = `Input Length: ${layer.input_length}`;
                 infos.appendChild(new_info);
@@ -294,7 +294,7 @@ const change_layers = (framework, prev_layers) => {
                 infos.getElementsByClassName('cog')[0].setAttribute('class', "cog-invisible");
                 infos.getElementsByClassName('main-heading-4')[0].innerHTML = "Batch Normalization";
                 const new_layer = {
-                    id: layer.id,
+                    id:   layer.id,
                     name: "Batch Normalization"
                 };
                 new_layers.push(new_layer);
@@ -306,6 +306,6 @@ const change_layers = (framework, prev_layers) => {
     return new_layers;
 }
 
-module.exports.change_losses = change_losses;
+module.exports.change_losses     = change_losses;
 module.exports.change_optimizers = change_optimizers;
-module.exports.change_layers = change_layers;
+module.exports.change_layers     = change_layers;

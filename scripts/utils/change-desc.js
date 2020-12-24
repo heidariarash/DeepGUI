@@ -1,6 +1,6 @@
 const change_desc = (layer, framework) => {
     let filter_size = "";
-    configed_layer = document.getElementById(layer.id);
+    configed_layer  = document.getElementById(layer.id);
             switch(layer.name){
                 case "Convolution 1D":
                     configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of filters: ${layer.filter_num}`;
@@ -14,7 +14,7 @@ const change_desc = (layer, framework) => {
                     for(size of layer.filter_size){
                         filter_size += `${size},`;
                     }
-                    filter_size = filter_size.slice(0,-1);
+                    filter_size                                           = filter_size.slice(0,-1);
                     configed_layer.getElementsByTagName("p")[1].innerHTML = `Filter Size: ${filter_size}`;
                     configed_layer.getElementsByTagName("p")[0].innerHTML = `Number of filters: ${layer.filter_num}`;
                     configed_layer.getElementsByTagName("p")[2].innerHTML = `Stride: ${layer.stride}`;
@@ -33,7 +33,7 @@ const change_desc = (layer, framework) => {
                     for(size of layer.filter_size){
                         filter_size += `${size},`;
                     }
-                    filter_size = filter_size.slice(0,-1);
+                    filter_size                                           = filter_size.slice(0,-1);
                     configed_layer.getElementsByTagName("p")[0].innerHTML = `Filter Size: ${filter_size}`;
                     configed_layer.getElementsByTagName("p")[1].innerHTML = `Stride: ${layer.stride}`;
                     break;

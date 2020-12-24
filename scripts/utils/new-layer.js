@@ -1,13 +1,13 @@
 add_new_layer = (args, layers_count, framework) => {
     //constructing layer
     const layer = document.createElement('div');
-    let attr;
+    let   attr;
     //setting the class for layer
-    attr = document.createAttribute('class');
-    attr.value = 'col-sm-12 heading-4-parent layer-class';
+    attr        = document.createAttribute('class');
+    attr.value  = 'col-sm-12 heading-4-parent layer-class';
     layer.setAttributeNode(attr);
-    attr = document.createAttribute('id');
-    attr.value = `layer-${layers_count}`;
+    attr        = document.createAttribute('id');
+    attr.value  = `layer-${layers_count}`;
     layer.setAttributeNode(attr);
 
     layer.innerHTML =  `<svg class="add" id="layer-${layers_count}-add" xmlns="http://www.w3.org/2000/svg" onclick="add_new_layer_buttons(this)">
@@ -47,19 +47,19 @@ add_new_layer = (args, layers_count, framework) => {
         case "Convolution 1D":
             info[1].innerHTML = "Filter Size: 3";
             new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
+                id:          `layer-${layers_count}`,
+                name:        args.name,
                 filter_num : 32,
                 filter_size: 3,
-                stride: 1,
-                activation: "relu",
-                padding: "valid"
+                stride:      1,
+                activation:  "relu",
+                padding:     "valid"
             };
             if (framework == "PyTorch"){
-                new_layer.padding = 0;
+                new_layer.padding    = 0;
                 new_layer.activation = "ReLU";
-                info[3].innerHTML = "Activation: ReLU" ;
-                info[4].innerHTML = "Padding: 0";
+                info[3].innerHTML    = "Activation: ReLU" ;
+                info[4].innerHTML    = "Padding: 0";
             }
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
@@ -71,19 +71,19 @@ add_new_layer = (args, layers_count, framework) => {
             break;
         case "Convolution 2D":
             new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
+                id:          `layer-${layers_count}`,
+                name:        args.name,
                 filter_num : 32,
                 filter_size: [3,3],
-                stride: 1,
-                activation: "relu",
-                padding: "valid"
+                stride:      1,
+                activation:  "relu",
+                padding:     "valid"
             };
             if (framework == "PyTorch"){
-                new_layer.padding = 0;
+                new_layer.padding    = 0;
                 new_layer.activation = "ReLU";
-                info[3].innerHTML = "Activation: ReLU" ;
-                info[4].innerHTML = "Padding: 0";
+                info[3].innerHTML    = "Activation: ReLU" ;
+                info[4].innerHTML    = "Padding: 0";
             }
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
@@ -96,19 +96,19 @@ add_new_layer = (args, layers_count, framework) => {
         case "Convolution 3D":
             info[1].innerHTML = "Filter Size: 3,3,3";
             new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
+                id:          `layer-${layers_count}`,
+                name:        args.name,
                 filter_num : 32,
                 filter_size: [3,3,3],
-                stride: 1,
-                activation: "relu",
-                padding: "valid"
+                stride:      1,
+                activation:  "relu",
+                padding:     "valid"
             };
             if (framework == "PyTorch"){
-                new_layer.padding = 0;
+                new_layer.padding    = 0;
                 new_layer.activation = "ReLU";
-                info[3].innerHTML = "Activation: ReLU" ;
-                info[4].innerHTML = "Padding: 0";
+                info[3].innerHTML    = "Activation: ReLU" ;
+                info[4].innerHTML    = "Padding: 0";
             }
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
@@ -124,10 +124,10 @@ add_new_layer = (args, layers_count, framework) => {
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
             new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
+                id:          `layer-${layers_count}`,
+                name:        args.name,
                 filter_size: 3,
-                stride: 1
+                stride:      1
             };
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
@@ -142,10 +142,10 @@ add_new_layer = (args, layers_count, framework) => {
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
             new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
+                id:          `layer-${layers_count}`,
+                name:        args.name,
                 filter_size: [3,3],
-                stride: 1
+                stride:      1
             };
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
@@ -161,10 +161,10 @@ add_new_layer = (args, layers_count, framework) => {
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
             new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
+                id:          `layer-${layers_count}`,
+                name:        args.name,
                 filter_size: [3,3,3],
-                stride: 1
+                stride:      1
             };
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
@@ -180,13 +180,13 @@ add_new_layer = (args, layers_count, framework) => {
             info[1].parentNode.removeChild(info[1]);
             info[0].innerHTML = "Number of Units: 10";
             new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
-                unit_num : 10,
+                id:         `layer-${layers_count}`,
+                name:       args.name,
+                unit_num :  10,
                 activation: "relu"
             };
             if (framework == "PyTorch"){
-                info[1].innerHTML = "Activation: ReLU";
+                info[1].innerHTML    = "Activation: ReLU";
                 new_layer.activation = "ReLU";
             }
             if(args.button === "new-layer-button-parent"){
@@ -204,7 +204,7 @@ add_new_layer = (args, layers_count, framework) => {
             info[2].parentNode.removeChild(info[2]);
             info[1].parentNode.removeChild(info[1]);
             new_layer = {
-                id: `layer-${layers_count}`,
+                id:   `layer-${layers_count}`,
                 name: args.name,
                 type: "ReLU"
             };
@@ -222,10 +222,10 @@ add_new_layer = (args, layers_count, framework) => {
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
             new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
+                id:          `layer-${layers_count}`,
+                name:        args.name,
                 filter_size: 3,
-                stride: 1
+                stride:      1
             };
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
@@ -240,10 +240,10 @@ add_new_layer = (args, layers_count, framework) => {
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
             new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
+                id:          `layer-${layers_count}`,
+                name:        args.name,
                 filter_size: [3,3],
-                stride: 1
+                stride:      1
             };
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
@@ -259,10 +259,10 @@ add_new_layer = (args, layers_count, framework) => {
             info[3].parentNode.removeChild(info[3]);
             info[0].parentNode.removeChild(info[0]);
             new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
+                id:          `layer-${layers_count}`,
+                name:        args.name,
                 filter_size: [3,3,3],
-                stride: 1
+                stride:      1
             };
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
@@ -279,7 +279,7 @@ add_new_layer = (args, layers_count, framework) => {
             info[1].parentNode.removeChild(info[1]);
             info[0].parentNode.removeChild(info[0]);
             new_layer = {
-                id: `layer-${layers_count}`,
+                id:   `layer-${layers_count}`,
                 name: args.name
             };
             if(args.button === "new-layer-button-parent"){
@@ -298,8 +298,8 @@ add_new_layer = (args, layers_count, framework) => {
             info[2].parentNode.removeChild(info[2]);
             info[1].parentNode.removeChild(info[1]);
             info[0].innerHTML = "Probability: 0.5"
-            new_layer = {
-                id: `layer-${layers_count}`,
+            new_layer         = {
+                id:   `layer-${layers_count}`,
                 name: args.name,
                 prob: 0.5
             };
@@ -317,11 +317,11 @@ add_new_layer = (args, layers_count, framework) => {
             info[2].innerHTML = "Input Length: 10";
             info[1].innerHTML = "Output Dimension: 50";
             info[0].innerHTML = "Input Dimension: 1000";
-            new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
-                input_dim: 1000,
-                output_dim: 50,
+            new_layer         = {
+                id:           `layer-${layers_count}`,
+                name:         args.name,
+                input_dim:    1000,
+                output_dim:   50,
                 input_length: 10
             };
             if (framework == "PyTorch"){
@@ -342,7 +342,7 @@ add_new_layer = (args, layers_count, framework) => {
             info[1].parentNode.removeChild(info[1]);
             info[0].parentNode.removeChild(info[0]);
             new_layer = {
-                id: `layer-${layers_count}`,
+                id:   `layer-${layers_count}`,
                 name: args.name
             };
             if(args.button === "new-layer-button-parent"){
@@ -362,12 +362,12 @@ add_new_layer = (args, layers_count, framework) => {
             info[2].innerHTML = "Recurrent Activation: sigmoid"
             info[1].innerHTML = "Activation: tanh"
             info[0].innerHTML = "Number of Units: 10"
-            new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
-                units: 10,
-                activation: "tanh",
-                re_activation: "sigmoid",
+            new_layer         = {
+                id:              `layer-${layers_count}`,
+                name:            args.name,
+                units:           10,
+                activation:      "tanh",
+                re_activation:   "sigmoid",
                 return_sequence: false
             };
             if(args.button === "new-layer-button-parent"){
@@ -380,16 +380,16 @@ add_new_layer = (args, layers_count, framework) => {
             break;
         case "RNN":
             info[4].parentNode.removeChild(info[4]);
-            info[3].innerHTML = "Return Sequence: False"
             info[2].parentNode.removeChild(info[2]);
+            info[3].innerHTML = "Return Sequence: False"
             info[1].innerHTML = "Activation: tanh"
             info[0].innerHTML = "Number of Units: 10"
-            new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
-                units: 10,
+            new_layer         = {
+                id:         `layer-${layers_count}`,
+                name:       args.name,
+                units:      10,
                 activation: "tanh",
-                ret_seq: false
+                ret_seq:    false
             };
             if(args.button === "new-layer-button-parent"){
                 layers.push(new_layer);
@@ -408,8 +408,8 @@ add_new_layer = (args, layers_count, framework) => {
             info[1].parentNode.removeChild(info[1]);
             info[0].innerHTML = "Number of Features: 10";
             new_layer = {
-                id: `layer-${layers_count}`,
-                name: args.name,
+                id:        `layer-${layers_count}`,
+                name:      args.name,
                 param_num: 10
             };
             if(args.button === "new-layer-button-parent"){
