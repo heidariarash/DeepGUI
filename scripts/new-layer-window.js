@@ -1,4 +1,4 @@
-const electron = require('electron');
+const electron      = require('electron');
 const {ipcRenderer} = electron;
 
 document.getElementById('done').addEventListener('click', () => {

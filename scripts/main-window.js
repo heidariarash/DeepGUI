@@ -1,23 +1,23 @@
-const electron = require('electron');
-const {ipcRenderer} = electron;
-const add_layer_to_window = require("../scripts/utils/new-layer.js");
-const change_desc = require("../scripts/utils/change-desc.js");
+const electron                                          = require('electron');
+const {ipcRenderer}                                     = electron;
+const add_layer_to_window                               = require("../scripts/utils/new-layer.js");
+const change_desc                                       = require("../scripts/utils/change-desc.js");
 const {change_losses, change_optimizers, change_layers} = require("../scripts/utils/change-framework-params.js");
 
-let layers = [];
-let layers_count = 0;
-let framework = "TensorFlow";
+let layers            = [];
+let layers_count      = 0;
+let framework         = "TensorFlow";
 let transfer_learning = false;
 
 const diagram = () => {
     return {
         framework: document.getElementById('framework-selector').value,
         optimizer: document.getElementById('optimizer-selector').value,
-        lr: parseInt(document.getElementById('optimizer-lr').value),
-        loss: document.getElementById('loss-function-selector').value,
-        epoch: parseInt(document.getElementById('epoch').value),
-        batch: parseInt(document.getElementById('batch').value),
-        layers: layers
+        lr:        parseInt(document.getElementById('optimizer-lr').value),
+        loss:      document.getElementById('loss-function-selector').value,
+        epoch:     parseInt(document.getElementById('epoch').value),
+        batch:     parseInt(document.getElementById('batch').value),
+        layers:    layers
     }
 }
 
@@ -139,11 +139,11 @@ document.getElementById('transfer-learning-cog').addEventListener('click', () =>
 document.getElementById('transfer-learning').addEventListener('change', () => {
     transfer_learning = document.getElementById('transfer-learning').checked;
     if(transfer_learning){
-        document.getElementById('input-shape-config').hidden = true;
+        document.getElementById('input-shape-config').hidden              = true;
         document.getElementById('transfer-learning-config').style.display = 'block';
     }
     else{
-        document.getElementById('input-shape-config').hidden = false;
+        document.getElementById('input-shape-config').hidden              = false;
         document.getElementById('transfer-learning-config').style.display = 'none';
     }
 });
@@ -160,7 +160,7 @@ ipcRenderer.on('set-input-shape', (event, arg) => {
     for (dim of arg){
         shape += `${dim}, `;
     }
-    shape = shape.slice(0,-2);
+    shape                                                 = shape.slice(0,-2);
     document.getElementById('input-shape-text').innerHTML = shape;
 })
 
@@ -178,7 +178,7 @@ ipcRenderer.on('set-config', (event, layer) => {
 //cleaning the diagram
 ipcRenderer.on("load-new-diagram", (event, arg) => {
     layers_count = 0;
-    layers = [];
+    layers       = [];
     const diagram_layers = document.getElementsByClassName('layer-class');
     while(diagram_layers.length > 0){
         diagram_layers[0].parentNode.removeChild(diagram_layers[0]);
@@ -193,20 +193,20 @@ ipcRenderer.on("load-new-diagram", (event, arg) => {
             change_losses("TensorFlow");
         }
     }
-    document.getElementById("framework-selector").value = arg.framework;
-    document.getElementById('optimizer-lr').value = arg.lr;
-    document.getElementById('epoch').value = arg.epoch;
-    document.getElementById('batch').value = arg.batch;
-    document.getElementById('optimizer-selector').value = arg.optimizer;
+    document.getElementById("framework-selector").value     = arg.framework;
+    document.getElementById('optimizer-lr').value           = arg.lr;
+    document.getElementById('epoch').value                  = arg.epoch;
+    document.getElementById('batch').value                  = arg.batch;
+    document.getElementById('optimizer-selector').value     = arg.optimizer;
     document.getElementById('loss-function-selector').value = arg.loss;
 });
 
 //setting transfer learning text
 ipcRenderer.on('set-transfer-learning', (event, arg) => {
-    document.getElementById('transfer-learning-model').innerHTML = `Model: ${arg.model}`;
-    document.getElementById('transfer-learning-top-layer').innerHTML = `Top Layer: ${arg.top_layer?'True':'False'}`;
+    const shape                                                       = arg.shape[0] + ", " + arg.shape[1] + ", " + arg.shape[2];
+    document.getElementById('transfer-learning-model').innerHTML      = `Model: ${arg.model}`;
+    document.getElementById('transfer-learning-top-layer').innerHTML  = `Top Layer: ${arg.top_layer?'True':'False'}`;
     document.getElementById('transfer-learning-pretrained').innerHTML = `Pretrained Weights: ${arg.pretrained?'True':'False'}`;
-    document.getElementById('transfer-learning-trainable').innerHTML = `Trainble: ${arg.trainable?'True':'False'}`;
-    let shape = arg.shape[0] + ", " + arg.shape[1] + ", " + arg.shape[2];
-    document.getElementById('transfer-learning-shape').innerHTML = `Input Shape: ${shape}`;
+    document.getElementById('transfer-learning-trainable').innerHTML  = `Trainble: ${arg.trainable?'True':'False'}`;
+    document.getElementById('transfer-learning-shape').innerHTML      = `Input Shape: ${shape}`;
 });
