@@ -7,7 +7,7 @@ document.getElementById('cancle').addEventListener('click', () => {
 
 document.getElementById('done').addEventListener('click', ()=> {
     let complete = true;
-    if(document.getElementById("param_num").value < 1) { complete = false}
+    if(document.getElementById("param_num").value < 1)   { complete = false}
     if(document.getElementById("param_num").value == "") { complete = false}
     if( complete === false){
         return;
@@ -17,9 +17,8 @@ document.getElementById('done').addEventListener('click', ()=> {
 });
 
 ipcRenderer.on("layer-config", (event , arg) => {
-    layer_config = arg.layer;
-    document.getElementById("param_num").value = layer_config.param_num;
-    layer = layer_config;
+    layer = arg.layer;
+    document.getElementById("param_num").value = layer.param_num;
 });
 
 (function() {

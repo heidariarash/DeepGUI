@@ -8,10 +8,10 @@ document.getElementById('cancle').addEventListener('click', () => {
 document.getElementById('done').addEventListener('click', ()=> {
     let complete = true;
     for(let i = 0; i < document.getElementsByClassName("small-input").length; i++){
-        if(document.getElementsByClassName("small-input")[i].value == ""){ complete = false}
+        if(document.getElementsByClassName("small-input")[i].value == "" || document.getElementsByClassName("small-input")[i].value < 1) { complete = false}
     }
     if(document.getElementById("number-of-filters").value == "") { complete = false}
-    if(document.getElementById("stride").value == "") { complete = false}
+    if(document.getElementById("stride").value == "")            { complete = false}
     if( complete === false){
         return;
     }
@@ -22,9 +22,9 @@ document.getElementById('done').addEventListener('click', ()=> {
         }
     }
     layer.filter_num = document.getElementById("number-of-filters").value;
-    layer.stride = document.getElementById("stride").value;
+    layer.stride     = document.getElementById("stride").value;
     layer.activation = document.getElementById("activation-selector").value;
-    layer.padding = document.getElementById("padding-selector").value;
+    layer.padding    = document.getElementById("padding-selector").value;
     ipcRenderer.send("layer-config-finish", layer);
 });
 
@@ -46,7 +46,7 @@ ipcRenderer.on("layer-config", (event , arg) => {
         document.getElementsByClassName("small-input")[1].parentNode.removeChild(document.getElementsByClassName("small-input")[1]);
     }
     document.getElementById("number-of-filters").value = layer_config.filter_num;
-    document.getElementById("stride").value = layer_config.stride;
+    document.getElementById("stride").value            = layer_config.stride;
     if (arg.framework === "PyTorch"){
         let attr;
         //selecting the parent of padding select tag
@@ -79,8 +79,8 @@ ipcRenderer.on("layer-config", (event , arg) => {
         `;
     }
     document.getElementById("activation-selector").value = layer_config.activation;
-    document.getElementById("padding-selector").value = layer_config.padding;
-    layer = layer_config;
+    document.getElementById("padding-selector").value    = layer_config.padding;
+    layer                                                = layer_config;
 });
 
 (function() {

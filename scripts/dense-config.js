@@ -11,15 +11,14 @@ document.getElementById('done').addEventListener('click', ()=> {
     if( complete === false){
         return;
     }
-    layer.unit_num = document.getElementById("number-of-units").value;
+    layer.unit_num   = document.getElementById("number-of-units").value;
     layer.activation = document.getElementById("activation-selector").value;
     ipcRenderer.send("layer-config-finish", layer);
 });
 
 ipcRenderer.on("layer-config", (event , arg) => {
-    layer_config = arg.layer;
-    document.getElementById("number-of-units").value = layer_config.unit_num;
-    layer = layer_config;
+    layer = arg.layer;
+    document.getElementById("number-of-units").value = layer.unit_num;
     if (arg.framework == "PyTorch"){
         document.getElementById('activation-selector').innerHTML = `
         <option value="ELU">Elu</option>
@@ -32,7 +31,7 @@ ipcRenderer.on("layer-config", (event , arg) => {
         <option value="Tanh">Tanh</option>
         `;
     }
-    document.getElementById("activation-selector").value = layer_config.activation;
+    document.getElementById("activation-selector").value = layer.activation;
 });
 
 (function() {

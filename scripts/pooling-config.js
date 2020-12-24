@@ -8,10 +8,10 @@ document.getElementById('cancle').addEventListener('click', () => {
 document.getElementById('done').addEventListener('click', ()=> {
     let complete = true;
     for(let i = 0; i < document.getElementsByClassName("small-input").length; i++){
-        if(document.getElementsByClassName("small-input")[i].value == ""){ complete = false}
+        if(document.getElementsByClassName("small-input")[i].value == "" || document.getElementsByClassName("small-input")[i].value < 1) { complete = false}
     }
     if(document.getElementById("stride").value == "") { complete = false}
-    if( complete === false){
+    if(complete === false){
         return;
     }
     if (document.getElementsByClassName("small-input").length === 1) {layer.filter_size = document.getElementsByClassName("small-input")[0].value}

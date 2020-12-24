@@ -8,7 +8,7 @@ document.getElementById('cancle').addEventListener('click', () => {
 document.getElementById('done').addEventListener('click', ()=> {
     let complete = true;
     if(document.getElementById("probability").value < 0 || document.getElementById("probability").value > 1) { complete = false}
-    if(document.getElementById("probability").value == "") { complete = false}
+    if(document.getElementById("probability").value == "")                                                   { complete = false}
     if( complete === false){
         return;
     }
@@ -17,9 +17,8 @@ document.getElementById('done').addEventListener('click', ()=> {
 });
 
 ipcRenderer.on("layer-config", (event , arg) => {
-    layer_config = arg.layer;
-    document.getElementById("probability").value = layer_config.prob;
-    layer = layer_config;
+    layer = arg.layer;
+    document.getElementById("probability").value = layer.prob;
 });
 
 (function() {
