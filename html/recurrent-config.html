@@ -14,33 +14,37 @@
             <div class="col-sm-12 heading-3-parent">
                 <div class="scrollable">
                     <br>
+
                     <label class="info">Number of Units: </label>
                     <br>
                     <input id="number-of-units" type="number" min="1" step="1" required>
                     <br>
                     <br>
+
                     <label class="info">Activation: </label>
                     <br>
                     <select id="activation-selector" onmousedown="this.size=2;"  onchange='this.size=0;' onblur="this.size=0;">
-                        <option value="tanh">Tanh</option>
+                        <option value="tanh"   >Tanh   </option>
                         <option value="sigmoid">Sigmoid</option>
                     </select>
                     <br>
                     <br>
+
                     <label class="info">Recurrent Activation: </label>
                     <br>
                     <select id="re_activation-selector" onmousedown="this.size=2;"  onchange='this.size=0;' onblur="this.size=0;">
-                        <option value="tanh">Tanh</option>
+                        <option value="tanh"   >Tanh   </option>
                         <option value="sigmoid">Sigmoid</option>
                     </select>
                     <br>
                     <br>
+
                     <label class="info">Return Sequence: </label>
                     <br>
                     <input id="ret-seq" type="checkbox">
                 </div>
                 <br>
-                <a class="small-window-buttons" id="done">Done</a>
+                <a class="small-window-buttons" id="done"  >Done  </a>
                 <a class="small-window-buttons" id="cancle">Cancle</a>
             </div>
         </div>

@@ -9,8 +9,8 @@
     <div id="title-bar">
         <div id="title">Deep GUI</div>
         <div id="title-bar-btns">
-            <a id="min-btn">-</a>
-            <a id="max-btn">+</a>
+            <a id="min-btn" >- </a>
+            <a id="max-btn" >+ </a>
             <a id="close-btn">x</a>
         </div>
     </div>
@@ -30,7 +30,7 @@
                     <br>
                     <select id="framework-selector" onmousedown="this.size = 2"  onchange='this.size=0;' onblur="this.size=0;">
                         <option value="TensorFlow">TensorFlow</option>
-                        <option value="PyTorch">PyTorch</option>
+                        <option value="PyTorch"   >PyTorch   </option>
                     </select>
                 </div>
 
@@ -89,11 +89,11 @@
                         <path />
                     </svg>
                     <br>
-                    <p class="info" id="transfer-learning-model">Model: VGG16</p>
-                    <p class="info" id="transfer-learning-top-layer">Top Layer: False</p>
+                    <p class="info" id="transfer-learning-model"     >Model: VGG16            </p>
+                    <p class="info" id="transfer-learning-top-layer" >Top Layer: False        </p>
                     <p class="info" id="transfer-learning-pretrained">Pretrained Weights: True</p>
-                    <p class="info" id="transfer-learning-shape">Input Shape: 224, 224, 3</p>
-                    <p class="info" id="transfer-learning-trainable">Trainable: False</p>
+                    <p class="info" id="transfer-learning-shape"     >Input Shape: 224, 224, 3</p>
+                    <p class="info" id="transfer-learning-trainable" >Trainable: False        </p>
                 </div>
 
                 <div class="heading-4-parent" id="new-layer-button-parent"> <!-- Add New Layer Button -->
@@ -119,14 +119,14 @@
                     <label class="main-heading-3">Choose Optimizer</label>
                     <br>
                     <select id="optimizer-selector" onmousedown="this.size=3"  onchange='this.size=0;' onblur="this.size=0;">
-                        <option value="Adam">Adam</option>
+                        <option value="Adam"    >Adam    </option>
                         <option value="Adadelta">Adadelta</option>
-                        <option value="Adagrad">Adagrad</option>
-                        <option value="Adamax">Adamax</option>
-                        <option value="Ftrl">Ftrl</option>
-                        <option value="Nadam">Nadam</option>
-                        <option value="RMSProp">RMSProp</option>
-                        <option value="SGD">SGD</option>
+                        <option value="Adagrad" >Adagrad </option>
+                        <option value="Adamax"  >Adamax  </option>
+                        <option value="Ftrl"    >Ftrl    </option>
+                        <option value="Nadam"   >Nadam   </option>
+                        <option value="RMSProp" >RMSProp </option>
+                        <option value="SGD"     >SGD     </option>
                     </select>
                 </div>
 
@@ -146,15 +146,15 @@
                     <label class="main-heading-3">Choose Loss Function</label>
                     <br>
                     <select id="loss-function-selector" onmousedown="if(this.options.length>3){this.size=3;}"  onchange='this.size=0;' onblur="this.size=0;">
-                        <option value="mean_squared_error">Mean Squared Error</option>
-                        <option value="mean_squared_logarithmic_error">Mean Squared Logarithmic Error</option>
-                        <option value="mean_absolute_error">Mean Absolute Error</option>
-                        <option value="binary_crossentropy">Binary Cross Entropy</option>
-                        <option value="hinge">Hinge</option>
-                        <option value="squared_hinge">Squared Hinge</option>
-                        <option value="categorical_crossentropy">Categorical Cross Entropy</option>
+                        <option value="mean_squared_error"             >Mean Squared Error              </option>
+                        <option value="mean_squared_logarithmic_error" >Mean Squared Logarithmic Error  </option>
+                        <option value="mean_absolute_error"            >Mean Absolute Error             </option>
+                        <option value="binary_crossentropy"            >Binary Cross Entropy            </option>
+                        <option value="hinge"                          >Hinge                           </option>
+                        <option value="squared_hinge"                  >Squared Hinge                   </option>
+                        <option value="categorical_crossentropy"       >Categorical Cross Entropy       </option>
                         <option value="sparse_categorical_crossentropy">Sparse Categorical Cross Entropy</option>
-                        <option value="kullback_leibler_divergence">Kullback Leibler Divergence</option>
+                        <option value="kullback_leibler_divergence"    >Kullback Leibler Divergence     </option>
                     </select>
                 </div>
 
@@ -192,7 +192,7 @@
 
     <!-- normal script imports etc  -->
     <script src="../scripts/utils/jquery.js"></script> <!-- JQuery -->
-    <script src="../scripts/main-window.js"></script>   
+    <script src="../scripts/main-window.js"> </script>   
 
     <!-- Insert this line after script imports -->
     <script>if (window.module) module = window.module;</script>
