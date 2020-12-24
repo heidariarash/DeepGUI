@@ -1,35 +1,35 @@
-const electron = require('electron');
-const generate_code = require('./scripts/utils/generate');
+const electron                     = require('electron');
+const generate_code                = require('./scripts/utils/generate');
 const {save_diagram, load_diagram} = require('./scripts/utils/saver_loader');
 
 const { app, BrowserWindow, ipcMain, dialog } = electron;
 
 let mainWindow;
 let configureWindow;
-let dimensions = [10];
 let layer_under_config;
 let requested_add_button;
 let notify_configure;
-let framework = "TensorFlow";
+let dimensions        = [10];
+let framework         = "TensorFlow";
 let transfer_learning = {
-    model: 'VGG16',
-    top_layer: false,
+    model:      'VGG16',
+    shape:      [224,224,3],
+    top_layer:  false,
     pretrained: true,
-    shape: [224,224,3],
-    trainable: false
+    trainable:  false
 }
 
 app.on('ready', ()=> {
     // Customizing Main Window
     mainWindow = new BrowserWindow({
-        minHeight: 700,
-        minWidth: 1100,
-        frame: false,
+        minHeight:      700,
+        minWidth:       1100,
+        frame:          false,
         webPreferences: {
             nodeIntegration: true,
-            // devTools: false
+            devTools:        false
         },
-        icon: __dirname + '/gallery/icon.png'
+        icon:            __dirname + '/gallery/icon.png'
     });
 
     //Loading the corresponding HTML File
@@ -61,17 +61,17 @@ ipcMain.on('min-app', () => {
 //New Layer Request
 ipcMain.on('new-layer-request', (event, args) => {
     configureWindow = new BrowserWindow({
-        frame: false,
+        frame:          false,
         webPreferences: {
             nodeIntegration: true,
-            devTools: false
+            devTools:        false
         },
-        width: 400,
-        height: 300,
-        resizable: false,
-        maximizable: false,
-        parent: mainWindow,
-        modal: true
+        width:          400,
+        height:         300,
+        resizable:      false,
+        maximizable:    false,
+        parent:         mainWindow,
+        modal:          true
     });
     requested_add_button = args;
     configureWindow.loadURL(`file://${__dirname}/html/new-layer.html`);
@@ -95,35 +95,35 @@ ipcMain.on('generate-code', async (event, arg) => {
         let success = await generate_code(arg, dimensions, file_path.filePath);
         if (success){
             notify_configure = ["code", "success"];
-            configureWindow = new BrowserWindow({
-                frame: false,
+            configureWindow  = new BrowserWindow({
+                frame:          false,
                 webPreferences: {
                     nodeIntegration: true,
-                    devTools: false
+                    devTools:        false
                 },
-                width: 400,
-                height: 350,
-                resizable: false,
-                maximizable: false,
-                parent: mainWindow,
-                modal: true
+                width:          400,
+                height:         350,
+                resizable:      false,
+                maximizable:    false,
+                parent:         mainWindow,
+                modal:          true
             });
             configureWindow.loadURL(`file://${__dirname}/html/code-generated-success.html`);
         }
         else {
             notify_configure = ["code", "unsuccess"];
-            configureWindow = new BrowserWindow({
-                frame: false,
+            configureWindow  = new BrowserWindow({
+                frame:          false,
                 webPreferences: {
                     nodeIntegration: true,
-                    devTools: false
+                    devTools:        false
                 },
-                width: 400,
-                height: 300,
-                resizable: false,
-                maximizable: false,
-                parent: mainWindow,
-                modal: true
+                width:          400,
+                height:         300,
+                resizable:      false,
+                maximizable:    false,
+                parent:         mainWindow,
+                modal:          true
             });
             configureWindow.loadURL(`file://${__dirname}/html/code-generated-unsuccess.html`);
         }
@@ -135,37 +135,37 @@ ipcMain.on('save-diagram', async (event, arg) => {
     let file_path = await dialog.showSaveDialog(mainWindow, { filters: [{ name: "DeepGUI File", extensions: ["dgui"]}] });
     if(file_path.canceled === false){
         let success = await save_diagram(arg, dimensions, file_path.filePath);
-        if (success){
+        if (success) {
             notify_configure = ["save", "success"];
-            configureWindow = new BrowserWindow({
-                frame: false,
+            configureWindow  = new BrowserWindow({
+                frame:          false,
                 webPreferences: {
                     nodeIntegration: true,
-                    devTools: false
+                    devTools:        false
                 },
-                width: 400,
-                height: 350,
-                resizable: false,
-                maximizable: false,
-                parent: mainWindow,
-                modal: true
+                width:          400,
+                height:         350,
+                resizable:      false,
+                maximizable:    false,
+                parent:         mainWindow,
+                modal:          true
             });
             configureWindow.loadURL(`file://${__dirname}/html/code-generated-success.html`);
         }
         else {
             notify_configure = ["save", "unsuccess"];
-            configureWindow = new BrowserWindow({
-                frame: false,
+            configureWindow  = new BrowserWindow({
+                frame:          false,
                 webPreferences: {
                     nodeIntegration: true,
-                    devTools: false
+                    devTools:        false
                 },
-                width: 400,
-                height: 300,
-                resizable: false,
-                maximizable: false,
-                parent: mainWindow,
-                modal: true
+                width:          400,
+                height:         300,
+                resizable:      false,
+                maximizable:    false,
+                parent:         mainWindow,
+                modal:          true
             });
             configureWindow.loadURL(`file://${__dirname}/html/code-generated-unsuccess.html`);
         }
@@ -193,35 +193,35 @@ ipcMain.on('load-diagram', async () => {
                 mainWindow.webContents.send("set-config", layer);
             }
             notify_configure = ["load", "success"];
-            configureWindow = new BrowserWindow({
-                frame: false,
+            configureWindow  = new BrowserWindow({
+                frame:          false,
                 webPreferences: {
                     nodeIntegration: true,
-                    devTools: false
+                    devTools:        false
                 },
-                width: 400,
-                height: 350,
-                resizable: false,
-                maximizable: false,
-                parent: mainWindow,
-                modal: true
+                width:          400,
+                height:         350,
+                resizable:      false,
+                maximizable:    false,
+                parent:         mainWindow,
+                modal:          true
             });
             configureWindow.loadURL(`file://${__dirname}/html/code-generated-success.html`);
         }
         catch {
             notify_configure = ["load", "unsuccess"];
-            configureWindow = new BrowserWindow({
-                frame: false,
+            configureWindow  = new BrowserWindow({
+                frame:          false,
                 webPreferences: {
                     nodeIntegration: true,
-                    devTools: false
+                    devTools:        false
                 },
-                width: 400,
-                height: 300,
-                resizable: false,
-                maximizable: false,
-                parent: mainWindow,
-                modal: true
+                width:          400,
+                height:         300,
+                resizable:      false,
+                maximizable:    false,
+                parent:         mainWindow,
+                modal:          true
             });
             configureWindow.loadURL(`file://${__dirname}/html/code-generated-unsuccess.html`);
         }
@@ -236,17 +236,17 @@ ipcMain.on("ready-notify-config", () => {
 //input shape cog clicked
 ipcMain.on('input-shape-cog', () => {
     configureWindow = new BrowserWindow({
-        frame: false,
+        frame:          false,
         webPreferences: {
             nodeIntegration: true,
-            devTools: false
+            devTools:        false
         },
-        width: 400,
-        height: 350,
-        resizable: false,
-        maximizable: false,
-        parent: mainWindow,
-        modal: true
+        width:          400,
+        height:         350,
+        resizable:      false,
+        maximizable:    false,
+        parent:         mainWindow,
+        modal:          true
     });
     
     configureWindow.loadURL(`file://${__dirname}/html/input-shape-config.html`);
@@ -255,17 +255,17 @@ ipcMain.on('input-shape-cog', () => {
 //input shape cog clicked
 ipcMain.on('transfer-learning-cog', () => {
     configureWindow = new BrowserWindow({
-        frame: false,
+        frame:          false,
         webPreferences: {
             nodeIntegration: true,
-            // devTools: false
+            devTools:        false
         },
-        width: 400,
-        height: 350,
-        // resizable: false,
-        maximizable: false,
-        parent: mainWindow,
-        modal: true
+        width:          400,
+        height:         350,
+        resizable:      false,
+        maximizable:    false,
+        parent:         mainWindow,
+        modal:          true
     });
     
     configureWindow.loadURL(`file://${__dirname}/html/transfer-learning-config.html`);
@@ -279,11 +279,10 @@ ipcMain.on('resize-small', (event, arg) => {
 //setting the input dimensions
 ipcMain.on('set-dimensions', (event, arg) => {
     configureWindow.close();
-    temp = [];
+    dimensions = [];
     for(dim of arg){
-        temp.push(parseInt(dim));
+        dimensions.push(parseInt(dim));
     }
-    dimensions = temp;
     mainWindow.webContents.send('set-input-shape', dimensions);
 });
 
@@ -295,17 +294,17 @@ ipcMain.on('ready-input-config', () => {
 //configuring a layer
 ipcMain.on("config-layer", (event, arg) => {
     configureWindow = new BrowserWindow({
-        frame: false,
+        frame:          false,
         webPreferences: {
             nodeIntegration: true,
-            devTools: false
+            devTools:        false
         },
-        width: 400,
-        height: 370,
-        resizable: false,
-        maximizable: false,
-        parent: mainWindow,
-        modal: true
+        width:          400,
+        height:         370,
+        resizable:      false,
+        maximizable:    false,
+        parent:         mainWindow,
+        modal:          true
     });
 
     layer_under_config = arg;
