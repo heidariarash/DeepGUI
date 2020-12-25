@@ -4,6 +4,10 @@ DeepGUI is a graphical user interface which generates Deep Learning Frameworks c
 
 DeepGUI is built using Electron.js framework.
 
+## What you can expect in the newer version
+The new features are as follows:
++ Now you can use transfer learning.
+
 ## DeepGUI Version 0.2.0 is OUT!
 What's New!? Now you can ...
 + Generate code using PyTorch framework (although, because PyTorch sequential models doesn't support time analysis, recurrent layers are not supported).
