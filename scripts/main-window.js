@@ -119,12 +119,12 @@ document.getElementById("framework-selector").addEventListener('change', () => {
     if(document.getElementById("framework-selector").value === "PyTorch"){
         change_optimizers("PyTorch");
         change_losses("PyTorch");
-        layers = change_layers("PyTorch", layers, transfer_learning);
+        layers = change_layers("PyTorch", layers);
     }
     else {
         change_optimizers("TensorFlow");
         change_losses("TensorFlow");
-        layers = change_layers("TensorFlow", layers, transfer_learning);
+        layers = change_layers("TensorFlow", layers);
     }
 });
 
@@ -204,9 +204,11 @@ ipcRenderer.on("load-new-diagram", (event, arg) => {
 //setting transfer learning text
 ipcRenderer.on('set-transfer-learning', (event, arg) => {
     const shape                                                       = arg.shape[0] + ", " + arg.shape[1] + ", " + arg.shape[2];
-    document.getElementById('transfer-learning-model').innerHTML      = `Model: ${arg.model}`;
     document.getElementById('transfer-learning-top-layer').innerHTML  = `Top Layer: ${arg.top_layer?'True':'False'}`;
     document.getElementById('transfer-learning-pretrained').innerHTML = `Pretrained Weights: ${arg.pretrained?'True':'False'}`;
     document.getElementById('transfer-learning-trainable').innerHTML  = `Trainble: ${arg.trainable?'True':'False'}`;
-    document.getElementById('transfer-learning-shape').innerHTML      = `Input Shape: ${shape}`;
+    document.getElementById('transfer-learning-model').innerHTML      = `Model: ${arg.model}`;
+    if (framework === "TensorFlow"){
+        document.getElementById('transfer-learning-shape').innerHTML      = `Input Shape: ${shape}`;
+    }
 });

@@ -91,8 +91,8 @@ ipcRenderer.on("initialize", (event , arg) => {
         document.getElementsByClassName("small-input")[0].parentNode.removeChild(document.getElementsByClassName("small-input")[0].previousSibling);
         document.getElementsByClassName("small-input")[0].parentNode.removeChild(document.getElementsByClassName("small-input")[0]);
     }
-    
-    document.getElementById("model-selector").value         = config.model;
+
+    document.getElementById("model-selector").value = config.model;
 });
 
 (function() {
