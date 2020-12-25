@@ -67,7 +67,7 @@ const change_optimizers = framework => {
     }
 }
 
-const change_layers = (framework, prev_layers) => {
+const change_layers = (framework, prev_layers, transfer_learning) => {
     const new_layers = [];
 
     //PyToch Case
@@ -176,6 +176,12 @@ const change_layers = (framework, prev_layers) => {
                 new_layers.push(layer);
             }
 
+        }
+
+        if (transfer_learning){
+            const infos = document.getElementById("transfer-learning-config").getElementsByClassName("info");
+            infos[3].parentNode.removeChild(infos[3]);
+            infos[0].innerHTML = "Model: VGG 16";
         }
 
     }
@@ -300,6 +306,20 @@ const change_layers = (framework, prev_layers) => {
                 new_layers.push(new_layer);
             }
 
+        }
+
+        if (transfer_learning){
+            const infos    = document.getElementById("transfer-learning-config").getElementsByClassName("info");
+            const info     = document.createElement("p");
+            let   attr     = document.createAttribute("id");
+            attr.value     = "transfer-learning-shape";
+            info.setAttributeNode(attr);
+            attr           = document.createAttribute("class");
+            attr.value     = "info";
+            info.setAttributeNode(attr);
+            info.innerHTML = "Input Shape: 224, 224, 3"
+            infos[0].innerHTML = "Model: VGG16";
+            infos[3].parentNode.insertBefore(info, infos[3]);
         }
 
     }

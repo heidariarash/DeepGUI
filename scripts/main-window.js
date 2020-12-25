@@ -119,12 +119,12 @@ document.getElementById("framework-selector").addEventListener('change', () => {
     if(document.getElementById("framework-selector").value === "PyTorch"){
         change_optimizers("PyTorch");
         change_losses("PyTorch");
-        layers = change_layers("PyTorch", layers);
+        layers = change_layers("PyTorch", layers, transfer_learning);
     }
     else {
         change_optimizers("TensorFlow");
         change_losses("TensorFlow");
-        layers = change_layers("TensorFlow", layers);
+        layers = change_layers("TensorFlow", layers, transfer_learning);
     }
 });
 

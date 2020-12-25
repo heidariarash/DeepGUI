@@ -27,7 +27,7 @@ app.on('ready', ()=> {
         frame:          false,
         webPreferences: {
             nodeIntegration: true,
-            devTools:        false
+            // devTools:        false
         },
         icon:            __dirname + '/gallery/icon.png'
     });
@@ -369,6 +369,13 @@ ipcMain.on("layer-config-finish", (event, arg) => {
 //change framwork signal
 ipcMain.on("change-framework", (event, arg) => {
     framework = arg;
+    if(framework === "PyTorch"){
+        transfer_learning.model = "VGG 16"
+    }
+    else {
+        transfer_learning.model = "VGG16"
+        transfer_learning.shape = [224,224,3]
+    }
 });
 
 //transfer learning config start
