@@ -258,7 +258,7 @@ ipcMain.on('transfer-learning-cog', () => {
         frame:          false,
         webPreferences: {
             nodeIntegration: true,
-            devTools:        false
+            // devTools:        false
         },
         width:          400,
         height:         350,
@@ -373,7 +373,7 @@ ipcMain.on("change-framework", (event, arg) => {
 
 //transfer learning config start
 ipcMain.on("ready-tl-config", () => {
-    configureWindow.webContents.send('initialize', transfer_learning);
+    configureWindow.webContents.send('initialize', {transfer_learning: transfer_learning, framework: framework});
 });
 
 //setting transfer learning configuration
