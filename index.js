@@ -92,7 +92,7 @@ ipcMain.on('close-small', () => {
 ipcMain.on('generate-code', async (event, arg) => {
     let file_path = await dialog.showSaveDialog(mainWindow, { filters: [{ name: "Python File", extensions: ["py"]}], properties: [] });
     if(file_path.canceled === false){
-        let success = await generate_code(arg, dimensions, file_path.filePath);
+        let success = await generate_code(arg, dimensions, transfer_learning, file_path.filePath);
         if (success){
             notify_configure = ["code", "success"];
             configureWindow  = new BrowserWindow({

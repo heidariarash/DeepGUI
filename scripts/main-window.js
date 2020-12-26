@@ -17,7 +17,8 @@ const diagram = () => {
         loss:      document.getElementById('loss-function-selector').value,
         epoch:     parseInt(document.getElementById('epoch').value),
         batch:     parseInt(document.getElementById('batch').value),
-        layers:    layers
+        layers:    layers,
+        tl_enable: transfer_learning
     }
 }
 
