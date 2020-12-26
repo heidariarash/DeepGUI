@@ -18,10 +18,15 @@ generate_code = async (options, dimensions, tl_params, file_path) => {
         //checking for the transfer learning
         if(options.tl_enable){
             stw += `base_model = keras.applications.${tl_params.model}(input_shape = (${tl_params.shape[0]}, ${tl_params.shape[1]}, ${tl_params.shape[2]}), include_top = ${tl_params.top_layer? "True":"False"}, weights = ${tl_params.pretrained?"'imagenet'":"None"})\n`;
+            stw += `base_model.trainable = ${tl_params.trainable?"True":"False"}\n\n`
         }
 
         stw += "model = keras.Sequntial()\n\n";
         stw += "#adding layers\n";
+
+        if (options.tl_enable){
+            stw += "model.add(base_model)\n"
+        }
 
         let input_shape = "(";
         for(let i = 0; i < dimensions.length; i++){
@@ -32,7 +37,7 @@ generate_code = async (options, dimensions, tl_params, file_path) => {
         }
 
         input_shape += ")";
-        if (options.layers[0].name !== "Embedding" || options.tl_enable != true){
+        if (options.layers[0].name !== "Embedding" && !options.tl_enable){
             stw += `model.add(keras.layers.InputLayer(input_shape = ${input_shape}))\n`;
         }
 

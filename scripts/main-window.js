@@ -13,7 +13,7 @@ const diagram = () => {
     return {
         framework: document.getElementById('framework-selector').value,
         optimizer: document.getElementById('optimizer-selector').value,
-        lr:        parseInt(document.getElementById('optimizer-lr').value),
+        lr:        parseFloat(document.getElementById('optimizer-lr').value),
         loss:      document.getElementById('loss-function-selector').value,
         epoch:     parseInt(document.getElementById('epoch').value),
         batch:     parseInt(document.getElementById('batch').value),
@@ -207,7 +207,7 @@ ipcRenderer.on('set-transfer-learning', (event, arg) => {
     const shape                                                       = arg.shape[0] + ", " + arg.shape[1] + ", " + arg.shape[2];
     document.getElementById('transfer-learning-top-layer').innerHTML  = `Top Layer: ${arg.top_layer?'True':'False'}`;
     document.getElementById('transfer-learning-pretrained').innerHTML = `Pretrained Weights: ${arg.pretrained?'True':'False'}`;
-    document.getElementById('transfer-learning-trainable').innerHTML  = `Trainble: ${arg.trainable?'True':'False'}`;
+    document.getElementById('transfer-learning-trainable').innerHTML  = `Trainable: ${arg.trainable?'True':'False'}`;
     document.getElementById('transfer-learning-model').innerHTML      = `Model: ${arg.model}`;
     if (framework === "TensorFlow"){
         document.getElementById('transfer-learning-shape').innerHTML      = `Input Shape: ${shape}`;
