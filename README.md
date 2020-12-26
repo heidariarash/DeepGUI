@@ -8,6 +8,8 @@ DeepGUI is built using Electron.js framework.
 The new features are as follows:
 + Now you can use transfer learning.
 
++ The bug in the learning rate is fixed.
+
 ## DeepGUI Version 0.2.0 is OUT!
 What's New!? Now you can ...
 + Generate code using PyTorch framework (although, because PyTorch sequential models doesn't support time analysis, recurrent layers are not supported).
