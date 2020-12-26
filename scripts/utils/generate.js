@@ -1,7 +1,7 @@
 const fs   = require('fs').promises;
 const path = require('path');
 
-generate_code = async (options, dimensions, file_path) => {
+generate_code = async (options, dimensions, tl_params, file_path) => {
     //creating the string to write (stw)
     let stw = "##################################################\n";
     stw     += "####### This Code is produced by Deep GUI ########\n";
@@ -12,10 +12,16 @@ generate_code = async (options, dimensions, file_path) => {
         stw += "import tensorflow.keras as keras\n\n\n";
         stw += "#specify x_train and y_train here:\n";
         stw += "x_train = \n";
-        stw += "y_train = \n\n\n"
-        stw += "#creating the model\n"
-        stw += "model = keras.Sequntial()\n\n"
-        stw += "#adding layers\n"
+        stw += "y_train = \n\n\n";
+        stw += "#creating the model\n";
+
+        //checking for the transfer learning
+        if(options.tl_enable){
+            stw += `base_model = keras.applications.${tl_params.model}(input_shape = (${tl_params.shape[0]}, ${tl_params.shape[1]}, ${tl_params.shape[2]}), include_top = ${tl_params.top_layer? "True":"False"}, weights = ${tl_params.pretrained?"'imagenet'":"None"})\n`;
+        }
+
+        stw += "model = keras.Sequntial()\n\n";
+        stw += "#adding layers\n";
 
         let input_shape = "(";
         for(let i = 0; i < dimensions.length; i++){
@@ -26,7 +32,7 @@ generate_code = async (options, dimensions, file_path) => {
         }
 
         input_shape += ")";
-        if (options.layers[0].name !== "Embedding"){
+        if (options.layers[0].name !== "Embedding" || options.tl_enable != true){
             stw += `model.add(keras.layers.InputLayer(input_shape = ${input_shape}))\n`;
         }
 
