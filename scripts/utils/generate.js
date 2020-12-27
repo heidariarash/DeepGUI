@@ -158,8 +158,13 @@ generate_code = async (options, dimensions, tl_params, file_path) => {
         }
     }
     else if(options.framework == "PyTorch"){
+        let transfer_first = true;
+
         stw += "import torch\n";
         stw += "import torch.nn as nn\n";
+        if (options.tl_enable){
+            stw += "from torchvision import models\n";
+        }
         stw += "from torch.utils.data import Dataset, DataLoader\n\n\n";
         stw += "#specify your dataset here:\n";
         stw += "class CustomDataset(Dataset):\n";
@@ -178,6 +183,14 @@ generate_code = async (options, dimensions, tl_params, file_path) => {
         stw += "#Define DataLoader here\n";
         stw += `data_loader = DataLoader(custom_dataset, batch_size = ${options.batch}, shuffle = True)\n\n\n`;
         stw += "#creating the model\n";
+        if (options.tl_enable) {
+            stw += `base_model = models.${tl_params.model}(pretrained = ${tl_params.pretrained?"True":"False"})\n`;
+            if (!tl_params.trainable){
+                stw += "for param in model.parameters():\n";
+                stw += "\tparam.requires_grad = False\n";
+            }
+            stw += "features_num = base_model.fc.in_features\n";
+        }
         stw += "model = nn.Sequntial(\n";
 
         for(layer of options.layers){
@@ -185,7 +198,13 @@ generate_code = async (options, dimensions, tl_params, file_path) => {
             switch(layer.name){
                 //linear case
                 case "Linear":
-                    stw += `\tnn.Linear(in_features = ${dimensions[dimensions.length - 1]}, out_features = ${layer.unit_num}),\n`;
+                    if (options.tl_enable && transfer_first){
+                        transfer_first = false;
+                        stw += `\tnn.Linear(in_features = features_num, out_features = ${layer.unit_num}),\n`;
+                    }
+                    else {
+                        stw += `\tnn.Linear(in_features = ${dimensions[dimensions.length - 1]}, out_features = ${layer.unit_num}),\n`;
+                    }
                     dimensions[dimensions.length - 1] = layer.unit_num;
                     if (layer.activation !== "Linear"){
                         stw += `\tnn.${layer.activation}(),\n`;
@@ -305,7 +324,15 @@ generate_code = async (options, dimensions, tl_params, file_path) => {
             }
         }
         stw = stw.slice(0,-2);
-        stw += "\n)\n\n";
+        stw += "\n)\n";
+        
+        if (options.tl_enable){
+            stw += "base_model.fc = model\n\n"; 
+        }
+        else {
+            stw += "\n";
+        }
+
         stw += "#loss function definition\n";
         stw += `loss_fn = nn.${options.loss}()\n\n`;
         stw += "#optomizer definition\n";
