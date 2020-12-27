@@ -184,14 +184,18 @@ generate_code = async (options, dimensions, tl_params, file_path) => {
         stw += `data_loader = DataLoader(custom_dataset, batch_size = ${options.batch}, shuffle = True)\n\n\n`;
         stw += "#creating the model\n";
         if (options.tl_enable) {
-            stw += `base_model = models.${tl_params.model}(pretrained = ${tl_params.pretrained?"True":"False"})\n`;
+            stw += `model = models.${tl_params.model}(pretrained = ${tl_params.pretrained?"True":"False"})\n`;
             if (!tl_params.trainable){
                 stw += "for param in model.parameters():\n";
                 stw += "\tparam.requires_grad = False\n";
             }
-            stw += "features_num = base_model.fc.in_features\n";
+            stw += "features_num = model.fc.in_features\n";
+            stw += "head = ";
         }
-        stw += "model = nn.Sequntial(\n";
+        else {
+            stw += "model = ";
+        }
+        stw += "nn.Sequntial(\n";
 
         for(layer of options.layers){
             let ret_seq = "False";
@@ -327,7 +331,7 @@ generate_code = async (options, dimensions, tl_params, file_path) => {
         stw += "\n)\n";
         
         if (options.tl_enable){
-            stw += "base_model.fc = model\n\n"; 
+            stw += "model.fc = head\n\n"; 
         }
         else {
             stw += "\n";
