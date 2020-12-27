@@ -17,7 +17,7 @@ generate_code = async (options, dimensions, tl_params, file_path) => {
 
         //checking for the transfer learning
         if(options.tl_enable){
-            stw += `base_model = keras.applications.${tl_params.model}(input_shape = (${tl_params.shape[0]}, ${tl_params.shape[1]}, ${tl_params.shape[2]}), include_top = ${tl_params.top_layer? "True":"False"}, weights = ${tl_params.pretrained?"'imagenet'":"None"})\n`;
+            stw += `base_model = keras.applications.${tl_params.model}(input_shape = (${tl_params.shape[0]}, ${tl_params.shape[1]}, ${tl_params.shape[2]}), include_top = False, weights = ${tl_params.pretrained?"'imagenet'":"None"})\n`;
             stw += `base_model.trainable = ${tl_params.trainable?"True":"False"}\n\n`
         }
 

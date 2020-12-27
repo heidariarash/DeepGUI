@@ -180,7 +180,7 @@ const change_layers = (framework, prev_layers) => {
 
         //transfer learning parameters
         const infos = document.getElementById("transfer-learning-config").getElementsByClassName("info");
-        infos[3].parentNode.removeChild(infos[3]);
+        infos[2].parentNode.removeChild(infos[2]);
         infos[0].innerHTML = "Model: VGG 16";
 
     }
@@ -318,7 +318,7 @@ const change_layers = (framework, prev_layers) => {
         info.setAttributeNode(attr);
         info.innerHTML = "Input Shape: 224, 224, 3"
         infos[0].innerHTML = "Model: VGG16";
-        infos[3].parentNode.insertBefore(info, infos[3]);
+        infos[2].parentNode.insertBefore(info, infos[2]);
 
     }
     return new_layers;

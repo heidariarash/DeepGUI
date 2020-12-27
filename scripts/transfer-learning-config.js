@@ -20,7 +20,6 @@ document.getElementById('done').addEventListener('click', ()=> {
         config.shape[2]   = document.getElementsByClassName('small-input')[2].value;
     }
     config.model      = document.getElementById("model-selector").value;
-    config.top_layer  = document.getElementById("top-layer").checked;
     config.pretrained = document.getElementById("pretrained").checked;
     config.trainable  = document.getElementById("trainable").checked;
     ipcRenderer.send("set-transfer-learning", config);
@@ -33,7 +32,6 @@ ipcRenderer.on("initialize", (event , arg) => {
     document.getElementsByClassName('small-input')[1].value = config.shape[1];
     document.getElementsByClassName('small-input')[2].value = config.shape[2];
     document.getElementById("pretrained").checked           = config.pretrained;
-    document.getElementById("top-layer").checked            = config.top_layer;
     document.getElementById("trainable").checked            = config.trainable;
     
     if (framework === "PyTorch") {
