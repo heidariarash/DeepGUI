@@ -38,7 +38,7 @@ ipcRenderer.on("initialize", (event , arg) => {
     
     if (framework === "PyTorch") {
         document.getElementById('model-selector').innerHTML = `
-        <option value="alexnet">Alexnet</option>
+        <option value="Alexnet">Alexnet</option>
         <option value="VGG 11">VGG 11</option>
         <option value="VGG 11 with Batch Normalization">VGG 11 with Batch Normalization</option>
         <option value="VGG 13">VGG 13</option>
@@ -52,8 +52,8 @@ ipcRenderer.on("initialize", (event , arg) => {
         <option value="ResNet 50">ResNet 50</option>
         <option value="ResNet 101">ResNet 101</option>
         <option value="ResNet 152">ResNet 152</option>
-        <option value="SqueezNet 1.0">SqueezNet 1.0</option>
-        <option value="SqueezNet 1.1">SqueezNet 1.1</option>
+        <option value="SqueezNet 1.0">SqueezeNet 1.0</option>
+        <option value="SqueezNet 1.1">SqueezeNet 1.1</option>
         <option value="DenseNet 121">DenseNet 121</option>
         <option value="DenseNet 169">DenseNet 169</option>
         <option value="DenseNet 161">DenseNet 161</option>

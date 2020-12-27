@@ -159,6 +159,43 @@ generate_code = async (options, dimensions, tl_params, file_path) => {
     }
     else if(options.framework == "PyTorch"){
         let transfer_first = true;
+        let models         = {
+            "Alexnet"                        : "alexnet",
+            "VGG 11"                         : "vgg11",
+            "VGG 13"                         : "vgg13",
+            "VGG 16"                         : "vgg16",
+            "VGG 19"                         : "vgg19",
+            "VGG 11 with Batch Normalization": "vgg11_bn",
+            "VGG 13 with Batch Normalization": "vgg13_bn",
+            "VGG 16 with Batch Normalization": "vgg16_bn",
+            "VGG 19 with Batch Normalization": "vgg19_bn",
+            "ResNet 18"                      : "resnet18",
+            "ResNet 34"                      : "resnet34",
+            "ResNet 50"                      : "resnet50",
+            "ResNet 101"                     : "resnet101",
+            "ResNet 152"                     : "resnet152",
+            "SqueezeNet 1.0"                 : "squeezenet1_0",
+            "SqueezeNet 1.1"                 : "squeezenet1_1",
+            "DenseNet 121"                   : "densenet121",
+            "DenseNet 169"                   : "densenet169",
+            "DenseNet 161"                   : "densenet161",
+            "DenseNet 201"                   : "densenet201",
+            "Inception V3"                   : "inception_v3",
+            "GoogLeNet"                      : "googlenet",
+            "ShuffleNet V2 0.5x"             : "shufflenet_v2_x0_5",
+            "ShuffleNet V2 1.0x"             : "shufflenet_v2_x1_0",
+            "ShuffleNet V2 1.5x"             : "shufflenet_v2_x1_5",
+            "ShuffleNet V2 2.0x"             : "shufflenet_v2_x2_0",
+            "MobileNet V2"                   : "mobilenet_v2",
+            "ResNeXt-50 32x4d"               : "resnext50_32x4d",
+            "ResNeXt-101 32x8d"              : "resnext101_32x8d",
+            "Wide ResNet-50-2"               : "wide_resnet50_2",
+            "Wide ResNet-101-2"              : "wide_resnet101_2",
+            "MNASNet 0.5"                    : "mnasnet0_5",
+            "MNASNet 0.75"                   : "mnasnet0_75",
+            "MNASNet 1.0"                    : "mnasnet1_0",
+            "MNASNet 1.3"                    : "mnasnet1_3",
+        }
 
         stw += "import torch\n";
         stw += "import torch.nn as nn\n";
@@ -184,10 +221,10 @@ generate_code = async (options, dimensions, tl_params, file_path) => {
         stw += `data_loader = DataLoader(custom_dataset, batch_size = ${options.batch}, shuffle = True)\n\n\n`;
         stw += "#creating the model\n";
         if (options.tl_enable) {
-            stw += `model = models.${tl_params.model}(pretrained = ${tl_params.pretrained?"True":"False"})\n`;
+            stw += `model = models.${models[tl_params.model]}(pretrained = ${tl_params.pretrained?"True":"False"})\n`;
             if (!tl_params.trainable){
                 stw += "for param in model.parameters():\n";
-                stw += "\tparam.requires_grad = False\n";
+                stw += "\tparam.requires_grad = False\n\n";
             }
             stw += "features_num = model.fc.in_features\n";
             stw += "head = ";
